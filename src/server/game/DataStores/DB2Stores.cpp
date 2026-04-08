@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 TrintiyCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -1509,11 +1509,11 @@ void DB2Manager::LoadStores(std::string const& dataPath, uint32 defaultLocale)
     // LOAD_DB2(sSpellVisualStore);
     //LOAD_DB2(sSpellVisualAnimStore);
     //LOAD_DB2(sSpellVisualColorEffectStore);
-    //LOAD_DB2(sSpellVisualEffectNameStore);
-    //LOAD_DB2(sSpellVisualEventStore);
-    //LOAD_DB2(sSpellVisualKitStore);
+    LOAD_DB2(sSpellVisualEffectNameStore);
+    LOAD_DB2(sSpellVisualEventStore);
+    LOAD_DB2(sSpellVisualKitStore);
     //LOAD_DB2(sSpellVisualKitAreaModelStore);
-    //LOAD_DB2(sSpellVisualKitEffectStore);
+    LOAD_DB2(sSpellVisualKitEffectStore);
     //LOAD_DB2(sSpellVisualKitModelAttachStore);
     //LOAD_DB2(sSpellVisualMissileStore);
     //LOAD_DB2(sSpellXDescriptionVariablesStore);

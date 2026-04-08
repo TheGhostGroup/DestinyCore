@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 TrintiyCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -15,8 +15,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRINITY_DB2STORES_H
-#define TRINITY_DB2STORES_H
+#ifndef DESTINYCORE_DB2STORES_H
+#define DESTINYCORE_DB2STORES_H
 
 #include "DB2Store.h"
 #include "DB2Structure.h"
@@ -238,6 +238,10 @@ extern DB2Storage<SpellShapeshiftFormEntry>                 sSpellShapeshiftForm
 extern DB2Storage<SpellTargetRestrictionsEntry>             sSpellTargetRestrictionsStore;
 extern DB2Storage<SpellTotemsEntry>                         sSpellTotemsStore;
 extern DB2Storage<SpellVisualEntry>                         sSpellVisualStore;
+extern DB2Storage<SpellVisualEffectNameEntry>               sSpellVisualEffectNameStore;
+extern DB2Storage<SpellVisualEventEntry>                    sSpellVisualEventStore;
+extern DB2Storage<SpellVisualKitEntry>                      sSpellVisualKitStore;
+extern DB2Storage<SpellVisualKitEffectEntry>                sSpellVisualKitEffectStore;
 extern DB2Storage<SpellXSpellVisualEntry>                   sSpellXSpellVisualStore;
 extern DB2Storage<SummonPropertiesEntry>                    sSummonPropertiesStore;
 extern DB2Storage<TalentEntry>                              sTalentStore;

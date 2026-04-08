@@ -6278,20 +6278,19 @@ struct SpellVisualColorEffectEntry
 struct SpellVisualEffectNameEntry
 {
     int32       ID;
-    int32       ModelFileDataID;
+    float       ModelFileDataID;
     float       EffectRadius;
     float       BaseMissileSpeed;
     float       Scale;
     float       MinAllowedScale;
     float       MaxAllowedScale;
-    float       Alpha;
+    int32       Alpha;
     int32       Flags;
     int32       Type;
-    int32       GenericID;
+    uint8       GenericID;
     int32       TextureFileDataID;
     int32       RibbonQualityID;
     int32       DissolveEffectID;
-    int32       Unknown13;
 };
 
 // FileOptions: Index, None
@@ -6305,6 +6304,7 @@ struct SpellVisualEventEntry
     int32       EndMinOffsetMs;
     int32       EndMaxOffsetMs;
     int32       TargetType;
+    int32       SpellVisualMissileSetID;
     int32       SpellVisualKitID;
 };
 
@@ -6337,6 +6337,7 @@ struct SpellVisualKitEffectEntry
     int32       ID;
     int32       EffectType;
     int32       Effect;
+    int32       SpellVisualKitID;
 };
 
 // FileOptions: None

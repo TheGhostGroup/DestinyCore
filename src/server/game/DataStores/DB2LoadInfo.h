@@ -10694,20 +10694,19 @@ struct SpellVisualEffectNameLoadInfo
         static DB2FieldMeta const fields[] =
         {
             { true, FT_INT, "ID" },
-            { true, FT_INT, "ModelFileDataID" },
+            { false, FT_FLOAT, "ModelFileDataID" },
             { false, FT_FLOAT, "EffectRadius" },
             { false, FT_FLOAT, "BaseMissileSpeed" },
             { false, FT_FLOAT, "Scale" },
             { false, FT_FLOAT, "MinAllowedScale" },
             { false, FT_FLOAT, "MaxAllowedScale" },
-            { false, FT_FLOAT, "Alpha" },
+            { true, FT_INT, "Alpha" },
             { true, FT_INT, "Flags" },
             { true, FT_INT, "Type" },
-            { true, FT_INT, "GenericID" },
+            { false, FT_BYTE, "GenericID" },
             { true, FT_INT, "TextureFileDataID" },
             { true, FT_INT, "RibbonQualityID" },
             { true, FT_INT, "DissolveEffectID" },
-            { true, FT_INT, "Unknown13" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, SpellVisualEffectNameMeta::Instance(), HOTFIX_SEL_SPELL_VISUAL_EFFECT_NAME);
         return &loadInfo;
@@ -10728,6 +10727,7 @@ struct SpellVisualEventLoadInfo
             { true, FT_INT, "EndMinOffsetMs" },
             { true, FT_INT, "EndMaxOffsetMs" },
             { true, FT_INT, "TargetType" },
+            { true, FT_INT, "SpellVisualMissileSetID" },
             { true, FT_INT, "SpellVisualKitID" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, SpellVisualEventMeta::Instance(), HOTFIX_SEL_SPELL_VISUAL_EVENT);
@@ -10781,6 +10781,7 @@ struct SpellVisualKitEffectLoadInfo
             { true, FT_INT, "ID" },
             { true, FT_INT, "EffectType" },
             { true, FT_INT, "Effect" },
+            { true, FT_INT, "SpellVisualKitID" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, SpellVisualKitEffectMeta::Instance(), HOTFIX_SEL_SPELL_VISUAL_KIT_EFFECT);
         return &loadInfo;
