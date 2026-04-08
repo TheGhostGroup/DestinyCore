@@ -85,6 +85,17 @@ BattlenetPort = 1119
 LoginREST.Port = 8081
 LoginREST.ExternalAddress=127.0.0.1
 LoginREST.LocalAddress=127.0.0.1
+
+#
+# Login.with.account
+# Description: Allows login with account name instead of Battle.net e-mail address.
+#              If enabled and the entered login does not contain '@', the server
+#              will try to resolve the corresponding Battle.net e-mail first.
+# Default: 0 - (Login with Battle.net e-mail only)
+#          1 - (Allow login with account name)
+
+Login.with.account = 0
+
 #
 #    RestWaitTime
 #        Description: Validity time (in seconds) for REST login tickets before they expire.
