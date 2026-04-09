@@ -1097,8 +1097,8 @@ void DB2Manager::LoadStores(std::string const& dataPath, uint32 defaultLocale)
     //LOAD_DB2(sChrUpgradeBucketStore);
     //LOAD_DB2(sChrUpgradeBucketSpellStore);
     //LOAD_DB2(sChrUpgradeTierStore);
-    //LOAD_DB2(sCinematicCameraStore);
-    //LOAD_DB2(sCinematicSequencesStore);
+    LOAD_DB2(sCinematicCameraStore);
+    LOAD_DB2(sCinematicSequencesStore);
     //LOAD_DB2(sCloakDampeningStore);
     //LOAD_DB2(sCombatConditionStore);
     //LOAD_DB2(sCommentatorStartLocationStore);

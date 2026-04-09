@@ -68,6 +68,8 @@ extern DB2Storage<ChrClassesEntry>                          sChrClassesStore;
 extern DB2Storage<ChrClassesXPowerTypesEntry>               sChrClassesXPowerTypesStore;
 extern DB2Storage<ChrRacesEntry>                            sChrRacesStore;
 extern DB2Storage<ChrSpecializationEntry>                   sChrSpecializationStore;
+extern DB2Storage<CinematicCameraEntry>                     sCinematicCameraStore;
+extern DB2Storage<CinematicSequencesEntry>                  sCinematicSequencesStore;
 extern DB2Storage<ConversationLineEntry>                    sConversationLineStore;
 extern DB2Storage<CreatureDisplayInfoEntry>                 sCreatureDisplayInfoStore;
 extern DB2Storage<CreatureDisplayInfoExtraEntry>            sCreatureDisplayInfoExtraStore;

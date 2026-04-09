@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -38,6 +38,7 @@
 #include "Vehicle.h"
 #include <fstream>
 #include "Garrison.h"
+#include "M2Stores.h"
 
 class debug_commandscript : public CommandScript
 {
@@ -198,6 +199,28 @@ public:
         }
 
         uint32 id = atoi((char*)args);
+
+        CinematicSequencesEntry const* cineSeq = sCinematicSequencesStore.LookupEntry(id);
+        if (!cineSeq)
+        {
+            handler->PSendSysMessage(LANG_CINEMATIC_NOT_EXIST, id);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
+        // Dump camera locations
+        if (std::vector<FlyByCamera> const* flyByCameras = GetFlyByCameras(cineSeq->Camera[0]))
+        {
+            handler->PSendSysMessage("Waypoints for sequence %u, camera %u", id, cineSeq->Camera[0]);
+            uint32 count = 1;
+            for (FlyByCamera const& cam : *flyByCameras)
+            {
+                handler->PSendSysMessage("%02u - %7ums [%s (%f degrees)]", count, cam.timeStamp, cam.locations.ToString().c_str(), cam.locations.GetOrientation() * (180 / M_PI));
+                count++;
+            }
+            handler->PSendSysMessage(SZFMTD " waypoints dumped", flyByCameras->size());
+        }
+
         handler->GetSession()->GetPlayer()->SendCinematicStart(id);
         return true;
     }

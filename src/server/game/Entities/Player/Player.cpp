@@ -433,6 +433,8 @@ m_achievementMgr(sf::safe_ptr<AchievementMgr<Player>>(this))
     for (size_t i = 0; i < MAX_PETBATTLE_SLOTS; ++i)
         _battlePetCombatTeam[i] = std::shared_ptr<BattlePet>();
 
+    _cinematicMgr = new CinematicMgr(this);
+
     _spectatorFlag = false;
     _spectateCanceled = false;
     _spectateRemoving = false;
@@ -479,6 +481,7 @@ Player::~Player()
         delete (*ItemSetEff)[x];
 
     delete m_declinedname;
+    delete _cinematicMgr;
 
     for (uint16 i = 0; i < VOID_STORAGE_MAX_SLOT; ++i)
         if (_voidStorageItems[i])
@@ -1493,6 +1496,14 @@ void Player::Update(uint32 p_time)
     {
         TC_LOG_FATAL("spells", "Player has m_spellModTakingSpell %u during update!", m_spellModTakingSpell->m_spellInfo->Id);
         m_spellModTakingSpell = NULL;
+    }
+
+    // Update cinematic location, if 500ms have passed and we're doing a cinematic now.
+    _cinematicMgr->m_cinematicDiff += p_time;
+    if (_cinematicMgr->m_activeCinematicCameraId != 0 && GetMSTimeDiffToNow(_cinematicMgr->m_lastCinematicCheck) > CINEMATIC_UPDATEDIFF)
+    {
+        _cinematicMgr->m_lastCinematicCheck = getMSTime();
+        _cinematicMgr->UpdateCinematicLocation(p_time);
     }
 
     //used to implement delayed far teleports
@@ -8776,11 +8787,13 @@ void Player::SendDirectMessage(WorldPacket const* data) const
         m_session->SendPacket(data);
 }
 
-void Player::SendCinematicStart(uint32 CinematicSequenceId)
+void Player::SendCinematicStart(uint32 CinematicSequenceId) const
 {
     WorldPackets::Misc::TriggerCinematic packet;
     packet.CinematicID = CinematicSequenceId;
     SendDirectMessage(packet.Write());
+    if (CinematicSequencesEntry const* sequence = sCinematicSequencesStore.LookupEntry(CinematicSequenceId))
+        _cinematicMgr->SetActiveCinematicCamera(sequence->Camera[0]);
 }
 
 void Player::SendMovieStart(uint32 MovieId)

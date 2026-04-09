@@ -107,6 +107,7 @@
 #include "WorldSocket.h"
 #include <atomic>
 #include <boost/algorithm/string.hpp>
+#include "M2Stores.h"
 
 uint8 World::m_ExitCode = SHUTDOWN_EXIT_CODE;
 std::atomic<uint32> World::m_worldLoopCounter(0);
@@ -1672,7 +1673,8 @@ void World::SetInitialWorldSettings()
     TC_LOG_INFO("server.loading", "Loading hotfix info...");
     sDB2Manager.LoadHotfixData();
     HotfixDatabase.Close();
-
+    ///- Load M2 fly by cameras
+    LoadM2Cameras(m_dataPath);
     LoadGameTables(m_dataPath);
 
     //Load weighted graph on taxi nodes path

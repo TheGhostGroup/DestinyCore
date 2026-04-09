@@ -2066,13 +2066,13 @@ struct CinematicCameraLoadInfo
     {
         static DB2FieldMeta const fields[] =
         {
-            { true, FT_INT, "ID" },
-            { true, FT_INT, "SoundID" },
-            { false, FT_FLOAT, "Origin1" },
-            { false, FT_FLOAT, "Origin2" },
-            { false, FT_FLOAT, "Origin3" },
+            { false, FT_INT, "ID" },
+            { false, FT_INT, "SoundID" },
+            { false, FT_FLOAT, "OriginX" },
+            { false, FT_FLOAT, "OriginY" },
+            { false, FT_FLOAT, "OriginZ" },
             { false, FT_FLOAT, "OriginFacing" },
-            { true, FT_INT, "FileDataID" },
+            { false, FT_INT, "FileDataID" },
         };
         static DB2LoadInfo const loadInfo(&fields[0], std::extent<decltype(fields)>::value, CinematicCameraMeta::Instance(), HOTFIX_SEL_CINEMATIC_CAMERA);
         return &loadInfo;
@@ -2085,8 +2085,8 @@ struct CinematicSequencesLoadInfo
     {
         static DB2FieldMeta const fields[] =
         {
-            { true, FT_INT, "ID" },
-            { true, FT_INT, "SoundID" },
+            { false, FT_INT, "ID" },
+            { false, FT_INT, "SoundID" },
             { false, FT_SHORT, "Camera1" },
             { false, FT_SHORT, "Camera2" },
             { false, FT_SHORT, "Camera3" },

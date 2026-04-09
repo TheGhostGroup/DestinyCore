@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2018 TrinityCore <https://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -554,7 +554,7 @@ void HotfixDatabaseConnection::DoPrepareStatements()
     PREPARE_LOCALE_STMT(HOTFIX_SEL_CHR_UPGRADE_TIER, "SELECT ID, DisplayName_lang FROM chr_upgrade_tier_locale WHERE locale = ?", CONNECTION_SYNCH);
 
     // CinematicCamera.db2
-    PrepareStatement(HOTFIX_SEL_CINEMATIC_CAMERA, "SELECT ID, SoundID, Origin1, Origin2, Origin3, OriginFacing, FileDataID FROM cinematic_camera", CONNECTION_SYNCH);
+    PrepareStatement(HOTFIX_SEL_CINEMATIC_CAMERA, "SELECT ID, SoundID, OriginX, OriginY, OriginZ, OriginFacing, FileDataID FROM cinematic_camera", CONNECTION_SYNCH);
     PREPARE_MAX_ID_STMT(HOTFIX_SEL_CINEMATIC_CAMERA, "SELECT MAX(ID) + 1 FROM cinematic_camera", CONNECTION_SYNCH);
 
     // CinematicSequences.db2

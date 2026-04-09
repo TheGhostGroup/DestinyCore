@@ -1282,22 +1282,20 @@ struct ChrUpgradeTierEntry
     int32       ID;
 };
 
-// FileOptions: Index, None
 struct CinematicCameraEntry
 {
-    int32       ID;
-    int32       SoundID;
-    float       Origin[3];
-    float       OriginFacing;
-    int32       FileDataID;
+    uint32 ID;
+    uint32 SoundID;                                         // Sound ID       (voiceover for cinematic)
+    DBCPosition3D Origin;                                   // Position in map used for basis for M2 co-ordinates
+    float OriginFacing;                                     // Orientation in map used for basis for M2 co-
+    uint32 FileDataID;                                      // Model
 };
 
-// FileOptions: Index, None
 struct CinematicSequencesEntry
 {
-    int32       ID;
-    int32       SoundID;
-    uint16      Camera[8];
+    uint32 ID;
+    uint32 SoundID;
+    uint16 Camera[8];
 };
 
 // FileOptions: Index, None

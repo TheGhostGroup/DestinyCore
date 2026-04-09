@@ -47,6 +47,10 @@
 #include "Util.h"
 #include <queue>
 #include <safe_ptr.h>
+#include "../../Vignette/VignetteMgr.h"
+#include "EquipementSet.h"
+#include "LogsSystem.h"
+#include "CinematicMgr.h"
 
 class SpectatorAddonMsg;
 struct Mail;
@@ -1498,6 +1502,7 @@ typedef sf::safe_ptr<AchievementMgr<Player>> AchievementPtr;
 class Player : public Unit, public GridObject<Player>
 {
     friend class WorldSession;
+    friend class CinematicMgr;
     friend class BattlePayMgr;
     friend class RestMgr;
     friend void Item::AddToUpdateQueueOf(Player* player);
@@ -1925,6 +1930,8 @@ class Player : public Unit, public GridObject<Player>
         Player* GetTrader() const;
         TradeData* GetTradeData() const;
         void TradeCancel(bool sendback);
+
+        CinematicMgr* GetCinematicMgr() const { return _cinematicMgr; }
 
         void RecalculatePvPAmountOfAuras();
         void RecalculateAmountAllAuras();
@@ -3025,7 +3032,7 @@ class Player : public Unit, public GridObject<Player>
         void ResummonPetTemporaryUnSummonedIfAny();
         bool IsPetNeedBeTemporaryUnsummoned() const { return !IsInWorld() || !IsAlive() || IsMounted() /*+in flight*/; }
 
-        void SendCinematicStart(uint32 CinematicSequenceId);
+        void SendCinematicStart(uint32 CinematicSequenceId) const;
         void SendMovieStart(uint32 MovieId);
 
         uint32 realmTransferid;
@@ -3686,6 +3693,8 @@ class Player : public Unit, public GridObject<Player>
         InventoryResult CanStoreItem_InInventorySlots(uint8 slot_begin, uint8 slot_end, ItemPosCountVec& dest, ItemTemplate const* pProto, uint32& count, bool merge, Item* pSrcItem, uint8 skip_bag, uint8 skip_slot) const;
         Item* _StoreItem(uint16 pos, Item* pItem, uint32 count, bool clone, bool update);
         Item* _LoadItem(CharacterDatabaseTransaction& trans, uint32 zoneId, uint32 timeDiff, Field* fields);
+
+        CinematicMgr* _cinematicMgr;
 
         GuidSet m_refundableItems;
         void SendRefundInfo(Item* item);

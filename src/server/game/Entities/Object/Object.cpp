@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -22,6 +21,7 @@
 #include "CharmInfo.h"
 #include "ChatTextBuilder.h"
 #include "ChatPackets.h"
+#include "CinematicMgr.h"
 #include "Common.h"
 #include "Creature.h"
 #include "GameObjectPackets.h"
@@ -2422,9 +2422,13 @@ float WorldObject::GetGridActivationRange() const
     if (m_Teleports)
         return 0.0f;
 
-    if (IsPlayer())
-        if (Map* map = GetMap())
-            return map->GetVisibilityRange(m_zoneId, m_areaId);
+    if (isActiveObject())
+    {
+        if (GetTypeId() == TYPEID_PLAYER && ToPlayer()->GetCinematicMgr()->IsOnCinematic())
+            return std::max(DEFAULT_VISIBILITY_INSTANCE, GetMap()->GetVisibilityRange());
+
+        return GetMap()->GetVisibilityRange();
+    }
 
     if (ToCreature())
         return ToCreature()->m_SightDistance;
@@ -2472,12 +2476,19 @@ float WorldObject::GetSightRange(const WorldObject* target) const
                     return GLOBAL_VISIBILITY_DISTANCE;
                 if (target->isActiveObject() && !target->IsPlayer())
                     return MAX_VISIBILITY_DISTANCE;
+                else if (ToPlayer()->GetCinematicMgr()->IsOnCinematic())
+                    return DEFAULT_VISIBILITY_INSTANCE;
             }
             return GetMap()->GetVisibilityRange(m_zoneId, m_areaId);
         }
         if (ToCreature())
             return ToCreature()->m_SightDistance;
         return SIGHT_RANGE_UNIT;
+    }
+
+    if (ToDynObject() && isActiveObject())
+    {
+        return GetMap()->GetVisibilityRange();
     }
 
     return 0.0f;

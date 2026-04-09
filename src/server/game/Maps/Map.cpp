@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -1083,6 +1082,16 @@ void Map::Update(const uint32 t_diff)
                 {
                     uint32 _ss = getMSTime();
                     player->Update(t_diff);
+
+                    // If player is using far sight, visit that object too
+                    if (WorldObject* viewPoint = player->GetViewpoint())
+                    {
+                        if (Creature* viewCreature = viewPoint->ToCreature())
+                            VisitNearbyCellsOf(viewCreature); // toDO VisitNearbyCellsOf(viewCreature, grid_object_update, world_object_update);
+                        else if (DynamicObject* viewObject = viewPoint->ToDynObject())
+                            VisitNearbyCellsOf(viewObject); //toDO VisitNearbyCellsOf(viewObject, grid_object_update, world_object_update);
+                    }
+
                     uint32 _mssu = GetMSTimeDiffToNow(_ss);
                     VisitNearbyCellsOf(player);
                     uint32 _mss = GetMSTimeDiffToNow(_ss);
@@ -2788,8 +2797,8 @@ void Map::UpdateObjectsVisibilityFor(Player* player, Cell cell, CellCoord cellpa
     Trinity::VisibleNotifier notifier(*player);
 
     cell.SetNoCreate();
-    cell.Visit(cellpair, Trinity::makeWorldVisitor(notifier), *this, *player, player->GetSightRange());
-    cell.Visit(cellpair, Trinity::makeGridVisitor(notifier), *this, *player, player->GetSightRange());
+    cell.Visit(cellpair, Trinity::makeWorldVisitor(notifier), *this, *player->m_seer, player->GetSightRange());
+    cell.Visit(cellpair, Trinity::makeGridVisitor(notifier), *this, *player->m_seer, player->GetSightRange());
 
     // send data
     notifier.SendToSelf();
