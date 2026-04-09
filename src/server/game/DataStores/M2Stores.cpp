@@ -176,7 +176,7 @@ bool readCamera(M2Camera const* cam, uint32 buffSize, M2Header const* header, Ci
     return true;
 }
 
-void LoadM2Cameras(std::string const& dataPath)
+TC_GAME_API void LoadM2Cameras(std::string const& dataPath)
 {
     sFlyByCameraStore.clear();
     TC_LOG_INFO("server.loading", ">> Loading Cinematic Camera files");
