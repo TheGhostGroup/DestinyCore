@@ -107,6 +107,7 @@ class Transport : public GameObject, public TransportBase
 
         bool IsMoving() const override { return _isMoving; }
         void SetMoving(bool val) override { _isMoving = val; }
+        void SetPendingStop(bool val) { _pendingStop = val; }
 
     private:
         void MoveToNextWaypoint();
