@@ -302,6 +302,21 @@ void Transport::RemovePassenger(WorldObject* passenger)
     }
 }
 
+void Transport::UnloadNonStaticPassengers()
+{
+    std::list<WorldObject*> toRemove;
+    for (WorldObjectSet::iterator itr = _passengers.begin(); itr != _passengers.end(); ++itr)
+    {
+        if ((*itr)->GetTypeId() == TYPEID_PLAYER)
+            continue;
+
+        toRemove.push_back((*itr));
+    }
+
+    for (auto unit : toRemove)
+        unit->AddObjectToRemoveList();
+}
+
 Creature* Transport::AddNPCPassengerInInstance(uint32 entry, float x, float y, float z, float o, uint32 anim)
 {
     Map* map = GetMap();

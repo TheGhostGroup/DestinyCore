@@ -41,6 +41,7 @@ class Transport : public GameObject, public TransportBase
 
         void AddPassenger(WorldObject* passenger);
         void RemovePassenger(WorldObject* passenger);
+        void UnloadNonStaticPassengers();
         Creature* AddNPCPassengerInInstance(uint32 entry, float x, float y, float z, float o, uint32 anim = 0);
         WorldObjectSet& GetPassengers() { return _passengers; }
 
