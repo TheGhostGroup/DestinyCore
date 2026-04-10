@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2017 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -133,14 +133,14 @@ class TransportMgr
             return Trinity::Containers::MapGetValuePtr(_transportAnimations, entry);
         }
 
+        // Generates and precaches a path for transport to avoid generation each time transport instance is created
+        void GeneratePath(GameObjectTemplate const* goInfo, TransportTemplate* transport);
+
     private:
         TransportMgr();
         ~TransportMgr();
         TransportMgr(TransportMgr const&) = delete;
         TransportMgr& operator=(TransportMgr const&) = delete;
-
-        // Generates and precaches a path for transport to avoid generation each time transport instance is created
-        void GeneratePath(GameObjectTemplate const* goInfo, TransportTemplate* transport);
 
         void AddPathNodeToTransport(uint32 transportEntry, uint32 timeSeg, TransportAnimationEntry const* node);
 
