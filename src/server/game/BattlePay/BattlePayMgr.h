@@ -365,7 +365,6 @@ namespace Battlepay
         {
             Mount = 1,
             Pets = 2,
-            Services = 3,
             Golds = 4,
             Professions = 5,
             Armors = 7,
@@ -374,6 +373,7 @@ namespace Battlepay
             Boosts = 10,
             Bags = 11,
             Heirlooms = 12,
+            Services = 22, // WOW_SERVICES_CATEGORY_ID (client hardcoded)
         };
     }
 

@@ -18,6 +18,11 @@
 #ifndef CHARSERVICE_H
 #define CHARSERVICE_H
 
+#include "ObjectGuid.h"
+
+class WorldSession;
+class Player;
+
 class CharacterService
 {
 	CharacterService() = default;
@@ -29,6 +34,10 @@ public:
     void ChangeRace(Player* player);
     void Customize(Player* player);
     void Boost(Player* player);
+	void BoostCharacter(WorldSession* session, ObjectGuid targetCharGuid, uint8 targetLevel,
+	uint16 overrideMapId = 0, uint16 overrideZoneId = 0,
+	float overrideX = 0.f, float overrideY = 0.f, float overrideZ = 0.f, float overrideO = 0.f,
+	bool isClassTrial = false, uint16 specId = 0);
     void RestoreDeletedCharacter(WorldSession* session);
 	void Promo(Player* player);
 	void PremadePve(Player* player);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -128,7 +128,7 @@ void WorldSession::SendFeatureSystemStatusGlueScreen()
     features.Unk14 = true;
     features.WillKickFromWorld = false;
     features.KioskModeEnabled = false;
-    features.TrialBoostEnabled = false;
+    features.TrialBoostEnabled = sWorld->getBoolConfig(CONFIG_CLASS_TRIAL_ENABLED);
     features.IsExpansionPreorderInStore = false;
     features.CompetitiveModeEnabled = false;
     features.TokenBalanceEnabled = true;

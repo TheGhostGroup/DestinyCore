@@ -3888,6 +3888,25 @@ Bpay.Enabled = 1
 BattlePay.Currency = 1
 
 #
+#     CharacterBoost.Enabled
+#        Description: Enable Character Boost from the BattlePay shop.
+#                     Allows players to purchase level 90/100 boosts.
+#        Default:     0 (disabled)
+#					  1 (enabled)
+
+CharacterBoost.Enabled = 0
+
+#
+#     ClassTrial.Enabled
+#        Description: Enable Class Trial button at character select.
+#                     Allows players to create a temporary level 110 character
+#                     that gets locked after logout until a Character Boost is purchased.
+#        Default:     0 (disabled)
+#					  1 (enabled)
+
+ClassTrial.Enabled = 0
+
+#
 ###################################################################################################
 
 ###################################################################################################
