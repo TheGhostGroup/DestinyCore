@@ -864,6 +864,14 @@ namespace WorldPackets
         class RequestWowTokenMarketPrice;
         class UpdateListedAuctionableTokens;
         class CheckVeteranTokenEligibility;
+        class BuyWowTokenStart;
+        class BuyWowTokenConfirm;
+        class SellWowTokenStart;
+        class SellWowTokenConfirm;
+        class RedeemWowTokenStart;
+        class RedeemWowTokenConfirm;
+        class UpdateWowTokenCount;
+        class CanRedeemWowTokenForBalance;
     }
 
     namespace Ticket
@@ -1981,6 +1989,14 @@ class WorldSession
         void HandleUpdateListedAuctionableTokens(WorldPackets::Token::UpdateListedAuctionableTokens& packet);
         void HandleRequestConsumptionConversionInfo(WorldPackets::Misc::RequestConsumptionConversionInfo& packet);
         void HandleCheckVeteranTokenEligibility(WorldPackets::Token::CheckVeteranTokenEligibility& packet);
+        void HandleBuyWowTokenStart(WorldPackets::Token::BuyWowTokenStart& packet);
+        void HandleBuyWowTokenConfirm(WorldPackets::Token::BuyWowTokenConfirm& packet);
+        void HandleSellWowTokenStart(WorldPackets::Token::SellWowTokenStart& packet);
+        void HandleSellWowTokenConfirm(WorldPackets::Token::SellWowTokenConfirm& packet);
+        void HandleRedeemWowTokenStart(WorldPackets::Token::RedeemWowTokenStart& packet);
+        void HandleRedeemWowTokenConfirm(WorldPackets::Token::RedeemWowTokenConfirm& packet);
+        void HandleUpdateWowTokenCount(WorldPackets::Token::UpdateWowTokenCount& packet);
+        void HandleCanRedeemWowTokenForBalance(WorldPackets::Token::CanRedeemWowTokenForBalance& packet);
         void LootCorps(ObjectGuid corpsGUID, WorldObject* lootedBy = nullptr);
 
         void HandleContributionCollectorContribute(WorldPackets::Misc::ContributionCollectorContribute& packet);

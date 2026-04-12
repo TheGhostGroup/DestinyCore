@@ -725,7 +725,7 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder const& holder)
         features.BpayStoreDisabledByParentalControls = false;
         features.ItemRestorationButtonEnabled = true;
         features.RecruitAFriendSendingEnabled = false;
-        features.CommerceSystemEnabled = false;
+        features.CommerceSystemEnabled = sWorld->getBoolConfig(CONFIG_WOW_TOKEN_ENABLED);
         features.BrowserEnabled = false;//  GetBattlePayMgr()->IsAvailable(); // Has to be false, otherwise client will crash if "Customer Support" is opened
         features.TutorialsEnabled = true;
         features.NPETutorialsEnabled = true;

@@ -1448,6 +1448,10 @@ void World::LoadConfigSettings(bool reload)
     m_int_configs[CONFIG_BATTLE_PAY_CURRENCY] = sConfigMgr->GetIntDefault("BattlePay.Currency", 1);
     m_bool_configs[CONFIG_CHARACTER_BOOST_ENABLED] = sConfigMgr->GetBoolDefault("CharacterBoost.Enabled", true);
     m_bool_configs[CONFIG_CLASS_TRIAL_ENABLED] = sConfigMgr->GetBoolDefault("ClassTrial.Enabled", true);
+    m_bool_configs[CONFIG_WOW_TOKEN_ENABLED] = sConfigMgr->GetBoolDefault("WowToken.Enabled", true);
+    m_int_configs[CONFIG_WOW_TOKEN_MARKET_PRICE] = sConfigMgr->GetIntDefault("WowToken.MarketPrice", 60000);
+    m_int_configs[CONFIG_WOW_TOKEN_REDEEM_BALANCE] = sConfigMgr->GetIntDefault("WowToken.RedeemBalanceAmount", 1000);
+    m_int_configs[CONFIG_WOW_TOKEN_ITEM_ID] = sConfigMgr->GetIntDefault("WowToken.ItemId", 122284);
 
     m_int_configs[CONFIG_BLACKMARKET_MAXAUCTIONS] = sConfigMgr->GetIntDefault("BlackMarket.MaxAuctions", 12);
     m_int_configs[CONFIG_BLACKMARKET_UPDATE_PERIOD] = sConfigMgr->GetIntDefault("BlackMarket.UpdatePeriod", 24);

@@ -67,3 +67,143 @@ WorldPacket const* WorldPackets::Token::WowTokenCanVeteranBuyResult::Write()
 
     return &_worldPacket;
 }
+
+// --- Buy Token ---
+
+void WorldPackets::Token::BuyWowTokenStart::Read()
+{
+    _worldPacket >> UnkInt;
+    _worldPacket >> Buyer;
+    _worldPacket >> CurrentMarketPrice;
+}
+
+void WorldPackets::Token::BuyWowTokenConfirm::Read()
+{
+    _worldPacket >> UnkInt;
+    _worldPacket >> PendingBuyConfirmations;
+    _worldPacket >> GuaranteedPrice;
+    Confirmed = _worldPacket.ReadBit();
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenBuyRequestConfirmation::Write()
+{
+    _worldPacket << CurrentMarketPrice;
+    _worldPacket << TokenCount;
+    _worldPacket << Result;
+
+    return &_worldPacket;
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenBuyResultConfirmation::Write()
+{
+    _worldPacket << UnkInt;
+    _worldPacket << Result;
+
+    return &_worldPacket;
+}
+
+// --- Sell Token ---
+
+void WorldPackets::Token::SellWowTokenStart::Read()
+{
+    _worldPacket >> UnkInt64;
+    _worldPacket >> CurrentMarketPrice;
+    _worldPacket >> UnkInt;
+}
+
+void WorldPackets::Token::SellWowTokenConfirm::Read()
+{
+    _worldPacket >> TokenGuid;
+    _worldPacket >> UnkInt;
+    _worldPacket >> PendingBuyConfirmations;
+    _worldPacket >> GuaranteedPrice;
+    Confirmed = _worldPacket.ReadBit();
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenSellRequestConfirmation::Write()
+{
+    _worldPacket << GuaranteedPrice;
+    _worldPacket << UnkInt;
+    _worldPacket << Result;
+
+    return &_worldPacket;
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenSellResultConfirmation::Write()
+{
+    _worldPacket << UnkInt;
+    _worldPacket << Result;
+
+    return &_worldPacket;
+}
+
+// --- Redeem Token ---
+
+void WorldPackets::Token::RedeemWowTokenStart::Read()
+{
+    _worldPacket >> Count;
+    _worldPacket >> UnkInt;
+    _worldPacket >> UnkInt2;
+}
+
+void WorldPackets::Token::RedeemWowTokenConfirm::Read()
+{
+    _worldPacket >> UnkInt;
+    _worldPacket >> Count;
+    _worldPacket >> TokenGuid;
+    _worldPacket >> UnkInt2;
+    Confirm = _worldPacket.ReadBit();
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenRedeemRequestConfirmation::Write()
+{
+    _worldPacket << Count;
+    _worldPacket << UnkInt;
+    _worldPacket << Result;
+
+    return &_worldPacket;
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenRedeemResult::Write()
+{
+    _worldPacket << UnkInt;
+    _worldPacket << Result;
+
+    return &_worldPacket;
+}
+
+// --- Update Token Count ---
+
+void WorldPackets::Token::UpdateWowTokenCount::Read()
+{
+    _worldPacket >> UnkInt;
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenDistributionGlueUpdate::Write()
+{
+    _worldPacket << UnkInt;
+    _worldPacket << UnkInt2;
+    _worldPacket << DistributionCount1;
+    _worldPacket << DistributionCount2;
+    for (int32 i = 0; i < DistributionCount1; ++i)
+        _worldPacket << DistributionIDs1[i];
+    for (int32 i = 0; i < DistributionCount2; ++i)
+        _worldPacket << DistributionIDs2[i];
+
+    return &_worldPacket;
+}
+
+// --- Can Redeem For Balance ---
+
+void WorldPackets::Token::CanRedeemWowTokenForBalance::Read()
+{
+    _worldPacket >> UnkInt;
+}
+
+WorldPacket const* WorldPackets::Token::WowTokenCanRedeemForBalanceResult::Write()
+{
+    _worldPacket << UnkInt;
+    _worldPacket << Result;
+
+    return &_worldPacket;
+}

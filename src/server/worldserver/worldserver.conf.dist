@@ -3907,6 +3907,37 @@ CharacterBoost.Enabled = 0
 ClassTrial.Enabled = 0
 
 #
+#    WowToken.Enabled
+#        Enables the WoW Token system in the auction house.
+#        Allows players to buy/sell tokens and
+#        exchange them for BattlePay balance.
+#        Default: 1 - (Enabled)
+#                 0 - (Disabled)
+
+WowToken.Enabled = 0
+
+#
+#    WowToken.MarketPrice
+#        Price of the WoW Token in gold.
+#        Default: 60000
+
+WowToken.MarketPrice = 60000
+
+#
+#    WowToken.RedeemBalanceAmount
+#        Amount of BattlePay balance added when redeeming a token.
+#        Default: 50
+
+WowToken.RedeemBalanceAmount = 1000
+
+#
+#    WowToken.ItemId
+#        ID of the WoW Token item in the database.
+#        Default: 122284
+
+WowToken.ItemId = 122284
+
+#
 ###################################################################################################
 
 ###################################################################################################
