@@ -209,7 +209,7 @@ void WorldSession::HandleBuyWowTokenStart(WorldPackets::Token::BuyWowTokenStart&
 
     uint64 price = static_cast<uint64>(sWorld->getIntConfig(CONFIG_WOW_TOKEN_MARKET_PRICE)) * GOLD;
 
-    if (static_cast<uint64>(player->GetMoney()) < price)
+    if (static_cast<uint64>(player->GetMoney()) < static_cast<uint64>(sWorld->getIntConfig(CONFIG_WOW_TOKEN_MARKET_PRICE)) * GOLD)
     {
         response.Result = TOKEN_RESULT_ERROR_OTHER;
         SendPacket(response.Write());
@@ -235,6 +235,7 @@ void WorldSession::HandleBuyWowTokenConfirm(WorldPackets::Token::BuyWowTokenConf
     }
 
     Player* player = GetPlayer();
+
     if (!player)
     {
         response.Result = TOKEN_RESULT_ERROR_OTHER;
@@ -242,9 +243,7 @@ void WorldSession::HandleBuyWowTokenConfirm(WorldPackets::Token::BuyWowTokenConf
         return;
     }
 
-    uint64 price = packet.GuaranteedPrice;
-    if (price == 0)
-        price = static_cast<uint64>(sWorld->getIntConfig(CONFIG_WOW_TOKEN_MARKET_PRICE)) * GOLD;
+    uint64 price = static_cast<uint64>(sWorld->getIntConfig(CONFIG_WOW_TOKEN_MARKET_PRICE)) * GOLD;
 
     if (static_cast<uint64>(player->GetMoney()) < price)
     {
@@ -415,8 +414,15 @@ void WorldSession::HandleRedeemWowTokenConfirm(WorldPackets::Token::RedeemWowTok
     SendFeatureSystemStatusGlueScreen();
 }
 
-void WorldSession::HandleUpdateWowTokenCount(WorldPackets::Token::UpdateWowTokenCount& /*packet*/)
+void WorldSession::HandleUpdateWowTokenCount(WorldPackets::Token::UpdateWowTokenCount& packet)
 {
+    WorldPackets::Token::WowTokenDistributionGlueUpdate response;
+    response.UnkInt = packet.UnkInt;
+    response.UnkInt2 = 0;
+    response.DistributionCount1 = 0;
+    response.DistributionCount2 = 0;
+
+    SendPacket(response.Write());
 }
 
 void WorldSession::HandleCanRedeemWowTokenForBalance(WorldPackets::Token::CanRedeemWowTokenForBalance& packet)

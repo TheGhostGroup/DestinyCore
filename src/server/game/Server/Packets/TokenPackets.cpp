@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2015 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -87,9 +87,9 @@ void WorldPackets::Token::BuyWowTokenConfirm::Read()
 
 WorldPacket const* WorldPackets::Token::WowTokenBuyRequestConfirmation::Write()
 {
-    _worldPacket << CurrentMarketPrice;
-    _worldPacket << TokenCount;
-    _worldPacket << Result;
+    _worldPacket << uint64(CurrentMarketPrice);
+    _worldPacket << uint32(Result);
+    _worldPacket << uint32(TokenCount);
 
     return &_worldPacket;
 }
