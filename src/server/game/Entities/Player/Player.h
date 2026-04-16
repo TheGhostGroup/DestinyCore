@@ -1996,6 +1996,7 @@ class Player : public Unit, public GridObject<Player>
         bool CanRewardQuest(Quest const* quest, uint32 reward, bool msg);
         void AddQuestAndCheckCompletion(Quest const* quest, Object* questGiver);
         void AddQuest(Quest const* quest, Object* questGiver);
+        void ForceCompleteQuest(uint32 quest_id);
         void CompleteQuest(uint32 quest_id);
         void IncompleteQuest(uint32 quest_id);
         int32 GetQuestMoneyReward(Quest const* quest) const;
