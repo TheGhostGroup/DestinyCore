@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "zulgurub.h"
 
 enum JindoScriptTexts
@@ -244,7 +261,7 @@ class boss_jindo_the_godbreaker : public CreatureScript
                                             pSummon->CastSpell(pHakkar, SPELL_HAKKAR_CHAINS);
                             }
                             me->SetCanFly(true);
-                            me->GetMotionMaster()->MoveJump(jindoPos.GetPositionX(), jindoPos.GetPositionY(), jindoPos.GetPositionZ() + 15.0f, 20.0f, 40.0f); 
+                            me->GetMotionMaster()->MoveJump(jindoPos.GetPositionX(), jindoPos.GetPositionY(), jindoPos.GetPositionZ() + 15.0f, 0.0f, 20.0f, 40.0f);
                             events.RescheduleEvent(EVENT_SHADOW_SPIKE, 3000);
                             events.RescheduleEvent(EVENT_SUMMON_SPIRIT, 4000);
                             break;
@@ -266,7 +283,7 @@ class boss_jindo_the_godbreaker : public CreatureScript
                         case EVENT_END_2:
                             Talk(SAY_DEATH);
                             me->SetCanFly(false);
-                            me->GetMotionMaster()->MoveJump(jindoPos.GetPositionX(), jindoPos.GetPositionY(), jindoPos.GetPositionZ(), 20.0f, 40.0f); 
+                            me->GetMotionMaster()->MoveJump(jindoPos.GetPositionX(), jindoPos.GetPositionY(), jindoPos.GetPositionZ(), 0.0f, 20.0f, 40.0f);
                             events.RescheduleEvent(EVENT_END_3, 5000);
                             break;
                         case EVENT_END_3:

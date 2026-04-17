@@ -1,7 +1,19 @@
 /*
-    https://uwow.biz/
-    Dungeon : Cathedral of Eternal Night 7.2
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "cathedral_of_eternal_night.h"
 #include "AreaTrigger.h"
@@ -303,7 +315,7 @@ struct npc_mephistroth_illidan : public ScriptedAI
             {
                 events.RescheduleEvent(EVENT_1, 1000);
                 if (urand(1, 4) == 1)
-                    me->SetFacingTo(frand(0, 2*M_PI));
+                    me->SetFacingTo(frand(0.0f, static_cast<float>(2.0 * M_PI)));
             }
             else
             {
@@ -407,7 +419,7 @@ struct areatrigger_mephistroth_shadow_blast : AreaTriggerAI
 
             if (target->HasAura(SPELL_EGIDA_BUFF) && target->IsPlayer())
             {
-                if (target->isInFront(at) && at->isInFront(target, 7*M_PI/6))
+                if (target->isInFront(at) && at->isInFront(target, static_cast<float>(7.0 * M_PI / 6.0)))
                 {
                     caster->CastSpell(target, SPELL_SHADOW_HIT_EGIDA);
                     at->Despawn();
@@ -430,7 +442,7 @@ struct areatrigger_mephistroth_shadow_blast : AreaTriggerAI
                 target->SetPower(POWER_ALTERNATE, 0);
                 can_delete = true;
             }
-            else if (target->HasAura(SPELL_EGIDA_BUFF) && target->IsPlayer() && target->isInFront(at) && at->isInFront(target, 7*M_PI/6))
+            else if (target->HasAura(SPELL_EGIDA_BUFF) && target->IsPlayer() && target->isInFront(at) && at->isInFront(target, static_cast<float>(7.0 * M_PI / 6.0)))
             {
                 caster->CastSpell(target, SPELL_SHADOW_HIT_EGIDA);
                 can_delete = true;

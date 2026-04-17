@@ -1,7 +1,19 @@
 /*
-https://uwow.biz/
-
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "tomb_of_sargeras.h"
 
@@ -799,7 +811,7 @@ struct boss_fallen_avatar : BossAI
 
                         Trinity::Containers::RandomResizeList(positions, IsMythicRaid() ? 4 : 3);
                         for (const auto& pos : positions)
-                            me->CastSpell(pos.GetPositionX() + frand(-5, 5), pos.GetPositionY() + frand(-5, 5), pos.GetPositionZ(), SPELL_TOUCH_OF_SARGERAS_SUM, true);
+                            me->CastSpell(pos.GetPositionX() + frand(-5.0f, 5.0f), pos.GetPositionY() + frand(-5.0f, 5.0f), pos.GetPositionZ(), SPELL_TOUCH_OF_SARGERAS_SUM, true);
                     });
                     events.RescheduleEvent(EVENT_TOUCH_OF_SARGERAS, IsMythicRaid() ? 63000 : 45000);
                     break;
@@ -814,7 +826,7 @@ struct boss_fallen_avatar : BossAI
                     {
                         me->AddDelayedCombat(i++ * 50 + 10, [this, pair]() -> void
                         {
-                            me->CastSpell(pair.second.GetPositionX() + frand(-3, 3), pair.second.GetPositionY() + frand(-3, 3), pair.second.GetPositionZ(), SPELL_RAIN_OF_THE_DESTROYER_SUM, true);
+                            me->CastSpell(pair.second.GetPositionX() + frand(-3.0f, 3.0f), pair.second.GetPositionY() + frand(-3.0f, 3.0f), pair.second.GetPositionZ(), SPELL_RAIN_OF_THE_DESTROYER_SUM, true);
                         });
                     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2011 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -14,13 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Kologarn
-SDAuthor: PrinceCreed
-SD%Complete: 100%
-SD%Comments: Kologarn's vehicleid is wrong.
-EndScriptData */
 
 #include "ulduar.h"
 #include "Vehicle.h"
@@ -200,7 +193,7 @@ public:
                     {
                         pPlayer->RemoveAurasDueToSpell(RAID_MODE(64290, 64292));
                         pPlayer->RemoveAurasDueToSpell(SPELL_STONE_GRIP_STUN);
-                        pPlayer->GetMotionMaster()->MoveJump(1767.80f, -18.38f, 448.808f, 10, 10);
+                        pPlayer->GetMotionMaster()->MoveJump(1767.80f, -18.38f, 448.808f, 0.0f, 10.0f, 10.0f);
                     }
                 }
             }
@@ -667,7 +660,7 @@ public:
             if (Victim)
             {
                 Victim->ExitVehicle();
-                Victim->GetMotionMaster()->MoveJump(1767.80f, -18.38f, 448.808f, 10, 10);
+                Victim->GetMotionMaster()->MoveJump(1767.80f, -18.38f, 448.808f, 0.0f, 10.0f, 10.0f);
             }
         }
 
@@ -742,7 +735,7 @@ public:
                         pGripTarget->RemoveAurasDueToSpell(SPELL_STONE_GRIP);
                         pGripTarget->RemoveAurasDueToSpell(SPELL_STONE_GRIP_STUN);
                         pGripTarget->ExitVehicle();
-                        pGripTarget->GetMotionMaster()->MoveJump(1767.80f, -18.38f, 448.808f, 10, 10);
+                        pGripTarget->GetMotionMaster()->MoveJump(1767.80f, -18.38f, 448.808f, 0.0f, 10.0f, 10.0f);
                     }
                 }Gripped = false;
                 
@@ -780,7 +773,7 @@ public:
                     {
                         pGripTarget->RemoveAurasDueToSpell(SPELL_STONE_GRIP_STUN);
                         pGripTarget->ExitVehicle();
-                        pGripTarget->GetMotionMaster()->MoveJump(1775.0479f, -3.7957f, 448.8068f, 10, 10);
+                        pGripTarget->GetMotionMaster()->MoveJump(1775.0479f, -3.7957f, 448.8068f, 0.0f, 10.0f, 10.0f);
                     }
                     Gripped = false;
                 }

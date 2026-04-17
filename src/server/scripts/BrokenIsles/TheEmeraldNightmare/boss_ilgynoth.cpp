@@ -1,7 +1,19 @@
 /*
-    https://uwow.biz/
-    TODO: Нехватает инфы по евентам с суммонами, сколько суммонится и когда по времени.
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "the_emerald_nightmare.h"
 #include "CreatureGroups.h"
@@ -250,7 +262,7 @@ struct boss_ilgynoth : public BossAI
         for (uint8 i = 0; i < count; ++i)
         {
             uint8 rand = urand(1, 2);
-            float angle = frand(0.f, M_PI * 2.f);
+            float angle = frand(0.0f, static_cast<float>(M_PI * 2.0));
             float x = sumPos[rand].GetPositionX() + (5.0f * std::cos(angle));
             float y = sumPos[rand].GetPositionY() + (5.0f * std::sin(angle));
             me->SummonCreature(entry, x, y, sumPos[rand].GetPositionZ());

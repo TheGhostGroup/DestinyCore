@@ -710,7 +710,7 @@ class spell_aggramar_wrought_in_flame : public AuraScript
 
     void OnApply(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
     {
-        tickCount = float(aurEff->GetAmount() * 0.01f);
+        tickCount = static_cast<float>(aurEff->GetAmount() * 0.01f);
     }
 
     void OnTick(AuraEffect const* aurEff)
@@ -828,9 +828,9 @@ class spell_aggramar_flame_rend_filter : public SpellScript
         uint32 playersCount = GetCaster()->GetMap()->GetPlayersCountExceptGMs();
 
         if (playersCount > 10)
-            playerMod = float(playersCount * 0.1f);
+            playerMod = static_cast<float>(playersCount * 0.1f);
 
-        jumpPct = 100.0f - float(targets.size() / playersCount) * 100.0f;
+        jumpPct = 100.0f - static_cast<float>(targets.size() / playersCount) * 100.0f;
 
         if (jumpPct >= 75.0f) // targets <= 25% players = cast buff
             GetCaster()->CastSpell(GetCaster(), SPELL_BURNING_RAGE, true);

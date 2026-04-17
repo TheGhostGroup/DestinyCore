@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2017 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -328,7 +328,7 @@ void TransportMgr::GeneratePath(GameObjectTemplate const* goInfo, TransportTempl
     if (keyFrames[0].IsStopFrame())
     {
         curPathTime = float(keyFrames[0].Node->Delay);
-        keyFrames[0].DepartureTime = uint32(curPathTime * IN_MILLISECONDS);
+        keyFrames[0].DepartureTime = uint32(curPathTime * static_cast<float>(IN_MILLISECONDS));
     }
 
     for (size_t i = 1; i < keyFrames.size(); ++i)
@@ -336,15 +336,15 @@ void TransportMgr::GeneratePath(GameObjectTemplate const* goInfo, TransportTempl
         curPathTime += keyFrames[i - 1].TimeTo;
         if (keyFrames[i].IsStopFrame())
         {
-            keyFrames[i].ArriveTime = uint32(curPathTime * IN_MILLISECONDS);
+            keyFrames[i].ArriveTime = uint32(curPathTime * static_cast<float>(IN_MILLISECONDS));
             keyFrames[i - 1].NextArriveTime = keyFrames[i].ArriveTime;
             curPathTime += float(keyFrames[i].Node->Delay);
-            keyFrames[i].DepartureTime = uint32(curPathTime * IN_MILLISECONDS);
+            keyFrames[i].DepartureTime = uint32(curPathTime * static_cast<float>(IN_MILLISECONDS));
         }
         else
         {
             curPathTime -= keyFrames[i].TimeTo;
-            keyFrames[i].ArriveTime = uint32(curPathTime * IN_MILLISECONDS);
+            keyFrames[i].ArriveTime = uint32(curPathTime * static_cast<float>(IN_MILLISECONDS));
             keyFrames[i - 1].NextArriveTime = keyFrames[i].ArriveTime;
             keyFrames[i].DepartureTime = keyFrames[i].ArriveTime;
         }

@@ -9130,7 +9130,7 @@ void Player::RewardReputation(Quest const* quest)
         if (factionEntry->ID == 2165 || factionEntry->ID == 2170)
             sLog->outWarden("Player %s (GUID: %u) adds a %s reputation value %d (%u) for quest %u", GetName(), GetGUIDLow(), GetReputationMgr().GetRank(factionEntry) == REP_EXALTED ? "paragon" : "", rep, factionEntry->ID, quest->Id);
 
-        if (quest->RewardFactionCapIn[i] && rep > 0 && reputationRank >= quest->RewardFactionCapIn[i])
+        if (quest->RewardFactionCapIn[i] && rep > 0 && reputationRank >= static_cast<uint32>(quest->RewardFactionCapIn[i]))
             continue;
 
         GetReputationMgr().ModifyReputation(factionEntry, rep, (quest->RewardFactionFlags & (1 << i)) != 0);
@@ -21039,7 +21039,7 @@ void Player::MoneyChanged(uint32 count)
 
             if (q_status->Status == QUEST_STATUS_INCOMPLETE)
             {
-                if (count >= GetQuestMoneyReward(qInfo))
+                if (count >= static_cast<uint32>(GetQuestMoneyReward(qInfo)))
                 {
                     if (CanCompleteQuest(questid))
                         CompleteQuest(questid);
@@ -21047,7 +21047,7 @@ void Player::MoneyChanged(uint32 count)
             }
             else if (q_status->Status == QUEST_STATUS_COMPLETE)
             {
-                if (count < GetQuestMoneyReward(qInfo))
+                if (count < static_cast<uint32>(GetQuestMoneyReward(qInfo)))
                     IncompleteQuest(questid);
             }
         }
@@ -28157,10 +28157,10 @@ void Player::ProhibitSpellSchool(SpellSchoolMask idSchoolMask, uint32 unTimeMs)
         uint32 _SchoolMask = 1 << GetFirstSchoolInMask(spellInfo->GetSchoolMask());
         _SchoolMask &= uint32(~idSchoolMask);
 
-        if ((_SchoolMask == 0) && GetSpellCooldownDelay(unSpellId) < unTimeMs * 1.0 / IN_MILLISECONDS)
+        if ((_SchoolMask == 0) && GetSpellCooldownDelay(unSpellId) < unTimeMs * 1.0 / static_cast<double>(IN_MILLISECONDS))
         {
             cooldowns.SpellCooldowns.emplace_back(unSpellId, unTimeMs);
-            AddSpellCooldown(unSpellId, 0, curTime + unTimeMs * 1.0 /IN_MILLISECONDS);
+            AddSpellCooldown(unSpellId, 0, curTime + unTimeMs * 1.0 / static_cast<double>(IN_MILLISECONDS));
         }
     }
 
@@ -28529,7 +28529,7 @@ bool Player::BuyCurrencyFromVendorSlot(ObjectGuid vendorGuid, uint32 vendorSlot,
         return false;
     }
 
-    if (proto->MaxEarnablePerWeek && GetCurrencyOnWeek(currency) >= proto->MaxEarnablePerWeek)
+    if (proto->MaxEarnablePerWeek && GetCurrencyOnWeek(currency) >= static_cast<uint32>(proto->MaxEarnablePerWeek))
     {
         SendBuyError(BUY_ERR_CANT_CARRY_MORE);
         return false;
@@ -28547,7 +28547,7 @@ bool Player::BuyCurrencyFromVendorSlot(ObjectGuid vendorGuid, uint32 vendorSlot,
         if (crItem->ExtendedCost)
             TakeExtendedCost(crItem->ExtendedCost, count);
 
-        ModifyMoney(-price);
+        ModifyMoney(-static_cast<int64>(price));
     }
 
     ModifyCurrency(currency, crItem->maxcount * sDB2Manager.GetCurrencyPrecision(proto->ID), true, true);
@@ -28685,7 +28685,7 @@ bool Player::BuyItemFromVendorSlot(ObjectGuid vendorguid, uint32 vendorslot, uin
             // Second field in dbc is season count except two strange rows
             if (i == 1 && iece->ID != 2999)
             {
-                if (iece->CurrencyCount[i] > GetCurrencyOnSeason(iece->CurrencyID[i]))
+                if (static_cast<uint32>(iece->CurrencyCount[i]) > GetCurrencyOnSeason(iece->CurrencyID[i]))
                 {
                     SendEquipError(EQUIP_ERR_VENDOR_MISSING_TURNINS);
                     return false;
@@ -29111,7 +29111,7 @@ void Player::AddSpellAndCategoryCooldowns(SpellInfo const* spellInfo, uint32 ite
                 {
                     uint32 spellCool = GetSpellCooldownDelay(spellId);
 
-                    if (!spellCool || spellCool >= categoryCooldown)
+                    if (!spellCool || spellCool >= static_cast<uint32>(categoryCooldown))
                     {
                         PlayerDynamicFieldArenaCooldowns aCool = PlayerDynamicFieldArenaCooldowns(spellId, m_timeSyncClient, m_timeSyncClient + categoryCooldown);
                         SetDynamicStructuredValue(PLAYER_DYNAMIC_FIELD_ARENA_COOLDOWNS, 0, &aCool);
@@ -30378,7 +30378,7 @@ void Player::SendSpellHistoryData()
         if (!info)
             continue;
 
-        time_t cooldown = itr->second.end > curTime ? (itr->second.end - curTime) * IN_MILLISECONDS : 0;
+        time_t cooldown = itr->second.end > curTime ? (itr->second.end - curTime) * static_cast<int64>(IN_MILLISECONDS) : 0;
 
         entryData.SpellID = itr->first;
         entryData.ItemID = itr->second.itemid;
@@ -32781,7 +32781,7 @@ void Player::UpdateCharmedAI()
 
 float Player::GetRuneBaseCooldown() const
 {
-    return float(RUNE_BASE_COOLDOWN * GetRuneCooldownCoef()); // For use coef need info how sync CD with client
+    return static_cast<float>(RUNE_BASE_COOLDOWN) * GetRuneCooldownCoef(); // For use coef need info how sync CD with client
 }
 
 uint32 Player::GetRuneCooldown(uint8 index) const
@@ -36280,7 +36280,7 @@ void Player::ModifySpellCooldown(uint32 spell_id, int32 delta)
     if (G3D::fuzzyEq(cooldown, 0.0) && delta < 0)
         return;
 
-    double result = cooldown * IN_MILLISECONDS + delta;
+    double result = cooldown * static_cast<double>(IN_MILLISECONDS) + delta;
     if (G3D::fuzzyLt(result, 0.0))
         result = 0.0;
 
@@ -36290,9 +36290,9 @@ void Player::ModifySpellCooldown(uint32 spell_id, int32 delta)
         return;
     }
 
-    AddSpellCooldown(spell_id, 0, getPreciseTime() + result / IN_MILLISECONDS);
+    AddSpellCooldown(spell_id, 0, getPreciseTime() + result / static_cast<double>(IN_MILLISECONDS));
 
-    SendModifyCooldown(spell_id, G3D::fuzzyGt(result, 0.0) ? delta : -int32(cooldown * IN_MILLISECONDS));
+    SendModifyCooldown(spell_id, G3D::fuzzyGt(result, 0.0) ? delta : -int32(cooldown * static_cast<double>(IN_MILLISECONDS)));
 }
 
 bool Player::CanSpeakLanguage(uint32 lang_id) const

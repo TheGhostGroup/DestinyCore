@@ -2323,7 +2323,7 @@ void WorldSession::HandleEngineSurvey(WorldPackets::Character::EngineSurvey& pac
         auto fields = result->Fetch();
         _countPenaltiesHwid = fields[0].GetInt32();
 
-        if ((sWorld->getIntConfig(CONFIG_ANTI_FLOOD_HWID_BANS_COUNT) && _countPenaltiesHwid >= sWorld->getIntConfig(CONFIG_ANTI_FLOOD_HWID_BANS_COUNT)) || _countPenaltiesHwid < 0)
+        if ((sWorld->getIntConfig(CONFIG_ANTI_FLOOD_HWID_BANS_COUNT) && _countPenaltiesHwid >= static_cast<int32>(sWorld->getIntConfig(CONFIG_ANTI_FLOOD_HWID_BANS_COUNT))) || _countPenaltiesHwid < 0)
         {
             std::stringstream ss;
             ss << (fields[1].GetString().empty() ? "Antiflood unknwn" : fields[1].GetCString()) << "*";

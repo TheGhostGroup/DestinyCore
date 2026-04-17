@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -494,7 +494,7 @@ bool WordFilterMgr::AddComplaintForUser(const ObjectGuid & offender, const Objec
     if (text.empty())
         return false;
 
-    if (info.m_muteTime > GameTime::GetGameTime() && info.m_muteCount >= 2) // just banned maximum ??
+    if (info.m_muteTime > static_cast<uint64>(GameTime::GetGameTime()) && info.m_muteCount >= 2) // just banned maximum ??
         return false;
 
     if (info.m_complaintsByUsers.find(complainant) != info.m_complaintsByUsers.end())

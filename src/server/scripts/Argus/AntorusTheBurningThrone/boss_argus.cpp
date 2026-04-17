@@ -598,7 +598,7 @@ struct boss_argus : BossAI
         {
             case SPELL_GRASP_OF_THE_UNMAKER:
                 if (target->IsPlayer())
-                    target->GetMotionMaster()->MoveJump(2867.12f, -4567.54f, 296.58f, 25.0f, 15.0f);
+                    target->GetMotionMaster()->MoveJump(2867.12f, -4567.54f, 296.58f, 0.0f, 25.0f, 15.0f);
                 break;
             case SPELL_SOULBURST:
                 Talk(SAY_WARN_WHISPER_SOULBURST, target->GetGUID());

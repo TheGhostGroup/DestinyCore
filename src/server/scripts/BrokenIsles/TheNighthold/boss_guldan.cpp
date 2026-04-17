@@ -1730,7 +1730,7 @@ public:
             {
             case SPELL_SOULSEVER:
                 DoCast(target, SPELL_SHARED_SOUL);
-                for (float angle = float(- M_PI / 6); angle < M_PI / 6; angle += M_PI / 24)
+                for (float angle = static_cast<float>(-M_PI / 6.0); angle < static_cast<float>(M_PI / 6.0); angle += static_cast<float>(M_PI / 24.0))
                     me->CastSpell({ target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), me->GetOrientation() + angle }, SPELL_SOULSEVER_AT, false);
                 break;
             case SPELL_SHARED_SOUL:

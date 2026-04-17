@@ -1,7 +1,23 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include"Spell.h"
 #include"blackwing_descent.h"
 
-//todo: реализовать reroure power, low health, корректный double attack
 enum ScriptTexts
 {
     //chimaeron
@@ -156,7 +172,7 @@ public:
         void EnterCombat(Unit* who)
         {
             if (IsHeroic())
-                events.RescheduleEvent(EVENT_BERSERK, 7.5 * MINUTE * IN_MILLISECONDS);
+                events.RescheduleEvent(EVENT_BERSERK, 7.5f * static_cast<float>(MINUTE) * static_cast<float>(IN_MILLISECONDS));
             events.RescheduleEvent(EVENT_BREAK, 5000);
             events.RescheduleEvent(EVENT_CAUSTIC_SLIME, 10000);
             events.RescheduleEvent(EVENT_CAUSTIC_SLIME, 15000);

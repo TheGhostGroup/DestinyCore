@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -13,12 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Scripts for spells with SPELLFAMILY_PRIEST and SPELLFAMILY_GENERIC spells used by priest players.
- * Ordered alphabetically using scriptname.
- * Scriptnames of files in this file should be prefixed with "spell_pri_".
  */
 
 #include "ScriptMgr.h"
@@ -804,7 +798,7 @@ public:
 					if (AuraEffect const* aurEff = caster->GetAuraEffect(211563, EFFECT_0)) // Item - Priest T19 Discipline 4P Bonus
 						if (Aura* aur = target->GetAura(194384, caster->GetGUID()))
 							if (caster->HasAura(47536))
-								aur->SetDuration(aur->GetDuration() + aurEff->GetAmount() * IN_MILLISECONDS);
+                                aur->SetDuration(aur->GetDuration() + aurEff->GetAmount() * static_cast<int32>(IN_MILLISECONDS));
 				}
 			}
 		}
@@ -1762,7 +1756,7 @@ class spell_pri_evangelism : public SpellScript
         {
             if (Unit* unitTarget = GetHitUnit())
             {
-                int32 dur = GetSpellInfo()->Effects[EFFECT_0]->BasePoints * IN_MILLISECONDS;
+                int32 dur = GetSpellInfo()->Effects[EFFECT_0]->BasePoints * static_cast<int32>(IN_MILLISECONDS);
                 if (Aura* aura = unitTarget->GetAura(caster->HasAura(214205) ? 214206 : 194384, caster->GetGUID()))
                     aura->SetDuration(aura->GetDuration() + dur);
             }

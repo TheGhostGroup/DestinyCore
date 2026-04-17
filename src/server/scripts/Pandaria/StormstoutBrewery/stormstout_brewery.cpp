@@ -1,6 +1,19 @@
-/*====================
-    uwow.biz
-======================*/
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "stormstout_brewery.h"
 #include "ObjectMgr.h"
@@ -77,7 +90,7 @@ struct npc_hopling : public ScriptedAI
                 events.RescheduleEvent(EVENT_WP_4, 0);
                 break;
             case 5:
-                me->GetMotionMaster()->MoveJump(ePos[5].GetPositionX() + irand(-10, 10), ePos[5].GetPositionY() + irand(-10, 10), ePos[5].GetPositionZ(), 15, 15);
+                me->GetMotionMaster()->MoveJump(ePos[5].GetPositionX() + irand(-10, 10), ePos[5].GetPositionY() + irand(-10, 10), ePos[5].GetPositionZ(), 0.0f, 15.0f, 15.0f);
                 me->DespawnOrUnsummon(1000);
                 break;
             }
@@ -92,7 +105,7 @@ struct npc_hopling : public ScriptedAI
             {
                 me->SetReactState(REACT_PASSIVE);
                 me->AttackStop();
-                me->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ() + 20, 10, 18);
+                me->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ() + 20, 0.0f, 10.0f, 18.0f);
 
                 uint32 HoplingCount = instance->GetData(DATA_HOPLING) + 1;
                 instance->SetData(DATA_HOPLING, HoplingCount);

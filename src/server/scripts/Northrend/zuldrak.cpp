@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -438,7 +438,7 @@ public:
                             break;
                          case 2:
                             if (Creature* summon = Unit::GetCreature(*me, SummonGUID))
-                                summon->GetMotionMaster()->MoveJump(5776.319824f, -2981.005371f, 273.100037f, 10.0f, 20.0f);
+                                summon->GetMotionMaster()->MoveJump(5776.319824f, -2981.005371f, 273.100037f, 0.0f, 10.0f, 20.0f);
                             uiPhase = 0;
                             SummonGUID.Clear();
                             break;
@@ -659,7 +659,7 @@ public:
 
             if (!bSummoned && !HealthAbovePct(50))
             {
-                Talk(SAY_CALL_FOR_HELP);
+                Talk(static_cast<uint8>(SAY_CALL_FOR_HELP));
                 //DoCast(me->getVictim(), SPELL_SUMMON_WHISKER); petai is not working correctly???
 
                 if (Creature* pWhisker = me->SummonCreature(NPC_WHISKER, me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 0))

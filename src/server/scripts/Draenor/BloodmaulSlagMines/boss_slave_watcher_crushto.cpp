@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2015 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -191,7 +191,7 @@ public:
                             me->AddAura(SPELL_EARTH_CRUSH_3, stalker);
                             me->CastSpell(stalker, SPELL_EARTH_CRUSH_2);
                             me->CastSpell(stalker, SPELL_EARTH_CRUSH);
-                            stalker->DespawnOrUnsummon(2.5 * IN_MILLISECONDS);
+                            stalker->DespawnOrUnsummon(static_cast<uint32>(2.5 * static_cast<double>(IN_MILLISECONDS)));
                         }
                         break;
                     }

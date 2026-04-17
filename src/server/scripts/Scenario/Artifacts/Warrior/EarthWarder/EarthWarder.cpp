@@ -1,7 +1,19 @@
 /*
-    http://uwow.biz
-    Warrior: EarthWarder
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -405,7 +417,7 @@ public:
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_NOT_ATTACKABLE_1);
             me->SetReactState(REACT_DEFENSIVE);
             me->setFaction(14);
-            me->GetMotionMaster()->MoveJump(4714.82f, 349.11f, -37.77f, 5, 5);
+            me->GetMotionMaster()->MoveJump(4714.82f, 349.11f, -37.77f, 0.0f, 5.0f, 5.0f);
             if (Creature* targ = me->FindNearestCreature(96468, 70.0f, true))
             {
                 AttackStart(targ);
@@ -449,7 +461,7 @@ public:
                         stop_combat = true;
                         if (Creature* targ = me->FindNearestCreature(96468, 100.0f, true))
                             targ->AttackStop();
-                        me->GetMotionMaster()->MoveJump(4686.67f, 354.12f, -27.10f, 5, 5);
+                        me->GetMotionMaster()->MoveJump(4686.67f, 354.12f, -27.10f, 0.0f, 5.0f, 5.0f);
                         LaunchEventWave(wave);
                         wave++;
                         events.RescheduleEvent(EVENT_5, 1000);
@@ -528,7 +540,7 @@ public:
                 {
                     summon->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_NOT_ATTACKABLE_1);
                     if (Creature* targ = summon->FindNearestCreature(64367, 30.0f, true))
-                        summon->GetMotionMaster()->MoveJump(targ->GetPositionX(), targ->GetPositionY(), targ->GetPositionZ(), 5, 5);
+                        summon->GetMotionMaster()->MoveJump(targ->GetPositionX(), targ->GetPositionY(), targ->GetPositionZ(), 0.0f, 5.0f, 5.0f);
                     summon->CastSpell(summon, 191032);
                 }
             }

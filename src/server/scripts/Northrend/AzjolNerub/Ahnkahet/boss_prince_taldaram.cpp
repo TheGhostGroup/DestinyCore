@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -139,8 +139,8 @@ public:
                         {
                             float angle, x, y;
                             angle = pSpheres[0]->GetAngle(pSphereTarget);
-                            x = pSpheres[0]->GetPositionX() + DATA_SPHERE_DISTANCE * std::cos(angle);
-                            y = pSpheres[0]->GetPositionY() + DATA_SPHERE_DISTANCE * std::sin(angle);
+                            x = pSpheres[0]->GetPositionX() + static_cast<float>(DATA_SPHERE_DISTANCE) * static_cast<float>(std::cos(angle));
+                            y = pSpheres[0]->GetPositionY() + static_cast<float>(DATA_SPHERE_DISTANCE) * static_cast<float>(std::sin(angle));
                             pSpheres[0]->GetMotionMaster()->MovePoint(0, x, y, pSpheres[0]->GetPositionZ());
                         }
                         if (IsHeroic())
@@ -151,12 +151,12 @@ public:
                             {
                                 float angle, x, y;
                                 angle = pSpheres[1]->GetAngle(pSphereTarget) + DATA_SPHERE_ANGLE_OFFSET;
-                                x = pSpheres[1]->GetPositionX() + DATA_SPHERE_DISTANCE/2 * std::cos(angle);
-                                y = pSpheres[1]->GetPositionY() + DATA_SPHERE_DISTANCE/2 * std::sin(angle);
+                                x = pSpheres[1]->GetPositionX() + static_cast<float>(DATA_SPHERE_DISTANCE) / 2.0f * static_cast<float>(std::cos(angle));
+                                y = pSpheres[1]->GetPositionY() + static_cast<float>(DATA_SPHERE_DISTANCE) / 2.0f * static_cast<float>(std::sin(angle));
                                 pSpheres[1]->GetMotionMaster()->MovePoint(0, x, y, pSpheres[1]->GetPositionZ());
                                 angle = pSpheres[2]->GetAngle(pSphereTarget) - DATA_SPHERE_ANGLE_OFFSET;
-                                x = pSpheres[2]->GetPositionX() + DATA_SPHERE_DISTANCE/2 * std::cos(angle);
-                                y = pSpheres[2]->GetPositionY() + DATA_SPHERE_DISTANCE/2 * std::sin(angle);
+                                x = pSpheres[2]->GetPositionX() + static_cast<float>(DATA_SPHERE_DISTANCE) / 2.0f * static_cast<float>(std::cos(angle));
+                                y = pSpheres[2]->GetPositionY() + static_cast<float>(DATA_SPHERE_DISTANCE) / 2.0f * static_cast<float>(std::sin(angle));
                                 pSpheres[2]->GetMotionMaster()->MovePoint(0, x, y, pSpheres[2]->GetPositionZ());
                             }
                         }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2011 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -14,13 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
-/* ScriptData
-SDName: Mimiron
-SDAuthor: PrinceCreed
-SD%Complete: 95
-SDComments: P3Wx2 Laser Barrage not works in phase 4 due to core limits.
-EndScriptData */
 
 #include "ulduar.h"
 #include "Vehicle.h"
@@ -568,7 +561,7 @@ public:
                             break;
                         case 4:
                             me->ExitVehicle();
-                            me->GetMotionMaster()->MoveJump(2745.06f, 2569.36f, 379.90f, 10, 15);
+                            me->GetMotionMaster()->MoveJump(2745.06f, 2569.36f, 379.90f, 0.0f, 10.0f, 15.0f);
                             JumpToNextStep(2000);
                             break;
                         case 5:

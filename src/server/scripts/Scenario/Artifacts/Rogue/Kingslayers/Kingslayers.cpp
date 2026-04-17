@@ -1,7 +1,19 @@
 /*
-    http://uwow.biz
-    Rogue: Kingslayers
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -460,7 +472,7 @@ public:
                     if (!me->FindNearestCreature(108216, 40.0f, true) && !me->FindNearestCreature(108217, 40.0f, true))
                     {
                         checkdies = false;
-                        me->GetMotionMaster()->MoveJump(-8614.58f, 403.17f, 102.92f, 5, 5);
+                        me->GetMotionMaster()->MoveJump(-8614.58f, 403.17f, 102.92f, 0.0f, 5.0f, 5.0f);
                         me->RemoveAura(214873);
                         if (Player* pl = me->FindNearestPlayer(50.0f))
                         {
@@ -708,7 +720,7 @@ public:
                         {
                             if (Creature* add = me->SummonCreature(108324, -8315.46f, 293.38f, 159.24f))
                             {
-                                add->GetMotionMaster()->MoveJump(me->GetPositionX() + irand(-5, 5), me->GetPositionY() + irand(-5, 5), me->GetPositionZ(), 5, 5);
+                                add->GetMotionMaster()->MoveJump(me->GetPositionX() + irand(-5, 5), me->GetPositionY() + irand(-5, 5), me->GetPositionZ(), 0.0f, 5.0f, 5.0f);
                                 add->CastSpell(add, 158342);
                             }
                             if (convid != 2448)

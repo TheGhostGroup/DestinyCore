@@ -725,10 +725,10 @@ public:
             switch (uiId)
             {
                 case 10:
-                    me->GetMotionMaster()->MoveJump(1227.11f, 3489.73f, 100.37f, 10, 20, 11);
+                    me->GetMotionMaster()->MoveJump(1227.11f, 3489.73f, 100.37f, 0.0f, 10.0f, 20.0f, 11);
                     break;
                 case 11:
-                    me->GetMotionMaster()->MoveJump(1236.68f, 3456.68f, 102.58f, 10, 20, 12);
+                    me->GetMotionMaster()->MoveJump(1236.68f, 3456.68f, 102.58f, 0.0f, 10.0f, 20.0f, 12);
                     break;
                 case 12:
                     Start(false, true);
@@ -757,7 +757,7 @@ public:
                 if (IntroTimer <= diff)
                 {
                     IntroTimer = 0;
-                    me->GetMotionMaster()->MoveJump(1216.78f, 3499.44f, 91.15f, 10, 20, 10);
+                    me->GetMotionMaster()->MoveJump(1216.78f, 3499.44f, 91.15f, 0.0f, 10.0f, 20.0f, 10);
                 }
                 else
                     IntroTimer -= diff;
@@ -1605,14 +1605,14 @@ class spell_rock_jump: public SpellScriptLoader
                 if (Unit* caster = GetCaster())
                 {
                     if (caster->GetPositionZ() < 90.0f)
-                        caster->GetMotionMaster()->MoveJump(1045.36f, 2848.47f, 91.38f, 10.0f, 10.0f);
+                        caster->GetMotionMaster()->MoveJump(1045.36f, 2848.47f, 91.38f, 0.0f, 10.0f, 10.0f);
                     else if (caster->GetPositionZ() < 92.0f)
-                        caster->GetMotionMaster()->MoveJump(1054.42f, 2842.65f, 92.96f, 10.0f, 10.0f);
+                        caster->GetMotionMaster()->MoveJump(1054.42f, 2842.65f, 92.96f, 0.0f, 10.0f, 10.0f);
                     else if (caster->GetPositionZ() < 94.0f)
-                        caster->GetMotionMaster()->MoveJump(1063.66f, 2843.49f, 95.50f, 10.0f, 10.0f);
+                        caster->GetMotionMaster()->MoveJump(1063.66f, 2843.49f, 95.50f, 0.0f, 10.0f, 10.0f);
                     else
                     {
-                        caster->GetMotionMaster()->MoveJump(1078.42f, 2845.07f, 95.16f, 10.0f, 10.0f);
+                        caster->GetMotionMaster()->MoveJump(1078.42f, 2845.07f, 95.16f, 0.0f, 10.0f, 10.0f);
 
                         if (caster->ToPlayer())
                             caster->ToPlayer()->KilledMonsterCredit(57476);

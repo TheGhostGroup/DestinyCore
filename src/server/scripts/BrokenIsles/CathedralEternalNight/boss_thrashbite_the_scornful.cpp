@@ -1,6 +1,19 @@
 /*
-    https://uwow.biz/
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "cathedral_of_eternal_night.h"
 #include "SpellScript.h"
@@ -194,7 +207,7 @@ struct boss_thrashbite_the_scornful : public BossAI
                         for (uint8 i = 0; i < 2; ++i)
                         {
                             uint32 entry = temp_npc_books[urand(0, temp_npc_books.size())];
-                            me->SummonCreature(entry, me->GetPositionX() + frand(-5, 5), me->GetPositionY() + frand(-5, 5), me->GetPositionZ(), 0.0f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
+                            me->SummonCreature(entry, me->GetPositionX() + frand(-5.0f, 5.0f), me->GetPositionY() + frand(-5.0f, 5.0f), me->GetPositionZ(), 0.0f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
                             
                             auto itr = temp_npc_books.find(entry);
                             if (itr != temp_npc_books.end())

@@ -4290,7 +4290,7 @@ void Spell::EffectDistract(SpellEffIndex /*effIndex*/)
     unitTarget->ClearUnitState(UNIT_STATE_MOVING);
 
     if (unitTarget->IsCreature())
-        unitTarget->GetMotionMaster()->MoveDistract(damage * IN_MILLISECONDS);
+        unitTarget->GetMotionMaster()->MoveDistract(damage * static_cast<int32>(IN_MILLISECONDS));
 }
 
 void Spell::EffectPickPocket(SpellEffIndex /*effIndex*/)

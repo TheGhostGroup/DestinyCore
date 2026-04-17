@@ -4591,7 +4591,7 @@ public:
 			{
 				if (AuraEffect* auraEff = caster->GetAuraEffect(SPELL_BG_LEVEL_OF_CRAVEN, EFFECT_0))
 				{
-					duration = auraEff->GetAmount() * MINUTE * IN_MILLISECONDS;
+					duration = auraEff->GetAmount() * static_cast<int32>(MINUTE) * static_cast<int32>(IN_MILLISECONDS);
 				}
 			}
 		}

@@ -195,7 +195,7 @@ public:
                         return;
 
                     Position pos(target->GetPosition());
-                    me->MovePosition(pos, frand(4, 9), frand(3, 8));
+                    me->MovePosition(pos, frand(4.0f, 9.0f), frand(3.0f, 8.0f));
                     me->SummonCreature(124427, pos);
                 });
             }
@@ -570,8 +570,8 @@ public:
         void IsSummonedBy(Unit* summoner) override
         {
             DoCast(me, SPELL_RIFT_VISUAL_ACTIVE, true);
-            float position_x = me->GetPositionX() + frand(2, 5);
-            float position_y = me->GetPositionY() + frand(3, 5);
+            float position_x = me->GetPositionX() + frand(2.0f, 5.0f);
+            float position_y = me->GetPositionY() + frand(3.0f, 5.0f);
 
             if (Creature* ward = me->SummonCreature(NPC_SAPRISH_RIFT_WARDEN, position_x, position_y, me->GetPositionZ(), 0.0f))
                 ward->SetReactState(REACT_AGGRESSIVE);

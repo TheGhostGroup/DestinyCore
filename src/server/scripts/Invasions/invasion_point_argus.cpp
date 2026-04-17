@@ -4791,7 +4791,7 @@ public:
 
         for (auto itr = m_timersPerZone.begin(); itr != m_timersPerZone.end(); ++itr)
         {
-            if ((*itr).second <= diff)
+            if ((*itr).second <= static_cast<int32>(diff))
             {
                 uint32 zoneid = (*itr).first;
 
@@ -4871,7 +4871,7 @@ public:
 
         for (auto itr = m_timerSpell.begin(); itr != m_timerSpell.end(); ++itr)
         {
-            if ((*itr).second <= diff)
+            if ((*itr).second <= static_cast<int32>(diff))
             {
                 uint32 zoneid = (*itr).first;
                 for (auto& guid : m_players[zoneid])

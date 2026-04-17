@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -1245,7 +1245,7 @@ class npc_kinetic_bomb : public CreatureScript
                 me->CastSpell(me, SPELL_UNSTABLE, true);
                 me->CastSpell(me, SPELL_KINETIC_BOMB_VISUAL, true);
                 me->SetReactState(REACT_PASSIVE);
-                me->GetMotionMaster()->MoveJump(x, y, ground, 1, 1);
+                me->GetMotionMaster()->MoveJump(x, y, ground, 0.0f, 1.0f, 1.0f);
                 CheckPos = 500;
             }
 

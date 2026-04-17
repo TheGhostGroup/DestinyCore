@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -15,13 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Boss_Warp_Splinter
-SD%Complete: 80
-SDComment: Includes Sapling (need some better control with these).
-SDCategory: Tempest Keep, The Botanica
-EndScriptData */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -172,8 +164,8 @@ class boss_warp_splinter : public CreatureScript
                 {
                     float angle = (M_PI / 3) * i;
 
-                    float X = Treant_Spawn_Pos_X + TREANT_SPAWN_DIST * std::cos(angle);
-                    float Y = Treant_Spawn_Pos_Y + TREANT_SPAWN_DIST * std::sin(angle);
+                    float X = Treant_Spawn_Pos_X + static_cast<float>(TREANT_SPAWN_DIST) * static_cast<float>(std::cos(angle));
+                    float Y = Treant_Spawn_Pos_Y + static_cast<float>(TREANT_SPAWN_DIST) * static_cast<float>(std::sin(angle));
                     float O = - me->GetAngle(X, Y);
 
                     if (Creature* pTreant = me->SummonCreature(CREATURE_TREANT, treant_pos[i][0], treant_pos[i][1], treant_pos[i][2], O, TEMPSUMMON_TIMED_OR_CORPSE_DESPAWN, 25000))

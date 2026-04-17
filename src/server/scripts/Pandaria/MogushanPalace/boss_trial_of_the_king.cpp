@@ -154,7 +154,7 @@ struct mob_xian_the_weaponmaster_trigger : public ScriptedAI
                 break;
             case EVENT_JUMP_XIAN:
                 Talk(TALK_INTRO_02);
-                me->GetMotionMaster()->MoveJump(-4296.391f, -2613.577f, 22.325f, 30.f, 20.f);
+                me->GetMotionMaster()->MoveJump(-4296.391f, -2613.577f, 22.325f, 0.0f, 30.f, 20.f);
                 events.RescheduleEvent(EVENT_DISAPPEAR, 7000);
                 break;
             case EVENT_DISAPPEAR:
@@ -258,7 +258,7 @@ struct boss_ming_the_cunning : public BossAI
                 instance->instance->ApplyOnEveryPlayer([&](Player* player)
                 {
                     if (player->GetDistance2d(me) <= 5.f)
-                        player->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), 25.0f, 10.f);
+                        player->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), 0.0f, 25.0f, 10.f);
                 });
 
                 magnetic_timer = 1000;

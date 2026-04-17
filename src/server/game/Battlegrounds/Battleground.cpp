@@ -1,6 +1,5 @@
 ﻿/*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -2146,7 +2145,7 @@ void Battleground::HandleTriggerBuff(ObjectGuid go_guid)
             }
     }
 
-    SpawnBGObject(index, (IsBrawl() ? 0.5f: 1) * BUFF_RESPAWN_TIME);
+    SpawnBGObject(index, (IsBrawl() ? 0.5f : 1.0f) * static_cast<float>(BUFF_RESPAWN_TIME));
 }
 
 void Battleground::HandleStartTimer(TimerType type)

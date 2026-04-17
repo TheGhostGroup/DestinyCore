@@ -1,8 +1,19 @@
 /*
-    http://uwow.biz
-    Demon Hunter Specialization: Vengeance
-    To-Do: Last Boss (i havent sniffs)
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -520,7 +531,7 @@ public:
                 {
                     introDone = true;
                     who->CastSpell(who, 208459); // convers
-                    me->GetMotionMaster()->MoveJump(-2748.06f, -328.11f, 38.42f, 10, 15);
+                    me->GetMotionMaster()->MoveJump(-2748.06f, -328.11f, 38.42f, 0.0f, 10.0f, 15.0f);
                 }
             }
             if (me->GetDistance2d(-2748.06f, -328.11f) <= 5.0f && !introDone2)

@@ -1,8 +1,19 @@
 /*
-    https://uwow.biz/
-
-    To-DO: Conversation 5002/5003 when near. Now it don't work =C
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "tomb_of_sargeras.h"
 
@@ -276,7 +287,7 @@ public:
                                         float new_y = i * mod *diff_x / 2 + mod* diff_y * sqrt(3) / 2;
                                         me->AddDelayedEvent(1 + time * 50, [=]()
                                         {
-                                            me->CastSpell({ me->GetPositionX() + new_x + frand(-2, 2), me->GetPositionY() + new_y + frand(-2, 2), me->GetPositionZ(), 0 }, 233435, true);
+                                            me->CastSpell({ me->GetPositionX() + new_x + frand(-2.0f, 2.0f), me->GetPositionY() + new_y + frand(-2.0f, 2.0f), me->GetPositionZ(), 0 }, 233435, true);
 
                                         });
                                     }
@@ -445,7 +456,7 @@ public:
                 if (!caster->IsPlayer())
                     return;
 
-                caster->GetMotionMaster()->MoveSmoothFlyPath(0, { caster->GetPositionX() + frand(-3, 3), caster->GetPositionY() + frand(-3, 3), caster->GetPositionZ() + 10.0f, caster->GetOrientation() });
+                caster->GetMotionMaster()->MoveSmoothFlyPath(0, { caster->GetPositionX() + frand(-3.0f, 3.0f), caster->GetPositionY() + frand(-3.0f, 3.0f), caster->GetPositionZ() + 10.0f, caster->GetOrientation() });
                 caster->AddDelayedEvent(1500, [caster]() -> void {
                     caster->RemoveAurasDueToSpell(233652);
                     caster->GetMotionMaster()->Clear();

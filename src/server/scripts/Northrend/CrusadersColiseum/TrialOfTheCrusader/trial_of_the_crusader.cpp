@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2014 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -15,9 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-//Known Bugs:
-// - Need better implementation of Gossip and correct gossip text and option
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -309,12 +305,12 @@ class boss_lich_king_toc : public CreatureScript
                         case 5060:
                             Talk(SAY_STAGE_4_05);
                             me->HandleEmoteCommand(EMOTE_ONESHOT_KNEEL);
-                            _updateTimer = 2.5*IN_MILLISECONDS;
+                            _updateTimer = static_cast<uint32>(2.5 * static_cast<double>(IN_MILLISECONDS));
                             _instance->SetData(TYPE_EVENT, 5070);
                             break;
                         case 5070:
                             me->CastSpell(me, 68198, false);
-                            _updateTimer = 1.5*IN_MILLISECONDS;
+                            _updateTimer = static_cast<uint32>(1.5 * static_cast<double>(IN_MILLISECONDS));
                             _instance->SetData(TYPE_EVENT, 5080);
                             break;
                         case 5080:

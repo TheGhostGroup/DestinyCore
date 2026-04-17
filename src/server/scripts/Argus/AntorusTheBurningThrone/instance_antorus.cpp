@@ -298,7 +298,7 @@ struct instance_antorus : InstanceScript
                         continue;
 
 
-                    cre->GetMotionMaster()->MovePoint(0, -3294.85f+frand(-5, 5), 9799.49f + frand(-5, 5), -63.49f);
+                    cre->GetMotionMaster()->MovePoint(0, -3294.85f + frand(-5.0f, 5.0f), 9799.49f + frand(-5.0f, 5.0f), -63.49f);
                     cre->AddDelayedCombat(7000, [cre]() -> void
                     {
                         cre->CastStop();
@@ -404,7 +404,7 @@ struct instance_antorus : InstanceScript
                         {
                             cre->SetVisible(true);
                             Position pos{};
-                            cre->GetMotionMaster()->MovePoint(1, -3218.40f + frand(-10, 10), 10374.50f + frand(-10, 10), -155.47f);
+                            cre->GetMotionMaster()->MovePoint(1, -3218.40f + frand(-10.0f, 10.0f), 10374.50f + frand(-10.0f, 10.0f), -155.47f);
                             if (cre->GetEntry() == NPC_LIGHTFORGED_WIREFRAME)
                                 cre->AddDelayedEvent(14000, [cre]() -> void
                             {
@@ -612,7 +612,7 @@ struct instance_antorus : InstanceScript
                     {
                         firstEventCounter.push_back(dreadwing->GetGUID());
                         if (urand(1, 2) == 1)
-                            dreadwing->GetMotionMaster()->MoveCirclePath(-3322.34f + frand(-10, 10), 9544.79f + frand(-10, 10), 24.30f + frand(-10, 5), frand(50, 60), urand(0, 1), 12);
+                            dreadwing->GetMotionMaster()->MoveCirclePath(-3322.34f + frand(-10.0f, 10.0f), 9544.79f + frand(-10.0f, 10.0f), 24.30f + frand(-10.0f, 5.0f), frand(50.0f, 60.0f), urand(0, 1), 12);
                         else
                             dreadwing->GetMotionMaster()->MoveRandom(40.0f);
                     }
@@ -652,10 +652,10 @@ struct instance_antorus : InstanceScript
         {
             if (secondEventCounter.size() <= 20)
             {
-                if (TempSummon* cre = instance->SummonCreature((urand(1, 2) == 1 ? NPC_RUN_NPC_1 : NPC_RUN_NPC_2), { -2934.23f + frand(-9, 9), 10312.14f + frand(-9,9), -165.48f }, nullptr, 35000))
+                if (TempSummon* cre = instance->SummonCreature((urand(1, 2) == 1 ? NPC_RUN_NPC_1 : NPC_RUN_NPC_2), { -2934.23f + frand(-9.0f, 9.0f), 10312.14f + frand(-9.0f, 9.0f), -165.48f }, nullptr, 35000))
                 {
                     secondEventCounter.push_back(cre->GetGUID());
-                    cre->GetMotionMaster()->MovePoint(0, -3164.60f + frand(-9, 9), 10452.94f + frand(-9, 9), -194.78f);
+                    cre->GetMotionMaster()->MovePoint(0, -3164.60f + frand(-9.0f, 9.0f), 10452.94f + frand(-9.0f, 9.0f), -194.78f);
                     cre->ToCreature()->AddDelayedEvent(35000, [cre]() -> void {cre->Kill(cre); });
                 }
             }

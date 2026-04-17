@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -1640,7 +1640,7 @@ class spell_dh_fueled_by_pain : public AuraScript
     {
         if (Unit* caster = eventInfo.GetActor())
         {
-            uint32 basedur = aurEff->GetAmount() * IN_MILLISECONDS;
+            uint32 basedur = aurEff->GetAmount() * static_cast<int32>(IN_MILLISECONDS);
             if (AuraEffect* eff = caster->GetAuraEffect(238046, EFFECT_0)) // Lingering Ordeal
                 basedur += eff->GetAmount();
 

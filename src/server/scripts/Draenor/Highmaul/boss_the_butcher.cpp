@@ -494,7 +494,7 @@ struct boss_the_butcher : public BossAI
             {
                 /// Every four waves of adds, The Butcher spawns one add more
                 ++m_AddCount;
-                uint8 count = uint8(floor(float(m_AddCount) / 4.0f) + 1);
+                uint8 count = uint8(floor(static_cast<float>(m_AddCount) / 4.0f) + 1);
 
                 float radius = 50.0f;
                 float posX = me->GetHomePosition().m_positionX;
@@ -503,7 +503,7 @@ struct boss_the_butcher : public BossAI
 
                 for (uint8 i = 0; i < count; ++i)
                 {
-                    float o = frand(0, float(2 * M_PI));
+                    float o = frand(0.0f, static_cast<float>(2.0 * M_PI));
                     float x = posX + (radius * cos(o));
                     float y = posY + (radius * sin(o));
 

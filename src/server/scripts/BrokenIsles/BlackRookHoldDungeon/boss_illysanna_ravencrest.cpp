@@ -1,9 +1,19 @@
 /*
-    http://uwow.biz
-    Dungeon : Black Rook Hold Dungeon 100-110
-    Encounter: Illysanna Ravencrest
-    Normal: 100%, Heroic: 100%, Mythic: 100%
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "black_rook_hold_dungeon.h"
 #include "ScriptMgr.h"
@@ -370,7 +380,7 @@ struct boss_illysanna_ravencrest : public BossAI
                 case EVENT_PHASE_GROUND:
                     DefaultEvents();
                     DoCast(me, SPELL_FURY_POWER_OVERRIDE, true);
-                    me->GetMotionMaster()->MoveJump(3089.76f, 7299.66f, 103.53f, 25, 15, 1); //HomePos
+                    me->GetMotionMaster()->MoveJump(3089.76f, 7299.66f, 103.53f, 0.0f, 25.0f, 15.0f, 1); //HomePos
                     break;
             }
         }

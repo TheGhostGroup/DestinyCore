@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -13,12 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Scripts for spells with SPELLFAMILY_MONK and SPELLFAMILY_GENERIC spells used by monk players.
- * Ordered alphabetically using scriptname.
- * Scriptnames of files in this file should be prefixed with "spell_monk_".
  */
 
 #include "ScriptMgr.h"
@@ -681,7 +675,7 @@ class spell_monk_purifying_brew: public SpellScript
 
             if (AuraEffect* aurEff2 = caster->GetAuraEffect(238129, EFFECT_2)) // Quick Sip
             {
-                uint32 dur = aurEff2->GetAmount() * IN_MILLISECONDS;
+                uint32 dur = aurEff2->GetAmount() * static_cast<int32>(IN_MILLISECONDS);
                 if (Aura* aura = caster->GetAura(215479))
                     aura->SetDuration(aura->GetDuration() + dur);
                 else
@@ -2946,7 +2940,7 @@ class spell_monk_breath_of_fire : public SpellScript
                 if (AuraEffect const* aurEff = caster->GetAuraEffect(224489, EFFECT_0)) // Firestone Walker's Vintage Brew
                 {
                     uint8 count = GetSpell()->GetTargetCount();
-                    int32 cdmod = aurEff->GetAmount() * IN_MILLISECONDS;
+                    int32 cdmod = aurEff->GetAmount() * static_cast<int32>(IN_MILLISECONDS);
                     if (count > 3)
                         count = 3;
                     plr->ModifySpellCooldown(115203, -cdmod * count);

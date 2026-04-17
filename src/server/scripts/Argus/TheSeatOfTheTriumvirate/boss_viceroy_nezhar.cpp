@@ -179,7 +179,7 @@ public:
                         return;
 
                     Position pos(target->GetPosition());
-                    me->MovePosition(pos, frand(12, 25), frand(14, 25));
+                    me->MovePosition(pos, frand(12.0f, 25.0f), frand(14.0f, 25.0f));
                     me->SummonCreature(122827, pos);
                 });
             }

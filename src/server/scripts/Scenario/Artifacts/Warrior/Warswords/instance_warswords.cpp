@@ -1,7 +1,19 @@
 /*
-    http://uwow.biz
-    Warrior: Warswords
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -53,7 +65,7 @@ public:
 
                 player->CastSpell(player, 205534);
                 player->CastSpell(player, 189695);
-                player->GetMotionMaster()->MoveJump(3386.46f, 1406.94f, 68.94f, 3, 3);
+                player->GetMotionMaster()->MoveJump(3386.46f, 1406.94f, 68.94f, 0.0f, 3.0f, 3.0f);
                 outrotimer = 5000;
                 jump = false;
             });

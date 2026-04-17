@@ -1,9 +1,19 @@
 /*
-    http://uwow.biz
-    Dungeon : Neltharions Lair 100-110
-    Encounter: Naraxas
-    Normal: 100%, Heroic: 100%, Mythic: 100%
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "neltharions_lair.h"
 
@@ -200,7 +210,7 @@ struct boss_naraxas : public BossAI
                 float dist;
                 for (uint8 i = 0; i < 12; ++i)
                 {
-                    dist = frand(10, 20);
+                    dist = frand(10.0f, 20.0f);
                     me->GetNearPosition(pos, dist, frand(-2.0f, 2.0f));
                     me->CastSpell(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ(), SPELL_TOXIC_WRETCH_AT, true);
                 }

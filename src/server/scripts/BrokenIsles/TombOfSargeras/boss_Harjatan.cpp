@@ -1,6 +1,19 @@
 /*
-https://uwow.biz/
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "tomb_of_sargeras.h"
 
@@ -137,7 +150,7 @@ public:
                 {
                     const auto& pos = eggsPos[j];
                     for (uint8 i = 0; i < 5; ++i)
-                        if (Creature* add = me->SummonCreature(NPC_EGGS, pos.GetPositionX() + frand(-4, 4), pos.GetPositionY() + frand(-4, 4), pos.GetPositionZ(), 0.0f))
+                        if (Creature* add = me->SummonCreature(NPC_EGGS, pos.GetPositionX() + frand(-4.0f, 4.0f), pos.GetPositionY() + frand(-4.0f, 4.0f), pos.GetPositionZ(), 0.0f))
                         {
                             add->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_NOT_ATTACKABLE_1);
                             add->CastSpell(add, SPELL_HARDENED_SHELL);

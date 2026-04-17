@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -13,12 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Scripts for spells with SPELLFAMILY_PALADIN and SPELLFAMILY_GENERIC spells used by paladin players.
- * Ordered alphabetically using scriptname.
- * Scriptnames of files in this file should be prefixed with "spell_pal_".
  */
 
 #include "ScriptMgr.h"
@@ -1732,7 +1726,7 @@ class spell_pal_judgment : public SpellScriptLoader
 
                 if (AuraEffect* aurEff = caster->GetAuraEffect(231657, EFFECT_0)) // Judgment (lvl 2 for Protection)
                 {
-                    int32 second = aurEff->GetAmount() * IN_MILLISECONDS;
+                    int32 second = aurEff->GetAmount() * static_cast<int32>(IN_MILLISECONDS);
                     if (GetSpell()->IsCritForTarget(target))
                         second *= 2;
                     if (Player* _player = caster->ToPlayer())
@@ -2653,7 +2647,7 @@ class spell_pal_greater_blessing_of_wisdom : public SpellScriptLoader
 
         void HandleTick(AuraEffect const* aurEff, float& amount, Unit* /*target*/)
         {
-            amount /= GetSpellInfo()->Effects[EFFECT_2]->BasePoints * IN_MILLISECONDS / float(aurEff->GetPeriod());
+            amount /= GetSpellInfo()->Effects[EFFECT_2]->BasePoints * static_cast<int32>(IN_MILLISECONDS) / float(aurEff->GetPeriod());
         }
 
         void Register() override
@@ -2754,9 +2748,9 @@ class spell_pal_hammer_of_reckoning : public SpellScript
                 if (aur->GetStackAmount() == GetSpellInfo()->Effects[EFFECT_1]->BasePoints)
                 {
                     if (caster->HasSpell(231895))
-                        caster->CastSpellDuration(caster, 231895, true, GetSpellInfo()->Effects[EFFECT_3]->BasePoints * IN_MILLISECONDS);
+                        caster->CastSpellDuration(caster, 231895, true, GetSpellInfo()->Effects[EFFECT_3]->BasePoints * static_cast<int32>(IN_MILLISECONDS));
                     else
-                        caster->CastSpellDuration(caster, 31884, true, GetSpellInfo()->Effects[EFFECT_2]->BasePoints * IN_MILLISECONDS);
+                        caster->CastSpellDuration(caster, 31884, true, GetSpellInfo()->Effects[EFFECT_2]->BasePoints * static_cast<int32>(IN_MILLISECONDS));
                 }
             }
             caster->RemoveAurasDueToSpell(247677);

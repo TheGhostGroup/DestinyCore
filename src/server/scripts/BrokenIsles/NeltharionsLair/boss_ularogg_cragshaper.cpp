@@ -92,7 +92,7 @@ struct boss_ularogg_cragshaper : public BossAI
         {
             intro = false;
             me->SetHomePosition(2838.71f, 1668.18f, -40.64f, 3.75f);
-            me->GetMotionMaster()->MoveJump(2838.71f, 1668.18f, -40.64f, 30.0f, 10.0f);
+            me->GetMotionMaster()->MoveJump(2838.71f, 1668.18f, -40.64f, 0.0f, 30.0f, 10.0f);
             me->SetReactState(REACT_AGGRESSIVE, 3000);
         }
     }

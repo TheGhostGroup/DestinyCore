@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2015 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -151,7 +151,7 @@ void WorldPackets::LfgList::LfgListSearch::Read()
 
     if (count)
     {
-        for (int i = 0; i < count; i++)
+        for (uint32 i = 0; i < count; i++)
         {
             auto len = new uint32[3];
             for (int i = 0; i < 3; i++)

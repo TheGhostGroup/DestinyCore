@@ -1,6 +1,19 @@
 /*
-    https://uwow.biz/
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "return_to_karazhan.h"
 
@@ -75,7 +88,7 @@ public:
                                     // me->UpdateGroundPositionZ(switchx, switchy, z);
                                     if (switchy > MIN_Y && switchy < MAX_Y)
                                     {
-                                        me->GetMotionMaster()->MoveJump(switchx, switchy, z, 10, 10);
+                                        me->GetMotionMaster()->MoveJump(switchx, switchy, z, 0.0f, 10.0f, 10.0f);
                                         me->AddDelayedEvent(3000, [this] () -> void
                                         {
                                             me->CastSpell(me, 229298);
@@ -141,7 +154,7 @@ public:
                                 {
                                     float z = me->GetPositionZ();
                                     // me->UpdateGroundPositionZ(switchx, switchy, z);
-                                    me->GetMotionMaster()->MoveJump(switchx, switchy, z, 10, 10);
+                                    me->GetMotionMaster()->MoveJump(switchx, switchy, z, 0.0f, 10.0f, 10.0f);
                                     me->AddDelayedEvent(3000, [this] () -> void
                                     {
                                         me->CastSpell(me, (me->GetEntry() == NPC_CHESS_ELEPHANT_DARK ? 229558 : 229544));
@@ -208,7 +221,7 @@ public:
                                 {
                                     float z = me->GetPositionZ();
                                     // me->UpdateGroundPositionZ(switchx, switchy, z);
-                                    me->GetMotionMaster()->MoveJump(switchx, switchy, z, 10, 10);
+                                    me->GetMotionMaster()->MoveJump(switchx, switchy, z, 0.0f, 10.0f, 10.0f);
                                     me->AddDelayedEvent(3000, [this] () -> void
                                     {
                                         me->CastSpell(me, 229567);
@@ -269,7 +282,7 @@ public:
                                 {
                                     float z = me->GetPositionZ();
                                     // me->UpdateGroundPositionZ(switchx, switchy, z);
-                                    me->GetMotionMaster()->MoveJump(switchx, switchy, z, 10, 10);
+                                    me->GetMotionMaster()->MoveJump(switchx, switchy, z, 0.0f, 10.0f, 10.0f);
                                     me->AddDelayedEvent(3000, [this] () -> void
                                     {
                                         me->AddDelayedEvent(500, [this] () -> void

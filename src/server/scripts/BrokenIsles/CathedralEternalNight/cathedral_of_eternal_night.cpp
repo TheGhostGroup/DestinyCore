@@ -1,6 +1,19 @@
 /*
-    https://uwow.biz/
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "cathedral_of_eternal_night.h"
 #include "SpellScript.h"
@@ -60,7 +73,7 @@ struct npc_mefistrot_intro : public ScriptedAI
                 if (Creature* add = me->FindNearestCreature(entry, 15.0f, true))
                 {
                     add->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
-                    add->GetMotionMaster()->MoveJump(add->GetPositionX() - 14.0f, add->GetPositionY(), 334.53f, 5.0f, 15.0f);
+                    add->GetMotionMaster()->MoveJump(add->GetPositionX() - 14.0f, add->GetPositionY(), 334.53f, 0.0f, 5.0f, 15.0f);
 
                     add->SetHomePosition(add->GetPositionX() - 14.0f, add->GetPositionY(), 334.53f, add->GetOrientation());
                     add->AddDelayedEvent(3000, [add] ()-> void
@@ -74,7 +87,7 @@ struct npc_mefistrot_intro : public ScriptedAI
             me->AddDelayedEvent(5000, [this] () -> void
             {
                 me->SetHomePosition(me->GetPositionX() - 14.0f, me->GetPositionY(), 334.53f, me->GetOrientation());
-                me->GetMotionMaster()->MoveJump(me->GetPositionX() - 14.0f, me->GetPositionY(), 334.53f, 5.0f, 15.0f);
+                me->GetMotionMaster()->MoveJump(me->GetPositionX() - 14.0f, me->GetPositionY(), 334.53f, 0.0f, 5.0f, 15.0f);
             });
             
             me->AddDelayedEvent(18000, [this] () -> void
@@ -187,8 +200,8 @@ struct npc_coen_event_first : public ScriptedAI
             if (!trash.empty())
                 for (std::list<Creature*>::iterator itr = trash.begin(); itr != trash.end(); ++itr)
                 {
-                    (*itr)->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), 10.0f, 10.0f);
-                    (*itr)->SetHomePosition(me->GetPositionX() + frand(-3, 3), me->GetPositionY() + frand(-3, 3), me->GetPositionZ(), (*itr)->GetOrientation()+frand(0, 1));
+                    (*itr)->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), 0.0f, 10.0f, 10.0f);
+                    (*itr)->SetHomePosition(me->GetPositionX() + frand(-3.0f, 3.0f), me->GetPositionY() + frand(-3.0f, 3.0f), me->GetPositionZ(), (*itr)->GetOrientation() + frand(0.0f, 1.0f));
                 }
                 
             me->AddDelayedEvent(1000, [this] () -> void
@@ -230,13 +243,13 @@ struct npc_coen_maiev_events : public ScriptedAI
             if (Creature* illidan = me->FindNearestCreature(NPC_ILLIDAN_INTRO, 40.0f, true))
                 illidan->AddDelayedEvent(3000, [illidan]()-> void
                 {
-                    illidan->GetMotionMaster()->MovePath(PATH_FROM_THIRD, false, frand(-3, 3), frand(-3, 3));
+                    illidan->GetMotionMaster()->MovePath(PATH_FROM_THIRD, false, frand(-3.0f, 3.0f), frand(-3.0f, 3.0f));
                     illidan->DespawnOrUnsummon(25000);
                 });
                 
                 me->AddDelayedEvent(3000, [this]()-> void
                 {
-                    me->GetMotionMaster()->MovePath(PATH_FROM_THIRD, false, frand(-3, 3), frand(-3, 3));
+                    me->GetMotionMaster()->MovePath(PATH_FROM_THIRD, false, frand(-3.0f, 3.0f), frand(-3.0f, 3.0f));
                     me->DespawnOrUnsummon(25000);
                 });
             
@@ -287,11 +300,11 @@ struct npc_coen_maiev_events : public ScriptedAI
                         isThirdBossIntro = true;
                         if (Creature* illidan = me->FindNearestCreature(NPC_ILLIDAN_INTRO, 40.0f, true))
                         {
-                            illidan->GetMotionMaster()->MovePath(PATH_TO_THIRD_BOSS ,false, frand(-3, 3), frand(-3, 3));
+                            illidan->GetMotionMaster()->MovePath(PATH_TO_THIRD_BOSS, false, frand(-3.0f, 3.0f), frand(-3.0f, 3.0f));
                             
                             me->AddDelayedEvent(500, [this] () -> void
                             {
-                                me->GetMotionMaster()->MovePath(PATH_TO_THIRD_BOSS, false, frand(-3, 3), frand(-3, 3));
+                                me->GetMotionMaster()->MovePath(PATH_TO_THIRD_BOSS, false, frand(-3.0f, 3.0f), frand(-3.0f, 3.0f));
                                 me->CreateConversation(4910);
                             });
                         }
@@ -365,7 +378,7 @@ class spell_coen_shadow_wave : public SpellScript
             for (uint8 i = 10; i < 20; i++)
             {
                 hit_range += 5;
-                target->GetNearPoint2D(pos, frand(1, 6), frand(0,6.28f));
+                target->GetNearPoint2D(pos, frand(1.0f, 6.0f), frand(0.0f, 6.28f));
                 caster->AddDelayedEvent(100+i, [caster, pos] () -> void
                 {
                     caster->CastSpell(pos, 238654, false);
@@ -396,7 +409,7 @@ class spell_coen_blinding_glare : public SpellScript
             if (object == nullptr)
                 return true;
 
-            if (!object->isInFront(caster, M_PI))
+            if (!object->isInFront(caster, static_cast<float>(M_PI)))
                 return true;
 
             return false;
@@ -425,7 +438,7 @@ class spell_coen_blinding_glare : public SpellScript
 
          for (uint8 i =0; i < 3; ++i)
          {
-             if (Creature* kokon = caster->SummonCreature(120015, caster->GetPositionX() + frand(-6, 6), caster->GetPositionY() + frand(-6, 6), 510.94f))
+             if (Creature* kokon = caster->SummonCreature(120015, caster->GetPositionX() + frand(-6.0f, 6.0f), caster->GetPositionY() + frand(-6.0f, 6.0f), 510.94f))
              {
                  if (Creature* spider = caster->SummonCreature(120016, kokon->GetPositionX(), kokon->GetPositionY(), kokon->GetPositionZ()))
                  {
@@ -437,7 +450,7 @@ class spell_coen_blinding_glare : public SpellScript
                          
                          spider->CastSpell(kokon, 116894);
                          kokon->DespawnOrUnsummon(3000);
-                         spider->GetMotionMaster()->MoveJump(spider->GetPositionX(), spider->GetPositionY(), caster->GetPositionZ(), 50, 50);
+                         spider->GetMotionMaster()->MoveJump(spider->GetPositionX(), spider->GetPositionY(), caster->GetPositionZ(), 0.0f, 50.0f, 50.0f);
                      });
                  }
              }

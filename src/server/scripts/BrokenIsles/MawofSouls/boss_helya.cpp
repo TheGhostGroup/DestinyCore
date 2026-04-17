@@ -1343,7 +1343,7 @@ class spell_helya_swirling_water : public SpellScript
                 {
                     float x, y, z;
                     caster->GetClosePoint(x, y, z, caster->GetObjectSize(), 5.0f, frand(0.0f, 6.28f));
-                    caster->GetMotionMaster()->MoveJump(x, y, z + 10.0f, 15.0f, 15.0f);
+                    caster->GetMotionMaster()->MoveJump(x, y, z + 10.0f, 0.0f, 15.0f, 15.0f);
                 }
             });
         }

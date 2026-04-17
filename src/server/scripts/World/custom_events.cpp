@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "AreaTriggerAI.h"
 #include "Chat.h"
 #include "CombatAI.h"
@@ -791,7 +808,7 @@ struct boss_hex_lord_hadorn : public ScriptedAI
 			case EVENT_5:
 				if (!paused)
 				{
-					me->SummonCreature(npc_poison_totem, me->GetPositionX() + frand(3, 5), me->GetPositionY() + frand(2, 4), me->GetPositionZ() + 1.5f, me->GetOrientation());
+					me->SummonCreature(npc_poison_totem, me->GetPositionX() + frand(3.0f, 5.0f), me->GetPositionY() + frand(2.0f, 4.0f), me->GetPositionZ() + 1.5f, me->GetOrientation());
 					events.ScheduleEvent(EVENT_5, 25000);
 					++totemsProcessed;
 					if (phase == 1 && totemsProcessed == 4)
@@ -2683,7 +2700,7 @@ struct boss_new_year_2019_atray : public ScriptedAI
 		if (spell->Id == SPELL_ATRAY_KHADGAR_TS)
 		{
 			Position pos = target->GetPosition();
-			pos.Relocate(pos.m_positionX - frand(2, 3), pos.m_positionY + frand(-2, 2), pos.m_positionZ, pos.m_orientation);
+			pos.Relocate(pos.m_positionX - frand(2.0f, 3.0f), pos.m_positionY + frand(-2.0f, 2.0f), pos.m_positionZ, pos.m_orientation);
 			if (auto khadgar = me->SummonCreature(npc_atray_khadgar, pos, TEMPSUMMON_TIMED_DESPAWN, 34000))
 			{
 				khadgar->SetReactState(REACT_PASSIVE);
@@ -2715,7 +2732,7 @@ struct boss_new_year_2019_atray : public ScriptedAI
 		for (uint8 i = 0; i < count; ++i)
 		{
 			if (auto target = SelectTarget(SELECT_TARGET_RANDOM, 0, 60.0f, true))
-				if (auto add = me->SummonCreature(npc_atray_son, target->GetPositionX() + frand(1, 3), target->GetPositionY() - frand(1, 3), target->GetPositionZ() + 1.5f, 1.f))
+				if (auto add = me->SummonCreature(npc_atray_son, target->GetPositionX() + frand(1.0f, 3.0f), target->GetPositionY() - frand(1.0f, 3.0f), target->GetPositionZ() + 1.5f, 1.f))
 					add->Attack(target, true);
 		}
 	}
@@ -3478,7 +3495,7 @@ struct npc_new_year_2019_evala_portal : public ScriptedAI
 			{
 				Position pos = me->GetPosition();
 				uint32 add[2] = { npc_evala_frostmage, npc_evala_frostwarr };
-				if (auto adds = me->SummonCreature(add[urand(0, 1)], pos.m_positionX + frand(1, 2), pos.m_positionY + frand(0, 2), pos.m_positionZ, pos.m_orientation))
+				if (auto adds = me->SummonCreature(add[urand(0, 1)], pos.m_positionX + frand(1.0f, 2.0f), pos.m_positionY + frand(0.0f, 2.0f), pos.m_positionZ, pos.m_orientation))
 					if (auto target = adds->SelectNearestPlayerNotGM(37.f))
 						adds->GetMotionMaster()->MovePoint(1, target->GetPosition());
 

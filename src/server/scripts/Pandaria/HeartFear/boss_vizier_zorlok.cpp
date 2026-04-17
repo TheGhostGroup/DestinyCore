@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -181,7 +180,7 @@ class boss_vizier_zorlok : public CreatureScript
                 {
                     flycount++;
                     FlyControl(true);
-                    me->GetMotionMaster()->MoveJump(centerpos.GetPositionX(), centerpos.GetPositionY(), centerpos.GetPositionZ(),10.0f, 10.0f );
+                    me->GetMotionMaster()->MoveJump(centerpos.GetPositionX(), centerpos.GetPositionY(), centerpos.GetPositionZ(), 0.0f, 10.0f, 10.0f);
                     events.RescheduleEvent(EVENT_GO_NEXT_PLATFORM, 3000);
                 }
                 else if (HealthBelowPct(40) && flycount == 2)
@@ -189,7 +188,7 @@ class boss_vizier_zorlok : public CreatureScript
                     flycount++;
                     FlyControl(true);
                     GasControl(false);
-                    me->GetMotionMaster()->MoveJump(centerpos.GetPositionX(), centerpos.GetPositionY(), centerpos.GetPositionZ(),10.0f, 10.0f );
+                    me->GetMotionMaster()->MoveJump(centerpos.GetPositionX(), centerpos.GetPositionY(), centerpos.GetPositionZ(), 0.0f, 10.0f, 10.0f);
                     events.RescheduleEvent(EVENT_GO_LAST_POS, 3000);
                 }
             }

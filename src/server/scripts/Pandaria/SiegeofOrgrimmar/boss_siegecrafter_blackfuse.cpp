@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -2118,7 +2117,7 @@ public:
                         if (instance->GetBossState(DATA_BLACKFUSE) != IN_PROGRESS)
                             player->NearTeleportTo(atdestpos[0].GetPositionX(), atdestpos[0].GetPositionY(), atdestpos[0].GetPositionZ(), atdestpos[0].GetOrientation());
                         else
-                            player->GetMotionMaster()->MoveJump(atdestpos[1].GetPositionX(), atdestpos[1].GetPositionY(), atdestpos[1].GetPositionZ(), 15.0f, 15.0f);
+                            player->GetMotionMaster()->MoveJump(atdestpos[1].GetPositionX(), atdestpos[1].GetPositionY(), atdestpos[1].GetPositionZ(), 0.0f, 15.0f, 15.0f);
                         break;
                     case LEAVE_1:
                     case LEAVE_2:
@@ -2129,7 +2128,7 @@ public:
                         {
                             if (Creature* blackfuse = instance->instance->GetCreature(instance->GetGuidData(NPC_BLACKFUSE_MAUNT)))
                                 blackfuse->CastSpell(player, SPELL_MAGNETIC_LASSO_VISUAL, true);
-                            player->GetMotionMaster()->MoveJump(atdestpos[0].GetPositionX(), atdestpos[0].GetPositionY(), atdestpos[0].GetPositionZ(), 15.0f, 15.0f);
+                            player->GetMotionMaster()->MoveJump(atdestpos[0].GetPositionX(), atdestpos[0].GetPositionY(), atdestpos[0].GetPositionZ(), 0.0f, 15.0f, 15.0f);
                         }
                         break;
                     case ENTER_CONVEYOR:
@@ -2146,11 +2145,11 @@ public:
                             {
                                 if (Creature* blackfuse = instance->instance->GetCreature(instance->GetGuidData(NPC_BLACKFUSE_MAUNT)))
                                     blackfuse->CastSpell(player, SPELL_MAGNETIC_LASSO_VISUAL, true);
-                                player->GetMotionMaster()->MoveJump(droppos.GetPositionX(), droppos.GetPositionY(), droppos.GetPositionZ(), 15.0f, 15.0f);
+                                player->GetMotionMaster()->MoveJump(droppos.GetPositionX(), droppos.GetPositionY(), droppos.GetPositionZ(), 0.0f, 15.0f, 15.0f);
                             }
                         }
                         else
-                            player->GetMotionMaster()->MoveJump(droppos.GetPositionX(), droppos.GetPositionY(), droppos.GetPositionZ(), 15.0f, 15.0f);
+                            player->GetMotionMaster()->MoveJump(droppos.GetPositionX(), droppos.GetPositionY(), droppos.GetPositionZ(), 0.0f, 15.0f, 15.0f);
                         break;
                     case LEAVE_CONVEYOR:
                     case LEAVE_CONVEYOR_2:

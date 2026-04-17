@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2011 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -167,7 +167,7 @@ class boss_ick : public CreatureScript
             void JustDied(Unit* /*pKiller*/) override
             {
                 _JustDied();
-                me->SummonCreature(NPC_KRICK, me->GetPositionX() + frand(2, 4), me->GetPositionY() + frand(2, 3), me->GetPositionZ(), 0.0f);
+                me->SummonCreature(NPC_KRICK, me->GetPositionX() + frand(2.0f, 4.0f), me->GetPositionY() + frand(2.0f, 3.0f), me->GetPositionZ(), 0.0f);
             }
 
             void SetTempThreat(float threat)
@@ -584,8 +584,8 @@ class spell_krick_pursuit : public SpellScriptLoader
                         caster->AI()->Talk(SAY_ICK_CHASE_1);
                         caster->AddAura(GetSpellInfo()->Id, target);
                         CAST_AI(boss_ick::boss_ickAI, caster->AI())->SetTempThreat(caster->getThreatManager().getThreat(target));
-                        caster->AddThreat(target, float(GetEffectValue()));
-                        target->AddThreat(caster, float(GetEffectValue()));
+                        caster->AddThreat(target, static_cast<float>(GetEffectValue()));
+                        target->AddThreat(caster, static_cast<float>(GetEffectValue()));
                     }
                 }
             }

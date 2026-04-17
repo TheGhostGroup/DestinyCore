@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2011 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -14,13 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Thorim
-SDAuthor: PrinceCreed
-SD%Complete: 75
-SDComments: Lightning Charge not works.
-EndScriptData */
 
 #include "ulduar.h"
 
@@ -501,7 +494,7 @@ public:
                                     me->RemoveAurasDueToSpell(SPELL_SHEAT_OF_LIGHTNING);
                                     me->SetReactState(REACT_AGGRESSIVE);
                                     me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_REMOVE_CLIENT_CONTROL);
-                                    me->GetMotionMaster()->MoveJump(2134.79f, -263.03f, 419.84f, 10.0f, 20.0f);
+                                    me->GetMotionMaster()->MoveJump(2134.79f, -263.03f, 419.84f, 0.0f, 10.0f, 20.0f);
                                     events.ScheduleEvent(EVENT_UNBALANCING_STRIKE, 15000, 0, PHASE_2);
                                     events.ScheduleEvent(EVENT_CHAIN_LIGHTNING, 20000, 0, PHASE_2);
                                     events.ScheduleEvent(EVENT_RELEASE_ENERGY, 12000, 0, PHASE_2);

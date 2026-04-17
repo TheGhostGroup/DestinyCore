@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -15,13 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Dark_Portal
-SD%Complete: 30
-SDComment: Misc NPC's and mobs for instance. Most here far from complete.
-SDCategory: Caverns of Time, The Dark Portal
-EndScriptData */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -220,7 +212,7 @@ public:
                             float x = -2092.70f;
                             float y = 7126.88f;
                             float z = 34.88f;
-                            orcs->GetMotionMaster()->MovePoint(0, x + frand(1,2), y + frand(1,6), z);
+                            orcs->GetMotionMaster()->MovePoint(0, x + frand(1.0f, 2.0f), y + frand(1.0f, 6.0f), z);
 
                             orcs->DespawnOrUnsummon(5000);
                         }

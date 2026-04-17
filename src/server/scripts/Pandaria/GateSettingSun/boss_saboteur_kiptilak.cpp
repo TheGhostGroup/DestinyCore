@@ -81,7 +81,7 @@ struct boss_saboteur_kiptilak : public BossAI
             return;
         }
 
-        float nextHealthPct = ((float(me->GetHealth()) - damage) / float(me->GetMaxHealth())) * 100;
+        float nextHealthPct = ((static_cast<float>(me->GetHealth()) - damage) / static_cast<float>(me->GetMaxHealth())) * 100;
 
         if (WorldInFlamesEvents < WIF_70 && nextHealthPct <= 70.0f)
         {
@@ -131,7 +131,7 @@ struct boss_saboteur_kiptilak : public BossAI
         {
         case EVENT_EXPLOSIVES:
             for (uint8 i = 0; i < urand(1, 3); ++i)
-                me->CastSpell(frand(702, 740), frand(2292, 2320), 388.5f, SPELL_PLANT_EXPLOSIVE, true);
+                me->CastSpell(frand(702.0f, 740.0f), frand(2292.0f, 2320.0f), 388.5f, SPELL_PLANT_EXPLOSIVE, true);
 
             events.RescheduleEvent(EVENT_EXPLOSIVES, urand(7500, 12500));
             break;
@@ -178,7 +178,7 @@ struct npc_munition_explosion_bunny : public ScriptedAI
             break;
         case NPC_EXPLOSION_BUNNY_S_M:
         case NPC_EXPLOSION_BUNNY_S_P:
-            orientation = float(M_PI);
+            orientation = static_cast<float>(M_PI);
             break;
         case NPC_EXPLOSION_BUNNY_E_M:
         case NPC_EXPLOSION_BUNNY_E_P:

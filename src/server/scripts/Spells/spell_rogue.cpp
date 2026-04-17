@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -13,12 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Scripts for spells with SPELLFAMILY_ROGUE and SPELLFAMILY_GENERIC spells used by rogue players.
- * Ordered alphabetically using scriptname.
- * Scriptnames of files in this file should be prefixed with "spell_rog_".
  */
 
 #include "ScriptMgr.h"
@@ -1152,7 +1146,7 @@ class spell_rog_nightblade : public SpellScriptLoader
             {
                 if (Unit* caster = GetCaster())
                     if (AuraEffect* aurEff = caster->GetAuraEffect(211661, EFFECT_0)) // Item - Rogue T19 Subtlety 2P Bonus
-                        duration += aurEff->GetAmount() * GetAura()->GetComboPoints() * IN_MILLISECONDS;
+                        duration += aurEff->GetAmount() * GetAura()->GetComboPoints() * static_cast<int32>(IN_MILLISECONDS);
             }
 
             void Register() override
@@ -1198,7 +1192,7 @@ class spell_rog_cut_to_the_chase : public SpellScript
                                     Trinity::Containers::RandomResizeList(auraList, 1);
 
                                 uint32 spellId = *auraList.begin();
-                                int32 dur = eff2->GetAmount() * IN_MILLISECONDS;
+                                int32 dur = eff2->GetAmount() * static_cast<int32>(IN_MILLISECONDS);
 
                                 caster->AddAura(spellId, caster, nullptr, 0, dur, dur);
                             }

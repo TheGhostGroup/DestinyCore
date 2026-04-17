@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2011-2013 Project SkyFire <http://www.projectskyfire.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
- * Free Software Foundation; either version 3 of the License, or (at your
+ * Free Software Foundation; either version 2 of the License, or (at your
  * option) any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
@@ -1274,12 +1274,12 @@ public:
             {
                 if (Loc1)
                 {
-                    me->GetMotionMaster()->MoveJump(-1668.52f + irand(-3, 3), 1439.69f + irand(-3, 3), PLATFORM_Z, 20.0f, 22.0f);
+                    me->GetMotionMaster()->MoveJump(-1668.52f + irand(-3, 3), 1439.69f + irand(-3, 3), PLATFORM_Z, 0.0f, 20.0f, 22.0f);
                     Loc1 = false;
                 }
                 else if (Loc2)
                 {
-                    me->GetMotionMaster()->MoveJump(-1678.04f + irand(-3, 3), 1450.88f + irand(-3, 3), PLATFORM_Z, 20.0f, 22.0f);
+                    me->GetMotionMaster()->MoveJump(-1678.04f + irand(-3, 3), 1450.88f + irand(-3, 3), PLATFORM_Z, 0.0f, 20.0f, 22.0f);
                     Loc2 = false;
                 }
 
@@ -1404,12 +1404,12 @@ public:
             {
                 if (Loc1)
                 {
-                    me->GetMotionMaster()->MoveJump(-1685.521f + irand(-3, 3), 1458.48f + irand(-3, 3), PLATFORM_Z, 20.0f, 22.0f);
+                    me->GetMotionMaster()->MoveJump(-1685.521f + irand(-3, 3), 1458.48f + irand(-3, 3), PLATFORM_Z, 0.0f, 20.0f, 22.0f);
                     Loc1 = false;
                 }
                 else if (Loc2)
                 {
-                    me->GetMotionMaster()->MoveJump(-1681.81f + irand(-3, 3), 1445.54f + irand(-3, 3), PLATFORM_Z, 20.0f, 22.0f);
+                    me->GetMotionMaster()->MoveJump(-1681.81f + irand(-3, 3), 1445.54f + irand(-3, 3), PLATFORM_Z, 0.0f, 20.0f, 22.0f);
                     Loc2 = false;
                 }
 
@@ -1534,12 +1534,12 @@ public:
             {
                 if (Loc1)
                 {
-                    me->GetMotionMaster()->MoveJump(-1668.52f + irand(-3, 3), 1439.69f + irand(-3, 3), PLATFORM_Z, 20.0f, 22.0f);
+                    me->GetMotionMaster()->MoveJump(-1668.52f + irand(-3, 3), 1439.69f + irand(-3, 3), PLATFORM_Z, 0.0f, 20.0f, 22.0f);
                     Loc1 = false;
                 }
                 else if (Loc2)
                 {
-                    me->GetMotionMaster()->MoveJump(-1660.17f + irand(-3, 3), 1429.55f + irand(-3, 3), PLATFORM_Z, 22.0f, 20.0f);
+                    me->GetMotionMaster()->MoveJump(-1660.17f + irand(-3, 3), 1429.55f + irand(-3, 3), PLATFORM_Z, 0.0f, 22.0f, 20.0f);
                     Loc2 = false;
                 }
 
@@ -1641,7 +1641,7 @@ public:
 
             if (WaypointId >= CommonWPCount) // If we have reached the last waypoint
             {
-                me->GetMotionMaster()->MoveJump(-1685.52f + irand(-3, 3), 1458.48f + irand(-3, 3), PLATFORM_Z, 20.0f, 22.0f);
+                me->GetMotionMaster()->MoveJump(-1685.52f + irand(-3, 3), 1458.48f + irand(-3, 3), PLATFORM_Z, 0.0f, 20.0f, 22.0f);
                 Run = false; // Stop running
                 Jump = true; // Time to Jump
             }
@@ -1709,7 +1709,7 @@ public:
                         {
                             BadAvery->SetOrientation(BadAvery->GetAngle(player)); // Face Player
                             BadAvery->CastSpell(player, 69873, true); // Do Cosmetic Attack
-                            player->GetMotionMaster()->MoveJump(-1791.94f, 1427.29f, 12.4584f, 22.0f, 8.0f);
+                            player->GetMotionMaster()->MoveJump(-1791.94f, 1427.29f, 12.4584f, 0.0f, 22.0f, 8.0f);
                             BadAvery->getThreatManager().resetAllAggro();
                             tEvent = 1200;
                             Phase++;
@@ -1718,7 +1718,7 @@ public:
 
                         case (2):
                         {
-                            BadAvery->GetMotionMaster()->MoveJump(-1791.94f, 1427.29f, 12.4584f, 18.0f, 7.0f);
+                            BadAvery->GetMotionMaster()->MoveJump(-1791.94f, 1427.29f, 12.4584f, 0.0f, 18.0f, 7.0f);
                             tEvent = 600;
                             Phase++;
                             break;
@@ -2414,7 +2414,7 @@ public:
             {
                 case 5:
                     Talk(SAY_GREYMANE_HORSE, player->GetGUID());
-                    me->GetMotionMaster()->MoveJump(-1679.089f, 1348.42f, 15.31f, 25.0f, 15.0f);
+                    me->GetMotionMaster()->MoveJump(-1679.089f, 1348.42f, 15.31f, 0.0f, 25.0f, 15.0f);
                     if (me->GetVehicleKit()->HasEmptySeat(1))
                     {
                         SetEscortPaused(true);
@@ -2744,13 +2744,13 @@ public:
                 case 1:
                     player->SetClientControl(me, 0);
                     crowley->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
-                    me->GetMotionMaster()->MoveJump(-1714.02f, 1666.37f, 20.57f, 25.0f, 15.0f);
+                    me->GetMotionMaster()->MoveJump(-1714.02f, 1666.37f, 20.57f, 0.0f, 25.0f, 15.0f);
                     break;
                 case 4:
                     crowley->AI()->Talk(SAY_CROWLEY_HORSE_1);
                     break;
                 case 10:
-                    me->GetMotionMaster()->MoveJump(-1571.32f, 1710.58f, 20.49f, 25.0f, 15.0f);
+                    me->GetMotionMaster()->MoveJump(-1571.32f, 1710.58f, 20.49f, 0.0f, 25.0f, 15.0f);
                     break;
                 case 11:
                     crowley->AI()->Talk(SAY_CROWLEY_HORSE_2);

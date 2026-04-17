@@ -1,10 +1,19 @@
 /*
-Cosmetic toDo:
--- spell 74076 by 43359
--- spell 74070 by 43359 
--- spell 74072 by 43359
--- spell 74085 by 43359
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "PrecompiledHeaders/ScriptPCH.h"
 #include "CreatureTextMgr.h"
@@ -1838,7 +1847,7 @@ class npc_faceless_of_the_deep : public CreatureScript
                             me->RemoveAura(SPELL_SOE_ABSORPTION_SHIELD);
                             me->RemoveAura(SPELL_SOE_STRANGE_TENTACLE);
                             me->RemoveAura(SPELL_SOE_FREEZE_ANIM);
-                            me->GetMotionMaster()->MoveJump(167.6672f, 1944.108f, 5.213703f, 10, 15);
+                            me->GetMotionMaster()->MoveJump(167.6672f, 1944.108f, 5.213703f, 0.0f, 10.0f, 15.0f);
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
                         }else
                             EnterEvadeMode();

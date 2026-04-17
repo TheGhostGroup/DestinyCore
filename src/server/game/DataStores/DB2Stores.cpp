@@ -847,7 +847,7 @@ void LoadDB2(uint32& availableDb2Locales, DB2StoreProblemList& errlist, StorageM
     auto loadInfo = storage->GetLoadInfo();
     {
         std::string clientMetaString, ourMetaString;
-        for (auto i = 0; i < loadInfo->Meta->FieldCount; ++i)
+        for (uint32 i = 0; i < loadInfo->Meta->FieldCount; ++i)
             for (auto j = 0; j < loadInfo->Meta->ArraySizes[i]; ++j)
                 clientMetaString += loadInfo->Meta->Types[i];
 

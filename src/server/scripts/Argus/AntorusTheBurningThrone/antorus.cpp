@@ -155,7 +155,7 @@ struct npc_atbt_battleship : public ScriptedAI
         me->AddDelayedEvent(urand(2000, 3000), [this]() -> void
         {
             uint8 i = 0;
-            for (float y = 10099.79f; y >= 9980.05f; y -= frand(2, 7))
+            for (float y = 10099.79f; y >= 9980.05f; y -= frand(2.0f, 7.0f))
             {
                 me->AddDelayedEvent(100 * ++i, [this, y]() -> void
                 {
@@ -185,7 +185,7 @@ struct npt_atbt_teleport : public ScriptedAI
 
         who->CastSpell(who, 253773, true);
         who->GetMotionMaster()->MoveIdle();
-        who->GetMotionMaster()->MovePath(me->GetPositionX() < -3100.0f ? 12871196 : 12871197, false, frand(-2, 2), frand(-2, 2));
+        who->GetMotionMaster()->MovePath(me->GetPositionX() < -3100.0f ? 12871196 : 12871197, false, frand(-2.0f, 2.0f), frand(-2.0f, 2.0f));
     }
 };
 

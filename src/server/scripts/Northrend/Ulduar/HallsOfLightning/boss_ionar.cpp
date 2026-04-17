@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -14,10 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Comment: Timer check pending
  */
 
 #include "ScriptMgr.h"
@@ -352,7 +347,7 @@ public:
                     Creature* pIonar = instance->instance->GetCreature(instance->GetGuidData(DATA_IONAR));
                     if (pIonar && pIonar->IsAlive())
                     {
-                        if (me->GetDistance(pIonar) > DATA_MAX_SPARK_DISTANCE)
+                        if (me->GetDistance(pIonar) > static_cast<float>(DATA_MAX_SPARK_DISTANCE))
                         {
                             Position pos;
                             pIonar->GetPosition(&pos);

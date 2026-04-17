@@ -1,9 +1,19 @@
 /*
-    http://uwow.biz
-    Dungeon : Violet Hold Legion 100-110
-    Encounter: Fel Lord Betrug
-    Normal: 100%, Heroic: 100%, Mythic: 100%
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -358,12 +368,12 @@ public:
             if (targetHit != targetHitCount)
             {
                 //GetHitUnit()->CastSpell(jumpPos[pPos], SPELL_MIGHTY_SMASH_JUMP_2, true);
-                GetHitUnit()->GetMotionMaster()->MoveJump(jumpPos[pPos].GetPositionX(), jumpPos[pPos].GetPositionY(), jumpPos[pPos].GetPositionZ(), 30, 15);
+                GetHitUnit()->GetMotionMaster()->MoveJump(jumpPos[pPos].GetPositionX(), jumpPos[pPos].GetPositionY(), jumpPos[pPos].GetPositionZ(), 0.0f, 30.0f, 15.0f);
             }
             else
             {
                 //GetHitUnit()->CastSpell(jumpPos[bPos], SPELL_MIGHTY_SMASH_JUMP_3, true);
-                GetHitUnit()->GetMotionMaster()->MoveJump(jumpPos[bPos].GetPositionX(), jumpPos[bPos].GetPositionY(), jumpPos[bPos].GetPositionZ(), 30, 15);
+                GetHitUnit()->GetMotionMaster()->MoveJump(jumpPos[bPos].GetPositionX(), jumpPos[bPos].GetPositionY(), jumpPos[bPos].GetPositionZ(), 0.0f, 30.0f, 15.0f);
                 if (Creature* trigger = GetCaster()->FindNearestCreature(92879, 50.0f))
                 {
                     Position posLeft, posRight;

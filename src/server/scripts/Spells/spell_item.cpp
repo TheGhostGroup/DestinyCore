@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -13,12 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Scripts for spells with SPELLFAMILY_GENERIC spells used by items.
- * Ordered alphabetically using scriptname.
- * Scriptnames of files in this file should be prefixed with "spell_item_".
  */
 
 #include "QuestData.h"
@@ -3514,7 +3508,7 @@ class spell_item_walling_souls : public AuraScript
                 int32 CapCD = GetSpellInfo()->Effects[EFFECT_2]->BasePoints;
                 if (bp > CapCD)
                     bp = CapCD;
-                plr->ModifySpellCooldown(242609, -bp * IN_MILLISECONDS);
+                plr->ModifySpellCooldown(242609, -bp * static_cast<float>(IN_MILLISECONDS));
             }
         }
     }

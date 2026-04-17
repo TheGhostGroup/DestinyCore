@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -603,7 +603,7 @@ class npc_living_constellation : public CreatureScript
                 me->GetPosition(x,y,z);
 
                 if (z <= floor)
-                    me->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), 420.15f, 10, 10);
+                    me->GetMotionMaster()->MoveJump(me->GetPositionX(), me->GetPositionY(), 420.15f, 0.0f, 10.0f, 10.0f);
 
             }
 

@@ -312,7 +312,7 @@ struct boss_garm : BossAI
         switch (spell->Id)
         {
         case SpellHeadlongCharge:
-            me->GetMotionMaster()->MoveJump(456.3476f, 449.91302f, 4.778366f, 30, 30);
+            me->GetMotionMaster()->MoveJump(456.3476f, 449.91302f, 4.778366f, 0.0f, 30.0f, 30.0f);
             events.RescheduleEvent(EVENT_HEADLONG_CHARGE_WP, 2000);
             break;
         case SpellGuardiansBreath_1:

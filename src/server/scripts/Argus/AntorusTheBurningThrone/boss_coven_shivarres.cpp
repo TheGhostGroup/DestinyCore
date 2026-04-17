@@ -596,7 +596,7 @@ struct boss_coven_shivarres_generic : ScriptedAI
 
             me->AddDelayedCombat(3000, [this, actionId] () -> void
             {
-                me->GetMotionMaster()->MoveJump(tormentPos[actionId], 25.0f, 15.0f, actionId, tormentPos[actionId].GetOrientation());
+                me->GetMotionMaster()->MoveJump(tormentPos[actionId], 25.0f, 15.0f, actionId, true);
             });
         }
     }

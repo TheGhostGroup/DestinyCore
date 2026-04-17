@@ -1,6 +1,19 @@
 /*
-    https://uwow.biz/
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "trial_of_valor.h"
 #include "AreaTriggerAI.h"
@@ -1459,25 +1472,25 @@ struct npc_decaying_minion : ScriptedAI
                 break;
             case EVENT_3:
                 if (me->GetPositionX() >= 548.3593f && me->GetPositionX() <= 550.3593f)
-                    me->GetMotionMaster()->MoveJump(532.17f, 665.08f, 2.1955f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(532.17f, 665.08f, 2.1955f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 538.4478f && me->GetPositionX() <= 544.3593f)
-                    me->GetMotionMaster()->MoveJump(525.428f, 666.552f, 2.19553f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(525.428f, 666.552f, 2.19553f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 529.1761f && me->GetPositionX() <= 535.3593f)
-                    me->GetMotionMaster()->MoveJump(519.117f, 665.5169f, 2.0715f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(519.117f, 665.5169f, 2.0715f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 521.0399f && me->GetPositionX() <= 526.3593f)
-                    me->GetMotionMaster()->MoveJump(506.52f, 671.52f, 2.04149f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(506.52f, 671.52f, 2.04149f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 517.1808f && me->GetPositionX() <= 520.3593f)
-                    me->GetMotionMaster()->MoveJump(501.103f, 675.1241f, 2.17084f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(501.103f, 675.1241f, 2.17084f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 481.0416f && me->GetPositionX() <= 489.3593f)
-                    me->GetMotionMaster()->MoveJump(488.698f, 612.844f, 2.19552f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(488.698f, 612.844f, 2.19552f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 490.2551f && me->GetPositionX() <= 495.3593f)
-                    me->GetMotionMaster()->MoveJump(494.009f, 611.8982f, 2.19546f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(494.009f, 611.8982f, 2.19546f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 501.1823f && me->GetPositionX() <= 510.3593f)
-                    me->GetMotionMaster()->MoveJump(505.3662f, 607.2649f, 2.80966f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(505.3662f, 607.2649f, 2.80966f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 514.1875f && me->GetPositionX() <= 516.3593f)
-                    me->GetMotionMaster()->MoveJump(510.0153f, 606.5961f, 4.22821f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(510.0153f, 606.5961f, 4.22821f, 0.0f, 20.0f, 20.0f);
                 if (me->GetPositionX() >= 528.01902f && me->GetPositionX() <= 528.9593f)
-                    me->GetMotionMaster()->MoveJump(517.567f, 609.2846f, 4.71457f, 20, 20);
+                    me->GetMotionMaster()->MoveJump(517.567f, 609.2846f, 4.71457f, 0.0f, 20.0f, 20.0f);
                 events.RescheduleEvent(EVENT_2, 3000);
                 break;
             }

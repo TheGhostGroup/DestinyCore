@@ -1107,9 +1107,9 @@ public:
                                     {
                                         switch(j)
                                         {
-                                            case 1: add->GetMotionMaster()->MoveFollow(mainAdd, 1.0f, (M_PI / 2) + 0.5f);
+                                            case 1: add->GetMotionMaster()->MoveFollow(mainAdd, 1.0f, static_cast<float>(M_PI / 2.0) + 0.5f);
                                                 break;
-                                            case 2: add->GetMotionMaster()->MoveFollow(mainAdd, 1.0f, float(M_PI / 2 + M_PI) - 0.5f);
+                                            case 2: add->GetMotionMaster()->MoveFollow(mainAdd, 1.0f, static_cast<float>(M_PI / 2.0 + M_PI) - 0.5f);
                                                 break;
                                         }
                                     }

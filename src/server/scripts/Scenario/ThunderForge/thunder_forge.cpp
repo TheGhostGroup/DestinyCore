@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -626,21 +625,21 @@ public:
 
                         if (Creature* warrior = Creature::GetCreature(*me, instance->GetGuidData(DATA_WARRIOR_1)))
                         {
-                            warrior->GetMotionMaster()->MoveJump(7210.65f, 5247.51f, 65.9844f, 15.0f, 25.0f);
+                            warrior->GetMotionMaster()->MoveJump(7210.65f, 5247.51f, 65.9844f, 0.0f, 15.0f, 25.0f);
                             if (Group* group = plr->GetGroup())
                                 group->AddCreatureMember(warrior);
                         }
 
                         if (Creature* warrior = Creature::GetCreature(*me, instance->GetGuidData(DATA_WARRIOR_2)))
                         {
-                            warrior->GetMotionMaster()->MoveJump(7195.13f, 5266.81f, 65.9844f, 15.0f, 25.0f);
+                            warrior->GetMotionMaster()->MoveJump(7195.13f, 5266.81f, 65.9844f, 0.0f, 15.0f, 25.0f);
                             if (Group* group = plr->GetGroup())
                                 group->AddCreatureMember(warrior);
                         }
 
                         if (Creature* defender = Creature::GetCreature(*me, instance->GetGuidData(DATA_DEFENDER)))
                         {
-                            defender->GetMotionMaster()->MoveJump(7213.67f, 5266.37f, 65.9844f, 15.0f, 25.0f);
+                            defender->GetMotionMaster()->MoveJump(7213.67f, 5266.37f, 65.9844f, 0.0f, 15.0f, 25.0f);
                             if (Group* group = plr->GetGroup())
                                 group->AddCreatureMember(defender);
                         }
@@ -720,20 +719,20 @@ public:
 
                         if (Creature* cre = Creature::GetCreature(*me, instance->GetGuidData(DATA_WARRIOR_2)))
                         {
-                            cre->GetMotionMaster()->MoveJump(helpersLastJumpPos[0].m_positionX, helpersLastJumpPos[0].m_positionY, helpersLastJumpPos[0].m_positionZ, 20.0f, 20.0f);
+                            cre->GetMotionMaster()->MoveJump(helpersLastJumpPos[0].m_positionX, helpersLastJumpPos[0].m_positionY, helpersLastJumpPos[0].m_positionZ, 0.0f, 20.0f, 20.0f);
                             cre->ForcedDespawn(1 * IN_MILLISECONDS);
                         }
 
                         if (Creature* cre = Creature::GetCreature(*me, instance->GetGuidData(DATA_WARRIOR_1)))
                         {
-                            cre->GetMotionMaster()->MoveJump(helpersLastJumpPos[1].m_positionX, helpersLastJumpPos[1].m_positionY, helpersLastJumpPos[1].m_positionZ, 20.0f, 20.0f);
+                            cre->GetMotionMaster()->MoveJump(helpersLastJumpPos[1].m_positionX, helpersLastJumpPos[1].m_positionY, helpersLastJumpPos[1].m_positionZ, 0.0f, 20.0f, 20.0f);
                             cre->ForcedDespawn(1 * IN_MILLISECONDS);
                         }
 
                         if (Creature* cre = Creature::GetCreature(*me, instance->GetGuidData(DATA_DEFENDER)))
                         {
                             cre->AI()->Talk(2);
-                            cre->GetMotionMaster()->MoveJump(helpersLastJumpPos[2].m_positionX, helpersLastJumpPos[2].m_positionY, helpersLastJumpPos[2].m_positionZ, 20.0f, 20.0f);
+                            cre->GetMotionMaster()->MoveJump(helpersLastJumpPos[2].m_positionX, helpersLastJumpPos[2].m_positionY, helpersLastJumpPos[2].m_positionZ, 0.0f, 20.0f, 20.0f);
                             cre->ForcedDespawn(1 * IN_MILLISECONDS);
                         }
 
