@@ -319,7 +319,9 @@ Battlepay::Product const& BattlePayDataStoreMgr::GetProduct(uint32 productID) co
 {
 	if (ProductExist(productID))
 		return _products.at(productID);
-	return{};
+
+	static Battlepay::Product const emptyProduct{};
+	return emptyProduct;
 }
 
 Battlepay::DisplayInfo const* BattlePayDataStoreMgr::GetDisplayInfo(uint32 id) const

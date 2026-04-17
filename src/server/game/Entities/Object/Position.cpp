@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2012-2016 Uwow <https://uwow.biz/>
- * Copyright (C) 2008-2015 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -153,7 +152,7 @@ bool Position::IsWithinBox(Position const& center, float xradius, float yradius,
 
 bool Position::HasInLine(WorldObject const* target, float width) const
 {
-    if (!HasInArc(M_PI, target))
+    if (!HasInArc(static_cast<float>(M_PI), target))
         return false;
     width += target->GetObjectSize();
     float angle = GetRelativeAngle(target);
@@ -551,7 +550,7 @@ bool Position::HasInArc(float arc, Position const* obj) const
     // move angle to range -pi ... +pi
     angle = NormalizeOrientation(angle);
     if (angle > M_PI)
-        angle -= 2.0f*M_PI;
+        angle -= 2.0f * static_cast<float>(M_PI);
 
     float lborder = -1 * (arc / 2.0f);                        // in range -pi..0
     float rborder = (arc / 2.0f);                             // in range 0..pi

@@ -1934,7 +1934,7 @@ class spell_grab_carriage: public SpellScriptLoader
                 //yak->SetSpeed(MOVE_WALK, yak->GetSpeed(MOVE_WALK), false);
 
                 carriage->CastSpell(yak, 108627, true);   //visual
-                carriage->GetMotionMaster()->MoveFollow(yak, 0.0f, M_PI);
+                carriage->GetMotionMaster()->MoveFollow(yak, 0.0f, static_cast<float>(M_PI));
                 yak->AI()->SetGUID(carriage->GetGUID(), 0); // enable following
                 caster->EnterVehicle(carriage, 0);
                 caster->RemoveAllMinionsByFilter(55213);

@@ -34916,10 +34916,10 @@ void Player::ModifyDeathMatchStats(uint32 kills, uint32 deaths, uint64 damage, i
     dmScore.kills += kills;
     dmScore.deaths += deaths;
     dmScore.damage += damage;
-    if (rating < 0 && -1*rating >= dmScore.rating )
-        dmScore.rating  = 0;
+    if (rating < 0 && static_cast<uint32>(-rating) >= dmScore.rating)
+        dmScore.rating = 0;
     else
-        dmScore.rating += rating; 
+        dmScore.rating += rating;
     
     dmScore.total_kills += total_kills;
     dmScore.matches += matches; 

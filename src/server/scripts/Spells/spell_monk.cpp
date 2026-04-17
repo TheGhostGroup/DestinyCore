@@ -1565,7 +1565,7 @@ class spell_monk_whirling_dragon_punch_activater : public SpellScriptLoader
 						if (!categoryStore)
 							return;
 
-						int32 timer = _plr->GetSpellCategoryChargesTimer(categoryStore, spellInfo);
+                        uint32 timer = _plr->GetSpellCategoryChargesTimer(categoryStore, spellInfo);
 
 						if (_plr->GetChargesCooldown(107428) < timer)
 							activate = true;
