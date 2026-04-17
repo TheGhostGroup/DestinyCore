@@ -15,27 +15,25 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRINITY_MAP_H
-#define TRINITY_MAP_H
+#ifndef MAP_H
+#define MAP_H
 
 #include <bitset>
 
 #include "Cell.h"
 #include "DB2Structure.h"
 #include "DynamicTree.h"
+#include "FunctionProcessor.h"
 #include "GameObjectModel.h"
 #include "GridDefines.h"
 #include "MapRefManager.h"
+#include "NGrid.h"
 #include "SharedDefines.h"
+#include "ThreadPoolMap.hpp"
 #include "Timer.h"
 #include "Weather.h"
-#include "NGrid.h"
-#include "FunctionProcessor.h"
 #include "World.h"
-#include "ThreadPoolMap.hpp"
 
-#include <cds/container/feldman_hashset_hp.h>
-#include "HashFuctor.h"
 #include <safe_ptr.h>
 
 struct Position;
@@ -58,6 +56,7 @@ class Object;
 class OutdoorPvP;
 class Player;
 class TempSummon;
+class Transport;
 class Unit;
 class Weather;
 class WorldLocation;
@@ -70,8 +69,6 @@ class Scenario;
 
 namespace G3D { class Plane; }
 
-typedef cds::container::FeldmanHashSet< cds::gc::HP, WorldObject*, WorldObjectHashAccessor > WorldObjectSet;
-typedef cds::container::FeldmanHashSet< cds::gc::HP, Transport*, TransportHashAccessor > TransportHashSet;
 typedef std::map<ObjectGuid, StaticTransport*> StaticTransportMap;
 
 struct ScriptAction
@@ -393,8 +390,7 @@ class Map
 
         void AddWorldObject(WorldObject* obj);
         void RemoveWorldObject(WorldObject* obj);
-        WorldObjectSet& GetAllWorldObjectOnMap();
-        WorldObjectSet const& GetAllWorldObjectOnMap() const;
+        uint32 GetWorldObjectCount() const { return i_objects.size(); }
 
         uint32 GetGridCount();
 
@@ -542,10 +538,6 @@ class Map
         
         void LoadAllGrids(float p_MinX, float p_MaxX, float p_MinY, float p_MaxY, Player* p_Player);
 
-        void AddTransport(Transport * t);
-        void RemoveTransport(Transport * t);
-
-        TransportHashSet m_Transports;
         virtual void UpdateTransport(uint32 diff);
 
         void AddStaticTransport(StaticTransport* t);
@@ -649,6 +641,11 @@ class Map
     protected:
         void SetUnloadReferenceLock(const GridCoord &p, bool on) { getNGrid(p.x_coord, p.y_coord)->setUnloadReferenceLock(on); }
 
+        // Objects that must update even in inactive grids without activating them
+        typedef std::set<Transport*> TransportsContainer;
+        TransportsContainer _transports;
+        TransportsContainer::iterator _transportsUpdateIter;
+
         MapEntry const* i_mapEntry;
         Difficulty i_difficulty;
         Difficulty i_lootDifficulty;
@@ -702,7 +699,7 @@ class Map
         std::set<WorldObject*> i_objectsToRemove;
         std::recursive_mutex i_objectsToRemove_lock;
         std::map<WorldObject*, bool> i_objectsToSwitch;
-        WorldObjectSet i_worldObjects;
+        std::set<WorldObject*> i_worldObjects;
 
         typedef std::multimap<time_t, ScriptAction> ScriptScheduleMap;
         ScriptScheduleMap m_scriptSchedule;

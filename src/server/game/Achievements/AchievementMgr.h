@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -15,8 +14,9 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __TRINITY_ACHIEVEMENTMGR_H
-#define __TRINITY_ACHIEVEMENTMGR_H
+
+#ifndef ACHIEVEMENTMGR_H
+#define ACHIEVEMENTMGR_H
 
 #include "Common.h"
 #include "DBCEnums.h"
@@ -24,9 +24,6 @@
 #include "ObjectGuid.h"
 #include "DatabaseEnvFwd.h"
 #include <safe_ptr.h>
-
-#include <cds/container/feldman_hashmap_hp.h>
-#include "HashFuctor.h"
 
 enum CriteriaTreeCustomFlags : uint16
 {
@@ -333,7 +330,7 @@ struct CompletedAchievementData
     bool isAccountAchievement;
 };
 
-typedef cds::container::FeldmanHashMap< cds::gc::HP, uint32, CriteriaProgress, uint32Traits > CriteriaProgressMap;
+typedef std::unordered_map<uint32, CriteriaProgress> CriteriaProgressMap;
 typedef std::unordered_map<uint32, CompletedAchievementData> CompletedAchievementMap;
 
 enum CriteriaSort

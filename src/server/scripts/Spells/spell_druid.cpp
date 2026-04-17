@@ -1474,14 +1474,12 @@ class spell_druid_flourish : public SpellScriptLoader
                     if (Unit* unitTarget = GetHitUnit())
                     {
                         int32 dur = GetSpellInfo()->Effects[EFFECT_0]->CalcValue(caster) * 1000;
-                        if (Unit::AuraEffectList const* mPeriodic = unitTarget->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL))
+                        Unit::AuraEffectList const& mPeriodic = unitTarget->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL);
+                        for (Unit::AuraEffectList::const_iterator i = mPeriodic.begin(); i != mPeriodic.end(); ++i)
                         {
-                            for (Unit::AuraEffectList::const_iterator i = mPeriodic->begin(); i != mPeriodic->end(); ++i)
-                            {
-                                if ((*i)->GetCasterGUID() == caster->GetGUID())
-                                    if(Aura* aura = (*i)->GetBase())
-                                        aura->SetDuration(aura->GetDuration() + dur);
-                            }
+                            if ((*i)->GetCasterGUID() == caster->GetGUID())
+                                if(Aura* aura = (*i)->GetBase())
+                                    aura->SetDuration(aura->GetDuration() + dur);
                         }
                     }
                 }
@@ -2152,21 +2150,24 @@ class spell_dru_ysera_gift : public AuraScript
                 if (caster->HasAura(137010)) // for spec Guardian is bp/2
                     heal /= 2.f;
 
-				if (Aura* aura = caster->GetAura(77495)) // Mastery: Harmony
-				{
-					float modDif = 0.f;
-					int32 modCount = 0;
-					if (AuraEffect* eff = aura->GetEffect(EFFECT_0))
-						modDif = eff->GetAmount();
-					if (Unit::AuraEffectList const* mPeriodic = target->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL))
-						for (Unit::AuraEffectList::const_iterator i = mPeriodic->begin(); i != mPeriodic->end(); ++i)
-							if ((*i)->GetCasterGUID() == caster->GetGUID())
-								modCount++;
-					if (modCount && modDif)
-						heal += CalculatePct(heal, modDif * modCount);
-				}
-				
-				heal = caster->SpellHealingBonusDone(target, GetSpellInfo(), heal, HEAL, EFFECT_0);
+                if (Aura* aura = caster->GetAura(77495)) // Mastery: Harmony
+                {
+                    float modDif = 0.f;
+                    int32 modCount = 0;
+
+                    if (AuraEffect* eff = aura->GetEffect(EFFECT_0))
+                        modDif = eff->GetAmount();
+
+                    Unit::AuraEffectList const& mPeriodic = target->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL);
+                    for (Unit::AuraEffectList::const_iterator i = mPeriodic.begin(); i != mPeriodic.end(); ++i)
+                        if ((*i)->GetCasterGUID() == caster->GetGUID())
+                            modCount++;
+
+                    if (modCount && modDif)
+                        heal += CalculatePct(heal, modDif * modCount);
+                }
+
+                heal = caster->SpellHealingBonusDone(target, GetSpellInfo(), heal, HEAL, EFFECT_0);
                 caster->CastCustomSpell(target, triggerSpell, &heal, nullptr, nullptr, true);
             }
         }

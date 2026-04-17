@@ -1429,19 +1429,19 @@ class spell_pri_smite : public SpellScript
         {
             float bp = CalculatePct(caster->GetSpellPowerDamage(SPELL_SCHOOL_MASK_HOLY), aurEff->GetAmount());
 
-			if (Player* modOwner = caster->GetSpellModOwner())
-				bp += CalculatePct(bp, modOwner->GetFloatValue(PLAYER_FIELD_VERSATILITY) + modOwner->GetFloatValue(PLAYER_FIELD_VERSATILITY_BONUS));
+            if (Player* modOwner = caster->GetSpellModOwner())
+                bp += CalculatePct(bp, modOwner->GetFloatValue(PLAYER_FIELD_VERSATILITY) + modOwner->GetFloatValue(PLAYER_FIELD_VERSATILITY_BONUS));
 
-			if (Unit::AuraEffectList const* mAbsorbAmount = caster->GetAuraEffectsByType(SPELL_AURA_MOD_ABSORB_AMOUNT))
-				for (Unit::AuraEffectList::const_iterator i = mAbsorbAmount->begin(); i != mAbsorbAmount->end(); ++i)
-					AddPct(bp, (*i)->GetAmount());
+            Unit::AuraEffectList const& mAbsorbAmount = caster->GetAuraEffectsByType(SPELL_AURA_MOD_ABSORB_AMOUNT);
+            for (Unit::AuraEffectList::const_iterator i = mAbsorbAmount.begin(); i != mAbsorbAmount.end(); ++i)
+                AddPct(bp, (*i)->GetAmount());
 
-			if (target)
-			{
-				if (Unit::AuraEffectList const* mAbsorbtionPercent = target->GetAuraEffectsByType(SPELL_AURA_MOD_ABSORBTION_PERCENT))
-					for (Unit::AuraEffectList::const_iterator i = mAbsorbtionPercent->begin(); i != mAbsorbtionPercent->end(); ++i)
-						AddPct(bp, (*i)->GetAmount());
-			}
+            if (target)
+            {
+                Unit::AuraEffectList const& mAbsorbtionPercent = target->GetAuraEffectsByType(SPELL_AURA_MOD_ABSORBTION_PERCENT);
+                for (Unit::AuraEffectList::const_iterator i = mAbsorbtionPercent.begin(); i != mAbsorbtionPercent.end(); ++i)
+                    AddPct(bp, (*i)->GetAmount());
+            }
 
             caster->CastCustomSpell(target, 208772, &bp, nullptr, nullptr, true);
             caster->CastSpell(caster, 208771, true);

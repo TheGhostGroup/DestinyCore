@@ -2668,28 +2668,32 @@ void Spell::EffectHeal(SpellEffIndex effIndex)
                 }
                 break;
             }
-			case 81269:
-			{
-				if (m_spellInfo->HasAttribute(SPELL_ATTR3_NO_DONE_BONUS))
-					break;
-				if (Unit* Owner = m_caster->GetOwner())
-				{
-					if (Aura* aura = Owner->GetAura(77495)) // Mastery: Harmony
-					{
-						float modDif = 0.f;
-						int32 modCount = 0;
-						if (AuraEffect* eff = aura->GetEffect(EFFECT_0))
-							modDif = eff->GetAmount();
-						if (Unit::AuraEffectList const* mPeriodic = unitTarget->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL))
-							for (Unit::AuraEffectList::const_iterator i = mPeriodic->begin(); i != mPeriodic->end(); ++i)
-								if ((*i)->GetCasterGUID() == Owner->GetGUID())
-									modCount++;
-						if (modCount && modDif)
-							addhealth += CalculatePct(addhealth, modDif * modCount);
-					}
-				}
-				break;
-			}
+            case 81269:
+            {
+                if (m_spellInfo->HasAttribute(SPELL_ATTR3_NO_DONE_BONUS))
+                    break;
+
+                if (Unit* Owner = m_caster->GetOwner())
+                {
+                    if (Aura* aura = Owner->GetAura(77495)) // Mastery: Harmony
+                    {
+                        float modDif = 0.f;
+                        int32 modCount = 0;
+
+                        if (AuraEffect* eff = aura->GetEffect(EFFECT_0))
+                            modDif = eff->GetAmount();
+
+                        Unit::AuraEffectList const& mPeriodic = unitTarget->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL);
+                        for (Unit::AuraEffectList::const_iterator i = mPeriodic.begin(); i != mPeriodic.end(); ++i)
+                            if ((*i)->GetCasterGUID() == Owner->GetGUID())
+                                modCount++;
+
+                        if (modCount && modDif)
+                            addhealth += CalculatePct(addhealth, modDif * modCount);
+                    }
+                }
+                break;
+            }
             default:
                 break;
         }
@@ -2729,26 +2733,29 @@ void Spell::EffectHeal(SpellEffIndex effIndex)
 
         switch (m_caster->getClass())
         {
-            case CLASS_DRUID:
-            {
-                if (m_spellInfo->HasAttribute(SPELL_ATTR3_NO_DONE_BONUS))
-                    break;
-
-				if (Aura* aura = m_caster->GetAura(77495)) // Mastery: Harmony
-				{
-					float modDif = 0.f;
-					int32 modCount = 0;
-					if (AuraEffect* eff = aura->GetEffect(EFFECT_0))
-						modDif = eff->GetAmount();
-					if (Unit::AuraEffectList const* mPeriodic = unitTarget->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL))
-						for (Unit::AuraEffectList::const_iterator i = mPeriodic->begin(); i != mPeriodic->end(); ++i)
-							if ((*i)->GetCasterGUID() == m_caster->GetGUID())
-								modCount++;
-					if (modCount && modDif)
-						addhealth += CalculatePct(addhealth, modDif * modCount);
-				}
+        case CLASS_DRUID:
+        {
+            if (m_spellInfo->HasAttribute(SPELL_ATTR3_NO_DONE_BONUS))
                 break;
+
+            if (Aura* aura = m_caster->GetAura(77495)) // Mastery: Harmony
+            {
+                float modDif = 0.f;
+                int32 modCount = 0;
+
+                if (AuraEffect* eff = aura->GetEffect(EFFECT_0))
+                    modDif = eff->GetAmount();
+
+                Unit::AuraEffectList const& mPeriodic = unitTarget->GetAuraEffectsByType(SPELL_AURA_PERIODIC_HEAL);
+                for (Unit::AuraEffectList::const_iterator i = mPeriodic.begin(); i != mPeriodic.end(); ++i)
+                    if ((*i)->GetCasterGUID() == m_caster->GetGUID())
+                        modCount++;
+
+                if (modCount && modDif)
+                    addhealth += CalculatePct(addhealth, modDif * modCount);
             }
+            break;
+        }
             case CLASS_PALADIN:
             {
                 if (m_spellInfo->HasAttribute(SPELL_ATTR3_NO_DONE_BONUS))
@@ -2815,14 +2822,14 @@ void Spell::EffectHealPct(SpellEffIndex effIndex)
     if (m_spellInfo->HasAttribute(SPELL_ATTR11_UNK4))
     {
         bool resetHeal = true;
-        if (Unit::AuraEffectList const* mTotalAuraList = m_caster->GetAuraEffectsByType(SPELL_AURA_DUMMY))
-            for (Unit::AuraEffectList::const_iterator i = mTotalAuraList->begin(); i != mTotalAuraList->end(); ++i)
-                if ((*i)->GetMiscValue() == 11)
-                    if ((*i)->GetAmount() == m_spellInfo->Id)
-                    {
-                        (*i)->SetAmount(0.0);
-                        resetHeal = false;
-                    }
+        Unit::AuraEffectList const& mTotalAuraList = m_caster->GetAuraEffectsByType(SPELL_AURA_DUMMY);
+        for (Unit::AuraEffectList::const_iterator i = mTotalAuraList.begin(); i != mTotalAuraList.end(); ++i)
+            if ((*i)->GetMiscValue() == 11)
+                if ((*i)->GetAmount() == m_spellInfo->Id)
+                {
+                    (*i)->SetAmount(0.0);
+                    resetHeal = false;
+                }
 
         if (resetHeal)
             damage = 0;
@@ -4202,10 +4209,10 @@ void Spell::EffectDispel(SpellEffIndex effIndex)
     if (dispel_list.empty())
         return;
 
-    if (Unit::AuraEffectList const* mTotalAuraList = m_caster->GetAuraEffectsByType(SPELL_AURA_DUMMY))
-        for (Unit::AuraEffectList::const_iterator i = mTotalAuraList->begin(); i != mTotalAuraList->end(); ++i)
-            if ((*i)->GetMiscValue() == 11 && (*i)->GetSpellInfo()->GetMisc()->MiscData.IconFileDataID == m_spellInfo->GetMisc()->MiscData.IconFileDataID)
-                (*i)->SetAmount(m_spellInfo->Id);
+    Unit::AuraEffectList const& mTotalAuraList = m_caster->GetAuraEffectsByType(SPELL_AURA_DUMMY);
+    for (Unit::AuraEffectList::const_iterator i = mTotalAuraList.begin(); i != mTotalAuraList.end(); ++i)
+        if ((*i)->GetMiscValue() == 11 && (*i)->GetSpellInfo()->GetMisc()->MiscData.IconFileDataID == m_spellInfo->GetMisc()->MiscData.IconFileDataID)
+            (*i)->SetAmount(m_spellInfo->Id);
 
     // Ok if exist some buffs for dispel try dispel it
     DispelChargesList success_list;
@@ -5213,10 +5220,10 @@ void Spell::EffectInterruptCast(SpellEffIndex effIndex)
             {
                 // Prevent interrupt spell if need
                 bool prevent = false;
-                if (Unit::AuraEffectList const* mPreventInterrupt = unitTarget->GetAuraEffectsByType(SPELL_AURA_PREVENT_INTERRUPT))
-                    for (Unit::AuraEffectList::const_iterator impi = mPreventInterrupt->begin(); impi != mPreventInterrupt->end(); ++impi)
-                        if ((*impi)->IsAffectingSpell(curSpellInfo))
-                            prevent = true;
+                Unit::AuraEffectList const& mPreventInterrupt = unitTarget->GetAuraEffectsByType(SPELL_AURA_PREVENT_INTERRUPT);
+                for (Unit::AuraEffectList::const_iterator impi = mPreventInterrupt.begin(); impi != mPreventInterrupt.end(); ++impi)
+                    if ((*impi)->IsAffectingSpell(curSpellInfo))
+                        prevent = true;
 
                 if (prevent)
                     break;
@@ -7247,10 +7254,10 @@ void Spell::EffectDispelMechanic(SpellEffIndex effIndex)
 
     if (hasPredictedDispel == 1)
     {
-        if (Unit::AuraEffectList const* mTotalAuraList = m_caster->GetAuraEffectsByType(SPELL_AURA_DUMMY))
-            for (Unit::AuraEffectList::const_iterator i = mTotalAuraList->begin(); i != mTotalAuraList->end(); ++i)
-                if ((*i)->GetMiscValue() == 11 && (*i)->GetSpellInfo()->GetMisc()->MiscData.IconFileDataID == m_spellInfo->GetMisc()->MiscData.IconFileDataID)
-                    (*i)->SetAmount(m_spellInfo->Id);
+        Unit::AuraEffectList const& mTotalAuraList = m_caster->GetAuraEffectsByType(SPELL_AURA_DUMMY);
+        for (Unit::AuraEffectList::const_iterator i = mTotalAuraList.begin(); i != mTotalAuraList.end(); ++i)
+            if ((*i)->GetMiscValue() == 11 && (*i)->GetSpellInfo()->GetMisc()->MiscData.IconFileDataID == m_spellInfo->GetMisc()->MiscData.IconFileDataID)
+                (*i)->SetAmount(m_spellInfo->Id);
 
         hasPredictedDispel++; // 2 is lock
     }
@@ -7402,13 +7409,13 @@ void Spell::EffectTransmitted(SpellEffIndex effIndex)
 
     uint32 objEntry = m_spellInfo->GetEffect(effIndex, m_diffMode)->MiscValue;
 
-    if (auto const* overrideSummonedGameObjects = m_caster->GetAuraEffectsByType(SPELL_AURA_OVERRIDE_SUMMONED_OBJECT))
-        for (auto aurEff : *overrideSummonedGameObjects)
-            if (uint32(aurEff->GetMiscValue()) == objEntry)
-            {
-                objEntry = uint32(aurEff->GetMiscValueB());
-                break;
-            }
+    auto const& overrideSummonedGameObjects = m_caster->GetAuraEffectsByType(SPELL_AURA_OVERRIDE_SUMMONED_OBJECT);
+    for (auto aurEff : overrideSummonedGameObjects)
+        if (uint32(aurEff->GetMiscValue()) == objEntry)
+        {
+            objEntry = uint32(aurEff->GetMiscValueB());
+            break;
+        }
 
     GameObjectTemplate const* goinfo = sObjectMgr->GetGameObjectTemplate(objEntry);
     if (!goinfo)

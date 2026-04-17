@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -369,7 +368,6 @@ void MapManager::UnloadAll()
                     inst->StopInstance();
 
             map->SetMapStop();
-            map->m_Transports.clear();
         }
     }
 
@@ -518,7 +516,7 @@ void MapManager::LogInfoAllMaps()
     {
         if (Map* map = i_maps[i])
         {
-            uint32 worldObjectCount = map->GetAllWorldObjectOnMap().size();
+            uint32 worldObjectCount = map->GetWorldObjectCount();
             if (!map->Instanceable())
             {
                 // sLog->outMapInfo("LogInfoAllMaps mapId %u worldObjectCount: %u.", i, worldObjectCount);
@@ -528,7 +526,7 @@ void MapManager::LogInfoAllMaps()
             auto& maps = static_cast<MapInstanced*>(map)->GetInstancedMaps();
             for (auto& itr : maps)
                 if (Map* instance = itr.second)
-                    worldObjectCount += instance->GetAllWorldObjectOnMap().size();
+                    worldObjectCount += instance->GetWorldObjectCount();
 
             if (maps.size() > 10) // Only actual instance
                 sLog->outMapInfo("LogInfoAllMaps mapId %u instanceCount %u worldObjectCount: %u.", i, maps.size(), worldObjectCount);

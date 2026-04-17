@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -16,13 +15,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __TRINITY_SOCIALMGR_H
-#define __TRINITY_SOCIALMGR_H
+#ifndef SOCIALMGR_H
+#define SOCIALMGR_H
 
 #include "DatabaseEnv.h"
 #include "Common.h"
 #include "ObjectGuid.h"
-#include "HashFuctor.h"
 
 class SocialMgr;
 class PlayerSocial;
@@ -62,7 +60,7 @@ struct FriendInfo
     uint8 Flags;
 };
 
-typedef cds::container::FeldmanHashMap< cds::gc::HP, ObjectGuid, FriendInfo, guidTraits > PlayerSocialMap;
+typedef std::map<ObjectGuid, FriendInfo> PlayerSocialMap;
 typedef std::map<ObjectGuid, PlayerSocial> SocialMap;
 
 /// Results of friend related commands
@@ -125,7 +123,6 @@ class PlayerSocial
         void SetPlayerGUID(ObjectGuid const& guid) { m_playerGUID = guid; }
         uint32 GetNumberOfSocialsWithFlag(SocialFlag flag);
 
-        std::recursive_mutex m_social_lock;
     private:
         bool _HasContact(ObjectGuid const& guid, SocialFlag flags);
 

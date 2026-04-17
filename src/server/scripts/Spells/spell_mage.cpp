@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -13,12 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Scripts for spells with SPELLFAMILY_MAGE and SPELLFAMILY_GENERIC spells used by mage players.
- * Ordered alphabetically using scriptname.
- * Scriptnames of files in this file should be prefixed with "spell_mage_".
  */
 
 #include "ScriptMgr.h"
@@ -681,18 +675,16 @@ class spell_mage_greater_invisibility : public SpellScriptLoader
                 if (Unit* caster = GetCaster())
                 {
                     int32 count = 0;
-                    if (Unit::AuraEffectList const* mPeriodic = caster->GetAuraEffectsByType(SPELL_AURA_PERIODIC_DAMAGE))
+                    Unit::AuraEffectList const& mPeriodic = caster->GetAuraEffectsByType(SPELL_AURA_PERIODIC_DAMAGE);
+                    for (Unit::AuraEffectList::const_iterator iter = mPeriodic.begin(); iter != mPeriodic.end(); ++iter)
                     {
-                        for (Unit::AuraEffectList::const_iterator iter = mPeriodic->begin(); iter != mPeriodic->end(); ++iter)
-                        {
-                            if (!(*iter)) // prevent crash
-                                continue;
-                            Aura* aura = (*iter)->GetBase();
-                            aura->Remove();
-                            count++;
-                            if(count > 1)
-                                return;
-                        }
+                        if (!(*iter)) // prevent crash
+                            continue;
+                        Aura* aura = (*iter)->GetBase();
+                        aura->Remove();
+                        count++;
+                        if(count > 1)
+                            return;
                     }
                     caster->CastSpell(GetTarget(), 113862, true, NULL, aurEff);
                 }

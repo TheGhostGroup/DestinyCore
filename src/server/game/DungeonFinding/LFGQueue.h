@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -15,13 +15,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _LFGQUEUE_H
-#define _LFGQUEUE_H
+#ifndef LFGQUEUE_H
+#define LFGQUEUE_H
 
 #include "LFG.h"
-#include <cds/gc/hp.h>
-#include <cds/container/impl/feldman_hashmap.h>
-#include "HashFuctor.h"
 
 namespace lfg
 {
@@ -97,7 +94,7 @@ private:
 };
 
 typedef std::map<uint32, LfgWaitTime> LfgWaitTimesContainer;
-typedef cds::container::FeldmanHashMap< cds::gc::HP, std::string, LfgCompatibilityData, stringTraits > LfgCompatibleContainer;
+typedef std::map<std::string, LfgCompatibilityData> LfgCompatibleContainer;
 typedef std::map<ObjectGuid, LfgQueueData> LfgQueueDataContainer;
 
 /**

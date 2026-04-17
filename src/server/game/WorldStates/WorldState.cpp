@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "WorldState.h"
 #include "WorldStatePackets.h"
 
@@ -91,13 +108,13 @@ void WorldState::AddClient(ObjectGuid const& guid)
 
 bool WorldState::HasClient(ObjectGuid const& guid)
 {
-    return ClientGuids.contains(ObjectGuidHashGen(guid));
+    return ClientGuids.contains(guid);
 }
 
 void WorldState::RemoveClient(ObjectGuid const& guid)
 {
     if (guid.IsPlayer())
-        ClientGuids.erase(ObjectGuidHashGen(guid));
+        ClientGuids.erase(guid);
 }
 
 void WorldState::SetValue(uint32 value, bool hidden)
@@ -116,19 +133,20 @@ void WorldState::SetValue(uint32 value, bool hidden)
     packet.Value = value;
     packet.Hidden = hidden;
 
-    for (GuidHashSet::iterator i = ClientGuids.begin(); i != ClientGuids.end(); ++i)
+    for (GuidUnorderedSet::iterator i = ClientGuids.begin(); i != ClientGuids.end();)
     {
         if (Player* player = ObjectAccessor::FindPlayer(*i))
         {
             // Send update only if in instance
             if (InstanceID && InstanceID != (player->InInstance() ? player->GetInstanceId() : 0))
             {
-                ClientGuids.erase_at(i);
+                i = ClientGuids.erase(i);
                 continue;
             }
             player->SendDirectMessage(packet.Write());
+            ++i;
         }
         else
-            ClientGuids.erase_at(i);
+            i = ClientGuids.erase(i);
     }
 }

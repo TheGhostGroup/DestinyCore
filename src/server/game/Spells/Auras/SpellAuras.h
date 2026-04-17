@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -16,14 +15,13 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRINITY_SPELLAURAS_H
-#define TRINITY_SPELLAURAS_H
+#ifndef SPELLAURAS_H
+#define SPELLAURAS_H
 
 #include "SpellAuraDefines.h"
 #include "SpellInfo.h"
 #include "Unit.h"
 #include "Containers.h"
-#include "HashFuctor.h"
 
 class Unit;
 class SpellInfo;
@@ -104,7 +102,7 @@ class Aura
     public:
 		Trinity::AnyData Variables;
         void SetAuraTimer(int32 time, ObjectGuid guid = ObjectGuid::Empty);
-        typedef cds::container::FeldmanHashMap< cds::gc::HP, ObjectGuid, AuraApplicationPtr, guidTraits > ApplicationMap;
+        typedef std::map<ObjectGuid, AuraApplicationPtr> ApplicationMap;
 
         static uint32 BuildEffectMaskForOwner(SpellInfo const* spellProto, uint32 avalibleEffectMask, WorldObject* owner);
         static Aura* TryRefreshStackOrCreate(SpellInfo const* spellproto, uint32 tryEffMask, WorldObject* owner, Unit* caster, float* baseAmount = nullptr, Item* castItem = nullptr, ObjectGuid casterGUID = ObjectGuid::Empty, bool* refresh = nullptr, uint16 stackAmount = 0, Spell* spell = nullptr);

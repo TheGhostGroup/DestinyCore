@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -76,7 +75,7 @@ void VisibleNotifier::SendToSelf()
     Transport* transport = i_player.GetTransport();
     if (transport && transport->GetMap() == i_player.GetMap())
     {
-        for (WorldObjectSet::iterator itr = transport->GetPassengers().begin(); itr != transport->GetPassengers().end(); ++itr)
+        for (Transport::PassengerSet::const_iterator itr = transport->GetPassengers().begin(); itr != transport->GetPassengers().end(); ++itr)
         {
             WorldObject* obj = (*itr);
             if (!obj || !obj->IsInWorld())

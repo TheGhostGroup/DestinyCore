@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -16,13 +15,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRINITY_LOOTMGR_H
-#define TRINITY_LOOTMGR_H
+#ifndef LOOTMGR_H
+#define LOOTMGR_H
 
 #include "ItemEnchantmentMgr.h"
 #include "SharedDefines.h"
 #include "ConditionMgr.h"
-#include "HashFuctor.h"
 #include "ObjectGuid.h"
 
 namespace WorldPackets
@@ -40,8 +38,6 @@ namespace WorldPackets
 
 struct Loot;
 class Challenge;
-
-typedef cds::container::FeldmanHashSet< cds::gc::HP, ObjectGuid, ObjectGuidHashAccessor > GuidHashSet;
 
 enum RollType
 {
@@ -443,7 +439,7 @@ private:
     QuestItemList* FillQuestLoot(Player* player);
     QuestItemList* FillNonQuestNonFFAConditionalLoot(Player* player, bool presentAtLooting);
 
-    GuidHashSet PlayersLooting;
+    GuidSet PlayersLooting;
     QuestItemMap PlayerCurrencies;
     QuestItemMap PlayerQuestItems;
     QuestItemMap PlayerFFAItems;

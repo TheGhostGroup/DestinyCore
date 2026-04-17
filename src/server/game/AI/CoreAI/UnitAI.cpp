@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -382,15 +381,13 @@ void SimpleCharmedAI::UpdateAI(uint32 /*diff*/)
     //kill self if charm aura has infinite duration
     if (charmer->IsInEvadeMode())
     {
-        if (Unit::AuraEffectList const* auras = me->GetAuraEffectsByType(SPELL_AURA_MOD_CHARM))
-        {
-            for (Unit::AuraEffectList::const_iterator iter = auras->begin(); iter != auras->end(); ++iter)
-                if ((*iter)->GetCasterGUID() == charmer->GetGUID() && (*iter)->GetBase()->IsPermanent())
-                {
-                    charmer->Kill(me);
-                    return;
-                }
-        }
+        Unit::AuraEffectList const& auras = me->GetAuraEffectsByType(SPELL_AURA_MOD_CHARM);
+        for (Unit::AuraEffectList::const_iterator iter = auras.begin(); iter != auras.end(); ++iter)
+            if ((*iter)->GetCasterGUID() == charmer->GetGUID() && (*iter)->GetBase()->IsPermanent())
+            {
+                charmer->Kill(me);
+                return;
+            }
     }
 
     if (!charmer->isInCombat())

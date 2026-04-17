@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -84,42 +83,39 @@ struct instance_broken_islands : public InstanceScript
         player->ApplyModFlag(PLAYER_FIELD_PLAYER_FLAGS, PLAYER_FLAGS_PVP_TIMER, false);
         player->UpdatePvP(true, true);
 
-        for (TransportHashSet::iterator i = player->GetMap()->m_Transports.begin(); i != player->GetMap()->m_Transports.end(); ++i)
+        auto transportGameObject = GetGameObjectByEntry(player->GetTeam() == ALLIANCE ? TRANSPORT_ALLIANCE : TRANSPORT_HORDE);
+        ObjectGuid transportGuid = transportGameObject ? transportGameObject->GetGUID() : ObjectGuid::Empty;
+
+        if (Transport* transport = player->GetMap()->GetTransport(transportGuid))
         {
-            if (Transport* transport = *i)
+            instance->LoadGrid(521.7239f, 1862.63f);
+            instance->LoadGrid(461.8785f, 2032.679f);
+            instance->LoadGrid(472.92f, 2037.86f);
+            instance->LoadGrid(591.77f, 1898.48f);
+
+            transport->AddPassenger(player);
+
+            Movement::MoveSplineInit init(*player);
+
+            if (player->GetTeam() == ALLIANCE)
             {
-                if ((player->GetTeam() == ALLIANCE ? TRANSPORT_ALLIANCE : TRANSPORT_HORDE) == transport->GetEntry())
-                {
-                    instance->LoadGrid(521.7239f, 1862.63f);
-                    instance->LoadGrid(461.8785f, 2032.679f);
-                    instance->LoadGrid(472.92f, 2037.86f);
-                    instance->LoadGrid(591.77f, 1898.48f);
-
-                    transport->AddPassenger(player);
-
-                    Movement::MoveSplineInit init(*player);
-
-                    if (player->GetTeam() == ALLIANCE)
-                    {
-                        //X: 2.39286 Y: 1.694546 Z: 5.205733 O: 3.155922
-                        init.MoveTo(2.39286f, 1.694546f, 7.205733f, false, true);
-                        init.SetFacing(3.155922f);
-                    }
-                    else
-                    {
-                        //X: -7.351539 Y : -3.37038 Z : 10.99244 O : 0.4190969
-                        init.MoveTo(-7.351539f, -3.37038f, 12.99244f, false, true);
-                        init.SetFacing(0.4190969f);
-                    }
-
-                    init.Launch();
-                }
-
-                transport->AddDelayedEvent(5000, [transport]() -> void
-                    {
-                        transport->EnableMovement(true);
-                    });
+                //X: 2.39286 Y: 1.694546 Z: 5.205733 O: 3.155922
+                init.MoveTo(2.39286f, 1.694546f, 5.205733f, false, true);
+                init.SetFacing(3.155922f);
             }
+            else
+            {
+                //X: -7.351539 Y : -3.37038 Z : 10.99244 O : 0.4190969
+                init.MoveTo(-7.351539f, -3.37038f, 10.99244f, false, true);
+                init.SetFacing(0.4190969f);
+            }
+
+            init.Launch();
+
+            transport->AddDelayedEvent(5000, [transport]() -> void
+                {
+                    transport->EnableMovement(true);
+                });
         }
     }
 

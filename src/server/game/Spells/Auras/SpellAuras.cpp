@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -934,7 +933,7 @@ void Aura::_ApplyForTarget(Unit* target, Unit* caster, AuraApplicationPtr auraAp
     if (IsAppliedOnTarget(target->GetGUID()))
         return;
 
-    m_applications.insert(target->GetGUID(), auraApp);
+    m_applications[target->GetGUID()] = auraApp;
 
     // set infinity cooldown state for spells
     if (caster && caster->IsPlayer())
@@ -978,15 +977,16 @@ void Aura::_Remove(AuraRemoveMode removeMode)
     ASSERT (!m_isRemoved);
     m_isRemoved = 1;
 
-    for (ApplicationMap::iterator appItr = m_applications.begin(); appItr != m_applications.end(); ++appItr)
+    ApplicationMap::iterator appItr = m_applications.begin();
+    for (appItr = m_applications.begin(); appItr != m_applications.end();)
     {
-        if (appItr == m_applications.end()) // Duble check
-            break;
-
         if (AuraApplicationPtr aurApp = appItr->second)
         {
             if (Unit* target = aurApp->GetTarget())
+            {
                 target->_UnapplyAura(aurApp.get(), removeMode);
+                appItr = m_applications.begin();
+            }
         }
     }
 
@@ -1000,16 +1000,18 @@ Aura::ApplicationMap const& Aura::GetApplicationMap()
 
 AuraApplication* Aura::GetApplicationOfTarget(ObjectGuid const& guid)
 {
-    if (auto ptr = m_applications.get(guid))
-        return ptr->second.get();
+    auto itr = m_applications.find(guid);
+    if (itr != m_applications.end() && itr->second)
+        return itr->second.get();
 
     return nullptr;
 }
 
 bool Aura::IsAppliedOnTarget(ObjectGuid const& guid)
 {
-    if (auto ptr = m_applications.get(guid))
-        return ptr->second != nullptr;
+    auto itr = m_applications.find(guid);
+    if (itr != m_applications.end())
+        return itr->second != nullptr;
 
     return false;
 }
@@ -1039,7 +1041,7 @@ void Aura::UpdateTargetMap(Unit* caster, bool apply)
         AuraApplicationPtr aurApp = appIter->second;
         if (!aurApp)
         {
-            m_applications.erase_at(appIter);
+            m_applications.erase(appIter);
             continue;
         }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -443,13 +443,13 @@ public:
 
         for (uint16 i = 0; i < TOTAL_AURAS; ++i)
         {
-            Unit::AuraEffectList const* auraList = unit->GetAuraEffectsByType(AuraType(i));
-            if (!auraList || auraList->begin() == auraList->end())
+            Unit::AuraEffectList const& auraList = unit->GetAuraEffectsByType(AuraType(i));
+            if (auraList.begin() == auraList.end())
                 continue;
 
-            handler->PSendSysMessage(LANG_COMMAND_TARGET_LISTAURATYPE, auraList->size(), i);
+            handler->PSendSysMessage(LANG_COMMAND_TARGET_LISTAURATYPE, auraList.size(), i);
 
-            for (Unit::AuraEffectList::const_iterator itr = auraList->begin(); itr != auraList->end(); ++itr)
+            for (Unit::AuraEffectList::const_iterator itr = auraList.begin(); itr != auraList.end(); ++itr)
                 handler->PSendSysMessage(LANG_COMMAND_TARGET_AURASIMPLE, (*itr)->GetId(), (*itr)->GetEffIndex(), (*itr)->GetAmount());
         }
 
