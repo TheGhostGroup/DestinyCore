@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "lost_city_of_the_tolvir.h"
 #include "AchievementMgr.h"
 
@@ -186,7 +203,7 @@ struct boss_siamat : public ScriptedAI
             case EVENT_STATIC_SHOCK:
             {
                 uint8 dist = urand(5, 30);
-                float angle = frand(0, M_PI);
+                float angle = frand(0, float(M_PI));
                 float x, y;
                 me->GetNearPoint2D(x, y, (float)dist, angle);
                 me->CastSpell(x, y, FLOR_COORD_Z, StaticShock[uiStaticShockId], false);
@@ -202,7 +219,7 @@ struct boss_siamat : public ScriptedAI
             case EVENT_CALL_OF_SKY:
             {
                 uint8 dist = urand(5, 30);
-                float angle = frand(0, M_PI);
+                float angle = frand(0, float(M_PI));
                 float x, y;
                 me->GetNearPoint2D(x, y, (float)dist, angle);
                 me->CastSpell(x, y, FLOR_COORD_Z, SPELL_CALL_OF_SKY, false);
@@ -475,7 +492,7 @@ class spell_wailing_winds : public SpellScript
             return;
 
         uint8 roll = urand(0, 1);
-        float angle = frand(0, M_PI);
+        float angle = frand(0, float(M_PI));
         float SpeedXY = frand(10.0f, 30.0f);
         float SpeedZ = frand(10.0f, 15.0f);
         float x, y;

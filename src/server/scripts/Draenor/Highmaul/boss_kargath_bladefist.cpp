@@ -1,10 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-//
-//  MILLENIUM-STUDIO
-//  Copyright 2016 Millenium-studio SARL
-//  All Rights Reserved.
-//
-////////////////////////////////////////////////////////////////////////////////
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 # include "highmaul.hpp"
 #include "SpellAuraEffects.h"
@@ -58,13 +67,13 @@ Position const sweeperJumpPos[HighmaulSweeperCount][2] =
 {
     /// Right of Mar'gok
     {
-        {3476.025f, 7551.327f, 55.2557f, M_PI},
-        {3498.104f, 7575.722f, 55.2557f, M_PI}
+        { 3476.025f, 7551.327f, 55.2557f, float(M_PI) },
+        { 3498.104f, 7575.722f, 55.2557f, float(M_PI) }
     },
     /// Left of Mar'gok
     {
-        {3436.589f, 7581.993f, 55.2557f, M_PI},
-        {3457.199f, 7607.632f, 55.2557f, M_PI}
+        { 3436.589f, 7581.993f, 55.2557f, float(M_PI) },
+        { 3457.199f, 7607.632f, 55.2557f, float(M_PI) }
     }
 };
 
@@ -2354,7 +2363,7 @@ struct npc_highmaul_chain_hurl_vehicle : public MS::AI::CosmeticAI
         if (!m_Rotate)
             return;
 
-        m_Angle += (2.0f * M_PI) / 10.0f;
+        m_Angle += float(2.0f * M_PI) / 10.0f;
 
         if (m_Angle > (2.0f * M_PI))
             m_Angle = 0.0f;

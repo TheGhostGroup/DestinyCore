@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -14,15 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Boss_Kiljaeden
-SD%Complete: 80
-SDComment: Sinister Reflection Model, Armageddon Visual, SAY_KJ_SHADOWSPIKE3, Emote, End Sequence
-SDCategory: Sunwell_Plateau
-EndScriptData */
-
-//TODO rewrite Armageddon
 
 #include "sunwell_plateau.h"
 #include <math.h>
@@ -1203,7 +1194,7 @@ public:
                 bPointReached = false;
                 uiCheckTimer = 1000;
                 me->GetMotionMaster()->MovePoint(1, x, y, SHIELD_ORB_Z);
-                c += M_PI/32;
+                c += float(M_PI / 32);
                 if (c >= 2*M_PI) c = 0;
             }
             else

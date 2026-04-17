@@ -1,10 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-//
-//  MILLENIUM-STUDIO
-//  Copyright 2016 Millenium-studio SARL
-//  All Rights Reserved.
-//
-////////////////////////////////////////////////////////////////////////////////
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "AshranMgr.hpp"
 #include "Packets/ChatPackets.h"
@@ -19,7 +28,7 @@ OPvPCapturePoint_Middle::OPvPCapturePoint_Middle(OutdoorPvP* outdoor, eBattleTyp
     : OPvPCapturePoint(outdoor), m_BattleType(type), m_BattleFaction(p_Faction)
 {
     SetCapturePointData(g_CapturePoint[type]);
-    AddCreature(AshranGenericMobTypeID + type, SLGGenericMoPLargeAoI, TEAM_NONE, AshranMapID, g_CapturePoint[type].x, g_CapturePoint[type].y, g_CapturePoint[type].z, M_PI);
+    AddCreature(AshranGenericMobTypeID + type, SLGGenericMoPLargeAoI, TEAM_NONE, AshranMapID, g_CapturePoint[type].x, g_CapturePoint[type].y, g_CapturePoint[type].z, float(M_PI));
     static_cast<OutdoorPvPAshran*>(m_PvP)->AddGenericMoPGuid(type, m_Creatures[AshranGenericMobTypeID + type]);
 
     if (type == EmberfallTower)
@@ -1715,12 +1724,12 @@ void OutdoorPvPAshran::OnCreatureCreate(Creature* creature)
             break;
         case HighWarlordVolrath:
             m_HighWarlordVolrath = creature->GetGUID();
-            AddCreature(SLGGenericMoPLargeAoI + TEAM_HORDE, SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID, creature->m_positionX, creature->m_positionY, creature->m_positionZ, M_PI);
+            AddCreature(SLGGenericMoPLargeAoI + TEAM_HORDE, SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID, creature->m_positionX, creature->m_positionY, creature->m_positionZ, float(M_PI));
             m_FactionGenericMoP[TEAM_HORDE] = m_Creatures[SLGGenericMoPLargeAoI + TEAM_HORDE];
             break;
         case GrandMarshalTremblade:
             m_GrandMasrhalTremblade = creature->GetGUID();
-            AddCreature(SLGGenericMoPLargeAoI + TEAM_ALLIANCE, SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID, creature->m_positionX, creature->m_positionY, creature->m_positionZ, M_PI);
+            AddCreature(SLGGenericMoPLargeAoI + TEAM_ALLIANCE, SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID, creature->m_positionX, creature->m_positionY, creature->m_positionZ, float(M_PI));
             m_FactionGenericMoP[TEAM_ALLIANCE] = m_Creatures[SLGGenericMoPLargeAoI + TEAM_ALLIANCE];
             break;
         case AllianceSpiritGuide:

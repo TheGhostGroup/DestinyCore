@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -820,7 +819,7 @@ void AnyPetAI::UpdateAI(uint32 diff)
             targets.SetCaster(targetSpell);
             targets.SetUnitTarget(targetSpell);
 
-            if (!me->HasInArc(M_PI, targetSpell))
+            if (!me->HasInArc(float(M_PI), targetSpell))
             {
                 me->SetInFront(targetSpell);
                 if (targetSpell && targetSpell->IsPlayer())

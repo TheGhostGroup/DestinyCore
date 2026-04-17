@@ -1,8 +1,19 @@
 /*
-    https://uwow.biz/
-
-    Need implement: EVENT_SPECTRAL_CHARGE
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "return_to_karazhan.h"
 
@@ -176,14 +187,14 @@ public:
 
                 for (uint8 i = 0; i < 11; i++)
                 {
-                    me->GetNearPosition(pos1, dist, angle + frand(-M_PI/2, M_PI/2));
+                    me->GetNearPosition(pos1, dist, angle + frand(float(-M_PI/2), float(M_PI/2)));
                     me->CastSpell(pos1, SPELL_SPECTRAL_CHARGE_AT, true);
                     dist += 4;
                 }
 
                 for (uint8 i = 0; i < 6; i++)
                 {
-                    me->GetNearPosition(pos2, dist, angle2 + frand(-M_PI/2, M_PI/2));
+                    me->GetNearPosition(pos2, dist, angle2 + frand(float(-M_PI/2), float(M_PI/2)));
                     me->CastSpell(pos2, SPELL_SPECTRAL_CHARGE_AT, true);
                     dist2 += 4;
                 }

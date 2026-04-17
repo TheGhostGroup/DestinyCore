@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "ScriptedEscortAI.h"
 #include "CreatureTextMgr.h"
 #include "MapManager.h"
@@ -1234,12 +1251,12 @@ class at_going_to_east : public AreaTriggerScript
             if (Creature *cai = player->SummonCreature(NPC_EAST_CHILDREN_CAI, 934.0156f, 3513.154f, 188.1347f, 0.0f, TEMPSUMMON_MANUAL_DESPAWN))
             {
                 cai->AI()->SetGUID(player->GetGUID(), 0);
-                cai->GetMotionMaster()->MoveFollow(player, 2.0f, M_PI / 4);
+                cai->GetMotionMaster()->MoveFollow(player, 2.0f, float(M_PI / 4));
             }
             if (Creature *cai = player->SummonCreature(NPC_EAST_CHILDREN_DEN, 949.37f, 3510.0f, 187.7983f, 0.0f, TEMPSUMMON_MANUAL_DESPAWN))
             {
                 cai->AI()->SetGUID(player->GetGUID(), 0);
-                cai->GetMotionMaster()->MoveFollow(player, 2.0f, M_PI / 2);
+                cai->GetMotionMaster()->MoveFollow(player, 2.0f, float(M_PI / 2));
             }
             return true;
         }
@@ -1713,7 +1730,7 @@ public:
                 case EVENT_SUMMON_WATER_SPOUT:
                 {
                     float x = 0.0f, y = 0.0f;
-                    GetPositionWithDistInOrientation(me, 5.0f, me->GetOrientation() + frand(-M_PI, M_PI), x, y);
+                    GetPositionWithDistInOrientation(me, 5.0f, me->GetOrientation() + frand(float(- M_PI), float(M_PI)), x, y);
                     waterSpoutGUID.Clear();
 
                     if (Creature* waterSpout = me->SummonCreature(60488, x, y, 92.189629f))
@@ -5243,7 +5260,7 @@ public:
             if (Player* target = sObjectAccessor->FindPlayer(playerGuid))
                 if (Creature* czi = me->FindNearestCreature(NPC_CZI, 200.0f, true))
                 {
-                    czi->GetMotionMaster()->MoveFollow(target, 2.0f, M_PI / 4);
+                    czi->GetMotionMaster()->MoveFollow(target, 2.0f, float(M_PI / 4));
                     CziGUID = czi->GetGUID();
                 }
         }

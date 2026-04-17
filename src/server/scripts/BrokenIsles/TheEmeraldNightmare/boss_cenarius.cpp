@@ -1,7 +1,19 @@
 /*
-    https://uwow.biz/
-    To-DO: More texts from sniffs
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "AreaTriggerAI.h"
 #include "the_emerald_nightmare.h"
@@ -297,8 +309,8 @@ struct boss_cenarius : public BossAI
 
                         for (uint8 i = 0; i < 3; ++i)
                         {
-                            beastsPos[*itr].SimplePosXYRelocationByAngle(posLeft, dist, M_PI/3); //Left
-                            beastsPos[*itr].SimplePosXYRelocationByAngle(posRight, dist, -M_PI/3); //Right
+                            beastsPos[*itr].SimplePosXYRelocationByAngle(posLeft, dist, float(M_PI/3)); //Left
+                            beastsPos[*itr].SimplePosXYRelocationByAngle(posRight, dist, float(- M_PI / 3)); //Right
                             me->SummonCreature(NPC_BEAST_OF_NIGHTMARE, posLeft.GetPositionX(), posLeft.GetPositionY(), posLeft.GetPositionZ(), beastsPos[*itr].GetOrientation());
                             me->SummonCreature(NPC_BEAST_OF_NIGHTMARE, posRight.GetPositionX(), posRight.GetPositionY(), posRight.GetPositionZ(), beastsPos[*itr].GetOrientation());
                             dist += 4;
@@ -311,8 +323,8 @@ struct boss_cenarius : public BossAI
 
                         for (uint8 i = 0; i < 3; ++i)
                         {
-                            beastsPos[*itr].SimplePosXYRelocationByAngle(posLeft, dist, M_PI/2); //Left
-                            beastsPos[*itr].SimplePosXYRelocationByAngle(posRight, dist, -M_PI/2); //Right
+                            beastsPos[*itr].SimplePosXYRelocationByAngle(posLeft, dist, float(M_PI/2)); //Left
+                            beastsPos[*itr].SimplePosXYRelocationByAngle(posRight, dist, float(- M_PI / 2)); //Right
                             me->SummonCreature(NPC_BEAST_OF_NIGHTMARE, posLeft);
                             me->SummonCreature(NPC_BEAST_OF_NIGHTMARE, posRight);
                             dist += 4;

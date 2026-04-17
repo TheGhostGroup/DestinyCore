@@ -1,9 +1,19 @@
 /*
-    http://uwow.biz
-    Dungeon : Neltharions Lair 100-110
-    Encounter: Ularogg Cragshaper
-    Normal: 100%, Heroic: 100%, Mythic: 100%
-*/
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "neltharions_lair.h"
 
@@ -153,12 +163,12 @@ struct boss_ularogg_cragshaper : public BossAI
             case SPELL_STRIKE_MOUNTAIN_2:
             {
                 Position pos;
-                float angle = M_PI;
+                float angle = float(M_PI);
                 for (uint8 i = 0; i < 4; ++i)
                 {
                     target->GetNearPosition(pos, 5.0f, angle);
                     target->CastSpell(pos, SPELL_STRIKE_MOUNTAIN_AT, true);
-                    angle += M_PI / 2.0f;
+                    angle += float(M_PI / 2.0f);
                 }
                 break;
             }

@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -429,7 +428,7 @@ class boss_thok_the_bloodthirsty : public CreatureScript
                         GetPlayerListInGrid(plist, me, 20.0f);
                         if (!plist.empty())
                             for (std::list<Player*>::const_iterator itr = plist.begin(); itr != plist.end(); itr++)
-                                if (me->isInFront(*itr, M_PI/6) && me->GetDistance(*itr) <= 8.0f)
+                                if (me->isInFront(*itr, float(M_PI/6)) && me->GetDistance(*itr) <= 8.0f)
                                     me->Kill(*itr, true);
                         findtargets = 750;
                     }

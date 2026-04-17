@@ -1,7 +1,19 @@
-﻿/*######
-## uwow.biz
-## The Broken Islands Scenario
-######*/
+﻿/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "CombatAI.h"
 #include "LFGMgr.h"
@@ -954,7 +966,7 @@ struct scenarion_bi_heroesl_baseAI : ScriptedAI
                         newF->follow_angle = urand((180 - 60) / 4, (180 + 60) / 4) * 4 * M_PI / 180;
 
                         if (urand(1, 2) == 1)
-                            newF->follow_angle += M_PI;
+                            newF->follow_angle += float(M_PI);
 
                         newF->follow_dist = abs(float(urand(1, 2) * 3) / cos(newF->follow_angle));
 

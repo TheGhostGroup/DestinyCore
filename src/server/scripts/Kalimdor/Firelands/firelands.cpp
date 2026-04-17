@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "MoveSplineInit.h"
 #include "Cell.h"
 #include "CellImpl.h"
@@ -1569,12 +1586,12 @@ class spell_alysrazor_turn_monstrosity : public SpellScriptLoader
                     case SPELL_RIGHT_SIDE_SMACK_R:
                     case SPELL_RIGHT_SIDE_SMACK_L:
                         spellId = SPELL_KNOCKBACK_RIGHT;
-                        angle -= M_PI * 0.5f;
+                        angle -= float(M_PI * 0.5f);
                         break;
                     case SPELL_LEFT_SIDE_SMACK_R:
                     case SPELL_LEFT_SIDE_SMACK_L:
                         spellId = SPELL_KNOCKBACK_LEFT;
-                        angle += M_PI * 0.5f;
+                        angle += float(M_PI * 0.5f);
                         break;
                     case SPELL_HEAD_BONK_R:
                     case SPELL_HEAD_BONK_L:
@@ -1583,7 +1600,7 @@ class spell_alysrazor_turn_monstrosity : public SpellScriptLoader
                     case SPELL_TICKLE_R:
                     case SPELL_TICKLE_L:
                         spellId = SPELL_KNOCKBACK_BACK;
-                        angle -= M_PI;
+                        angle -= float(M_PI);
                         break;
                 }
 

@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "end_time.h"
 
 enum Yells
@@ -451,12 +468,12 @@ struct npc_echo_of_tyrande_moonlance : public ScriptedAI
             if (me->GetEntry() == NPC_MOONLANCE_1)
             {
                 Position pos1_1, pos1_2, pos2_1, pos2_2, pos3_1, pos3_2;
-                me->GetNearPosition(pos1_1, 3.0f, -(M_PI / 4.0f));
-                me->GetNearPosition(pos1_2, 30.0f, -(M_PI / 4.0f));
+                me->GetNearPosition(pos1_1, 3.0f, float(-M_PI / 4.0f));
+                me->GetNearPosition(pos1_2, 30.0f, float(-M_PI / 4.0f));
                 me->GetNearPosition(pos2_1, 3.0f, 0.0f);
                 me->GetNearPosition(pos2_2, 30.0f, 0.0f);
-                me->GetNearPosition(pos3_1, 3.0f, (M_PI / 4.0f));
-                me->GetNearPosition(pos3_2, 30.0f, (M_PI / 4.0f));
+                me->GetNearPosition(pos3_1, 3.0f, float(M_PI / 4.0f));
+                me->GetNearPosition(pos3_2, 30.0f, float(M_PI / 4.0f));
 
                 if (auto lance1 = me->SummonCreature(NPC_MOONLANCE_2_1, pos1_1, TEMPSUMMON_TIMED_DESPAWN, 30000))
                     lance1->GetMotionMaster()->MovePoint(POINT_MOONLANCE, pos1_2);

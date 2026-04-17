@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -111,12 +110,12 @@ struct AfterShockAngle
 
 static AfterShockAngle angmod[6] =
 {
-    {M_PI, M_PI + 1.570796326795f},
-    {M_PI, 0.7853981633975f},
-    {M_PI, 1.570796326795f + 0.7853981633975f},
-    {M_PI + 1.570796326795f, 0.7853981633975f},
-    {M_PI + 1.570796326795f, 1.570796326795f + 0.7853981633975f},
-    {0.7853981633975f, 1.570796326795f + 0.7853981633975f},
+    { float(M_PI), float(M_PI + 1.570796326795f) },
+    { float(M_PI), 0.7853981633975f },
+    { float(M_PI), 1.570796326795f + 0.7853981633975f },
+    { float(M_PI + 1.570796326795f), 0.7853981633975f },
+    { float(M_PI + 1.570796326795f), 1.570796326795f + 0.7853981633975f },
+    { 0.7853981633975f, 1.570796326795f + 0.7853981633975f },
 };
 
 class boss_general_nazgrim : public CreatureScript

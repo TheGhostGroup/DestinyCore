@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "AchievementMgr.h"
 #include "BrawlersGuild.h"
 
@@ -76,7 +93,7 @@ public:
                     {
                         me->CastSpell(me, 233226);
                         Position pos;
-                        me->GetNearPoint2D(pos, 15.0f, frand(-M_PI/3, M_PI/3));
+                        me->GetNearPoint2D(pos, 15.0f, frand(float(- M_PI / 3), float(M_PI / 3)));
                         me->NearTeleportTo(pos);
                         me->AddUnitState(UNIT_STATE_ROOT);
                         events.RescheduleEvent(EVENT_2, 500);
@@ -203,7 +220,7 @@ public:
                     case EVENT_1:
                     {
                         Position pos;
-                        me->GetNearPoint2D(pos, 20.0f, frand(-M_PI/3, M_PI/3));
+                        me->GetNearPoint2D(pos, 20.0f, frand(float(- M_PI / 3), float(M_PI / 3)));
                         if (me->HasAura(SPELL_BAD_LUCKYDO))
                             me->CastSpell(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ(),  SPELL_THROW_TOY_BAD);
                         else
@@ -320,17 +337,17 @@ public:
                     case EVENT_3:
                     {
                         Position pos;
-                        me->GetNearPoint2D(pos, 20.0f, frand(-M_PI / 3, M_PI / 3));
+                        me->GetNearPoint2D(pos, 20.0f, frand(float(- M_PI / 3), float(M_PI / 3)));
                         me->CastSpell(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ(), SPELL_JUMP_GRIZZLY);
                         me->AddDelayedEvent(2200, [this]() -> void
                         {
                             Position pos;
-                            me->GetNearPoint2D(pos, 20.0f, frand(-M_PI / 3, M_PI / 3));
+                            me->GetNearPoint2D(pos, 20.0f, frand(float(- M_PI / 3), float(M_PI / 3)));
                             me->CastSpell(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ(), SPELL_JUMP_GRIZZLY);
                             me->AddDelayedEvent(2200, [this]() -> void
                             {
                                 Position pos;
-                                me->GetNearPoint2D(pos, 20.0f, frand(-M_PI / 3, M_PI / 3));
+                                me->GetNearPoint2D(pos, 20.0f, frand(float(- M_PI / 3), float(M_PI / 3)));
                                 me->CastSpell(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ(), SPELL_JUMP_GRIZZLY);
                             });
                         });

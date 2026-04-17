@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -152,7 +151,7 @@ FormationInfo* FormationMgr::CreateCustomFormation(Creature* c)
     group_member->leaderGUID            = c->GetGUIDLow();
     group_member->groupAI               = 2;
     group_member->follow_dist           = 1.0f;
-    group_member->follow_angle          = 45 * M_PI / 180;
+    group_member->follow_angle          = float(45 * M_PI / 180);
     sFormationMgr->AddCreatureToGroup(c->GetGUIDLow(), c);
     if (CreatureGroup* f = c->GetFormation())
         f->AddMember(c, group_member);

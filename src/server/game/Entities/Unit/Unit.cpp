@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -2440,7 +2439,7 @@ void Unit::DealMeleeDamage(CalcDamageInfo* damageInfo, bool durabilityLoss)
 
     // If this is a creature and it attacks from behind it has a probability to daze it's victim
     if ((damageInfo->hitOutCome == MELEE_HIT_CRIT || damageInfo->hitOutCome == MELEE_HIT_CRUSHING || damageInfo->hitOutCome == MELEE_HIT_NORMAL || damageInfo->hitOutCome == MELEE_HIT_GLANCING)
-        && !IsPlayer() && !ToCreature()->IsControlledByPlayer() && !victim->HasInArc(M_PI, this)
+        && !IsPlayer() && !ToCreature()->IsControlledByPlayer() && !victim->HasInArc(float(M_PI), this)
         && (victim->IsPlayer() || !victim->ToCreature()->isWorldBoss()) && !isTank)
     {
         // -probability is between 0% and 40%
@@ -3408,7 +3407,7 @@ bool Unit::isSpellBlocked(Unit* victim, SpellInfo const* spellProto, WeaponAttac
     if (victim->IsNonMeleeSpellCast(false) || victim->HasUnitState(UNIT_STATE_CONTROLLED))
         return false;
 
-    if (victim->HasAuraType(SPELL_AURA_IGNORE_HIT_DIRECTION) || victim->HasInArc(M_PI, this))
+    if (victim->HasAuraType(SPELL_AURA_IGNORE_HIT_DIRECTION) || victim->HasInArc(float(M_PI), this))
     {
         // Check creatures flags_extra for disable block
         if (victim->IsCreature() && victim->ToCreature()->GetCreatureTemplate()->flags_extra & CREATURE_FLAG_EXTRA_NO_BLOCK)
@@ -12090,7 +12089,7 @@ void Unit::SetMinion(Minion *minion, bool apply)
         uint32 count = 0;
         for (ControlList::iterator itr = m_Controlled.begin(); itr != m_Controlled.end(); ++itr)
         {
-            float angle = PET_FOLLOW_ANGLE;
+            float angle = float(PET_FOLLOW_ANGLE);
             Creature* creature = ObjectAccessor::GetCreatureOrPetOrVehicle(*this, *itr);
             if (!creature)
                 continue;
@@ -12098,23 +12097,23 @@ void Unit::SetMinion(Minion *minion, bool apply)
             switch (count)
             {
                 case 0:
-                    angle = PET_FOLLOW_ANGLE;
+                    angle = float(PET_FOLLOW_ANGLE);
                     break;
                 case 1:
-                    angle = PET_FOLLOW_ANGLE * 3;
+                    angle = float(PET_FOLLOW_ANGLE * 3);
                     break;
                 case 2:
-                    angle = PET_FOLLOW_ANGLE * 2;
+                    angle = float(PET_FOLLOW_ANGLE * 2);
                     break;
                 case 3:
-                    angle = PET_FOLLOW_ANGLE * 2 + PET_FOLLOW_ANGLE / 2;
+                    angle = float(PET_FOLLOW_ANGLE * 2 + PET_FOLLOW_ANGLE / 2);
                     break;
                 case 4:
-                    angle = PET_FOLLOW_ANGLE + PET_FOLLOW_ANGLE / 2;
+                    angle = float(PET_FOLLOW_ANGLE + PET_FOLLOW_ANGLE / 2);
                     break;
             }
             creature->SetFollowAngle(angle);
-            creature->SetFollowDistance(frand(PET_FOLLOW_DIST/ 2 , PET_FOLLOW_DIST *2));
+            creature->SetFollowDistance(frand(PET_FOLLOW_DIST / 2 , PET_FOLLOW_DIST * 2));
             count++;
         }
     }

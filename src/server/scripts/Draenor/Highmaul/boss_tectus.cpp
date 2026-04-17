@@ -1,10 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-//
-//  MILLENIUM-STUDIO
-//  Copyright 2016 Millenium-studio SARL
-//  All Rights Reserved.
-//
-////////////////////////////////////////////////////////////////////////////////
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 # include "highmaul.hpp"
 #include "SpellAuraEffects.h"
@@ -758,7 +767,7 @@ struct boss_tectus : public BossAI
 
         for (uint8 i = 0; i < ShardSpawnCount; ++i)
         {
-            float o = frand(0, 2 * M_PI);
+            float o = frand(0, float(2 * M_PI));
             float x = originX + (range * cos(o));
             float y = originY + (range * sin(o));
 
@@ -776,7 +785,7 @@ struct boss_tectus : public BossAI
 
         for (uint8 i = 0; i < MotesSpawnCount; ++i)
         {
-            float o = frand(0, 2 * M_PI);
+            float o = frand(0, float(2 * M_PI));
             float x = originX + (range * cos(o));
             float y = originY + (range * sin(o));
 
@@ -795,7 +804,7 @@ struct boss_tectus : public BossAI
 
         if (target != nullptr)
         {
-            float o = frand(0, 2 * M_PI);
+            float o = frand(0, float(2 * M_PI));
             float range = 5.0f;
             float x = target->GetPositionX() + (range * cos(o));
             float y = target->GetPositionY() + (range * sin(o));

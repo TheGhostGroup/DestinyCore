@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2011 TrinityCore <http://www.trinitycore.org/>
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -14,12 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* ScriptData
-SDName: Ignis the Furnace Master
-SDAuthor: PrinceCreed
-SD%Complete: 100
-EndScriptData */
 
 #include "ulduar.h"
 #include "SpellAuraEffects.h"
@@ -94,26 +88,26 @@ enum Achievements
 
 const Position Pos[20] =
 {
-{630.366f,216.772f,360.891f,M_PI},
-{630.594f,231.846f,360.891f,M_PI},
-{630.435f,337.246f,360.886f,M_PI},
-{630.493f,313.349f,360.886f,M_PI},
-{630.444f,321.406f,360.886f,M_PI},
-{630.366f,247.307f,360.888f,M_PI},
-{630.698f,305.311f,360.886f,M_PI},
-{630.500f,224.559f,360.891f,M_PI},
-{630.668f,239.840f,360.890f,M_PI},
-{630.384f,329.585f,360.886f,M_PI},
-{543.220f,313.451f,360.886f,0},
-{543.356f,329.408f,360.886f,0},
-{543.076f,247.458f,360.888f,0},
-{543.117f,232.082f,360.891f,0},
-{543.161f,305.956f,360.886f,0},
-{543.277f,321.482f,360.886f,0},
-{543.316f,337.468f,360.886f,0},
-{543.280f,239.674f,360.890f,0},
-{543.265f,217.147f,360.891f,0},
-{543.256f,224.831f,360.891f,0}
+{ 630.366f,216.772f,360.891f,float(M_PI) },
+{ 630.594f,231.846f,360.891f,float(M_PI) },
+{ 630.435f,337.246f,360.886f,float(M_PI) },
+{ 630.493f,313.349f,360.886f,float(M_PI) },
+{ 630.444f,321.406f,360.886f,float(M_PI) },
+{ 630.366f,247.307f,360.888f,float(M_PI) },
+{ 630.698f,305.311f,360.886f,float(M_PI) },
+{ 630.500f,224.559f,360.891f,float(M_PI) },
+{ 630.668f,239.840f,360.890f,float(M_PI) },
+{ 630.384f,329.585f,360.886f,float(M_PI) },
+{ 543.220f,313.451f,360.886f,0 },
+{ 543.356f,329.408f,360.886f,0 },
+{ 543.076f,247.458f,360.888f,0 },
+{ 543.117f,232.082f,360.891f,0 },
+{ 543.161f,305.956f,360.886f,0 },
+{ 543.277f,321.482f,360.886f,0 },
+{ 543.316f,337.468f,360.886f,0 },
+{ 543.280f,239.674f,360.890f,0 },
+{ 543.265f,217.147f,360.891f,0 },
+{ 543.256f,224.831f,360.891f,0 }
 };
 
 

@@ -1606,7 +1606,7 @@ void Player::Update(uint32 p_time)
 
                 if (!isWithinMeleeRange && !isRangedSpell)
                     setAttackTimer(BASE_ATTACK, 100);
-                else if (!HasInArc(2*M_PI/3, victim)) // 120 degrees of radiant range
+                else if (!HasInArc(float(2 * M_PI / 3), victim)) // 120 degrees of radiant range
                     setAttackTimer(BASE_ATTACK, 100);
                 else
                 {
@@ -1637,7 +1637,7 @@ void Player::Update(uint32 p_time)
 
                 if (!isWithinMeleeRange && !isRangedSpell)
                     setAttackTimer(OFF_ATTACK, 100);
-                else if (!HasInArc(2*M_PI/3, victim)) // 120 degrees of radiant range
+                else if (!HasInArc(float(2 * M_PI /3), victim)) // 120 degrees of radiant range
                     setAttackTimer(OFF_ATTACK, 100);
                 else
                 {
@@ -37857,8 +37857,8 @@ void Player::SummonBattlePet(ObjectGuid journalID)
     GetMap()->AddToMap(currentPet->ToCreature());
 
     currentPet->InitSummon();
-    currentPet->GetMotionMaster()->MoveFollow(this, currentPet->GetFollowDistance(), (3 * M_PI) / 2);
-    currentPet->SetFollowAngle((3 * M_PI) / 2);
+    currentPet->GetMotionMaster()->MoveFollow(this, currentPet->GetFollowDistance(), float(3 * M_PI) / 2);
+    currentPet->SetFollowAngle(float(3 * M_PI) / 2);
     currentPet->SetSpeed(MOVE_WALK, GetSpeedRate(MOVE_WALK), true);
     currentPet->SetSpeed(MOVE_RUN, GetSpeedRate(MOVE_RUN), true);
 

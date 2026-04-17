@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "Vehicle.h"
 #include "firelands.h"
 #include "boss_lord_rhyolith.h"
@@ -388,7 +405,7 @@ class boss_lord_rhyolith : public CreatureScript
                                 std::list<Creature*> volcanos_1;
                                 for (std::list<Creature*>::const_iterator itr = volcanos.begin(); itr != volcanos.end(); ++itr)
                                 {
-                                    if (me->HasInArc(M_PI / 2, (*itr)))
+                                    if (me->HasInArc(float(M_PI / 2), (*itr)))
                                         volcanos_1.push_back((*itr));
                                 }
                                 pTarget = Trinity::Containers::SelectRandomContainerElement((volcanos_1.empty() ? volcanos : volcanos_1));
@@ -1257,7 +1274,7 @@ class spell_lord_rhyolith_magma_flow : public SpellScriptLoader
 
                 count++;
 
-                for (float a = 0; a <= 2 * M_PI; a += M_PI / 2)
+                for (float a = 0; a <= 2 * M_PI; a += float(M_PI / 2))
                 {
                     Position pos;
                     GetCaster()->GetNearPosition(pos, 1.0f * count, a + frand(-0.05f, 0.05f));
