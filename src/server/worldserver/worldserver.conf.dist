@@ -4964,14 +4964,52 @@ Map.UpdateCellGroupSize = 8
 ###################################################################################################
 
 ###################################################################################################
+# OBLITERUM SETTINGS
+####################
+#
+#     Obliterum.LevelEnable
+#        Description: Enables configurable item level limits for Obliterum upgrades.
+#                     When enabled, Obliterum can only be applied to items within the
+#                     configured Obliterum.LevelMin and Obliterum.LevelMax range.
+#        Default:     0 (disabled)
+#                     1 (enabled)
+
+Obliterum.LevelEnable = 0
+
+#
+#     Obliterum.LevelStart
+#        Description: Sets the starting item level for supported Obliterum-upgradable items.
+#                     When set to a value greater than 0, the affected items use this item level
+#                     instead of their default value.
+#                     Set to 0 to keep the original item levels.
+#        Default:     0
+
+Obliterum.LevelStart = 0
+
+#
+#     Obliterum.LevelMin
+#        Description: Minimum current item level required for an item to be upgraded with Obliterum.
+#                     Only used when Obliterum.LevelEnable is enabled.
+#        Default:     850
+
+Obliterum.LevelMin = 850
+
+#
+#     Obliterum.LevelMax
+#        Description: Maximum current item level allowed for Obliterum upgrades.
+#                     Items at or above this value can no longer be upgraded with Obliterum.
+#                     Only used when Obliterum.LevelEnable is enabled.
+#        Default:     900
+
+Obliterum.LevelMax = 900
+
+#
+###################################################################################################
+
+###################################################################################################
 # UNKNOWN SETTINGS #
 ####################
 #
-
-Obliterum.LevelEnable = 0
-Obliterum.LevelStart = 0
-Obliterum.LevelMin = 850
-Obliterum.LevelMax = 900
 
 Item.LegendaryLimit = 160000
 Item.LegendaryLevel = 970
