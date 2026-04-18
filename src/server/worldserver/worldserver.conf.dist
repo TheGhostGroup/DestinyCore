@@ -3602,6 +3602,33 @@ Item.LegendaryLimit = 160000
 Item.LegendaryLevel = 970
 
 #
+#     PvP.LevelEnable
+#        Description: Enables the alternative season-based PvP item level progression system.
+#                     When enabled, PvP reward item levels are calculated from the configured
+#                     PvP season and progression step instead of using the default logic.
+#        Default:     0 (disabled)
+#                     1 (enabled)
+
+PvP.LevelEnable = 0
+
+#
+#     PvP.ActiveSeason
+#        Description: Defines the active PvP season used by the alternative PvP progression system.
+#                     This value selects the season-specific reward item level tables and PvP item handling.
+#        Default:     0
+
+PvP.ActiveSeason = 0
+
+#
+#     PvP.ActiveStep
+#        Description: Defines the active progression step within the selected PvP season.
+#                     Higher steps unlock additional high-rating reward item level increases.
+#                     Only used when PvP.LevelEnable is enabled.
+#        Default:     1
+
+PvP.ActiveStep = 1
+
+#
 ###################################################################################################
 
 ###################################################################################################
@@ -5028,10 +5055,6 @@ Obliterum.LevelMax = 900
 # UNKNOWN SETTINGS #
 ####################
 #
-
-PvP.LevelEnable = 0
-PvP.ActiveSeason = 0
-PvP.ActiveStep = 1
 
 ParagonEnable = 1
 
