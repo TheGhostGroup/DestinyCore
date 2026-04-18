@@ -3639,6 +3639,16 @@ PvP.ActiveSeason = 0
 PvP.ActiveStep = 1
 
 #
+#     ArtifactTierEnable
+#        Description: Enables the extended artifact tier system.
+#                     When enabled, artifact weapons can transition to the next artifact tier
+#                     after exceeding 35 purchased traits.
+#        Default:     1 (enabled)
+#                     0 (disabled)
+
+ArtifactTierEnable = 1
+
+#
 ###################################################################################################
 
 ###################################################################################################
@@ -5065,8 +5075,6 @@ Obliterum.LevelMax = 900
 # UNKNOWN SETTINGS #
 ####################
 #
-
-ArtifactTierEnable = 1
 
 Dungeon.ActiveStep = 0
 
