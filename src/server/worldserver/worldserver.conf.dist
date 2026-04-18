@@ -3584,6 +3584,24 @@ ArtifactResearchTimer = 432000
 Max.ItemLevel = 985
 
 #
+#     Item.LegendaryLimit
+#        Description: Limits which Legion legendary items are treated as available based on item entry ID.
+#                     Items with an ID above this value are ignored.
+#                     This setting can be used to control legendary availability by server progression.
+#        Default:     160000
+
+Item.LegendaryLimit = 160000
+
+#
+#     Item.LegendaryLevel
+#        Description: Sets the target item level for Legion legendary items.
+#                     Applies predefined bonus upgrades based on supported values used by the core.
+#                     This setting is used for server-side legendary progression control.
+#        Default:     970
+
+Item.LegendaryLevel = 970
+
+#
 ###################################################################################################
 
 ###################################################################################################
@@ -5010,9 +5028,6 @@ Obliterum.LevelMax = 900
 # UNKNOWN SETTINGS #
 ####################
 #
-
-Item.LegendaryLimit = 160000
-Item.LegendaryLevel = 970
 
 PvP.LevelEnable = 0
 PvP.ActiveSeason = 0
