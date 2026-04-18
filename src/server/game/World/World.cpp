@@ -1529,7 +1529,12 @@ void World::LoadConfigSettings(bool reload)
     m_serverTimeTZ = sConfigMgr->GetStringDefault("ServerTimeTZ", "Europe/Paris");// == number of seconds elapsed since 00:00 hours, Jan 1, 1970 UTC
     m_gameTimeTZ = sConfigMgr->GetStringDefault("GameTimeTZ", "Europe/Paris"); // == number of seconds elapsed since 00:00 hours, Jan 1, 1970 UTC
 
-    m_int_configs[CONFIG_MAX_PRESTIGE_LEVEL]  = sConfigMgr->GetIntDefault("MaxPrestigeLevel", 25);
+    m_int_configs[CONFIG_MAX_PRESTIGE_LEVEL] = sConfigMgr->GetIntDefault("MaxPrestigeLevel", 25);
+    if (int32(m_int_configs[CONFIG_MAX_PRESTIGE_LEVEL]) < 0 || m_int_configs[CONFIG_MAX_PRESTIGE_LEVEL] > 25)
+    {
+        TC_LOG_ERROR("server.loading", "MaxPrestigeLevel (%i) must be in range 1..25. Set to 25.", m_int_configs[CONFIG_MAX_PRESTIGE_LEVEL]);
+        m_int_configs[CONFIG_MAX_PRESTIGE_LEVEL] = 25;
+    }
 
     m_int_configs[CONFIG_SIZE_CELL_FOR_PULL]  = sConfigMgr->GetIntDefault("SizeCellForPull", 8);
 
