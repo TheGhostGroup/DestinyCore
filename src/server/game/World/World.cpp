@@ -1536,7 +1536,12 @@ void World::LoadConfigSettings(bool reload)
         m_int_configs[CONFIG_MAX_PRESTIGE_LEVEL] = 25;
     }
 
-    m_int_configs[CONFIG_SIZE_CELL_FOR_PULL]  = sConfigMgr->GetIntDefault("SizeCellForPull", 8);
+    m_int_configs[CONFIG_MAP_UPDATE_CELL_GROUP_SIZE] = sConfigMgr->GetIntDefault("Map.UpdateCellGroupSize", 8);
+    if (m_int_configs[CONFIG_MAP_UPDATE_CELL_GROUP_SIZE] < 1)
+    {
+        TC_LOG_ERROR("server.loading", "Map.UpdateCellGroupSize (%u) must be >= 1. Set to 8.", m_int_configs[CONFIG_MAP_UPDATE_CELL_GROUP_SIZE]);
+        m_int_configs[CONFIG_MAP_UPDATE_CELL_GROUP_SIZE] = 8;
+    }
 
     m_bool_configs[CONFIG_ANTICHEAT_ENABLED] = sConfigMgr->GetBoolDefault("Anticheat.Enable", false);
     m_bool_configs[CONFIG_ANTICHEAT_ANTI_MULTI_JUMP_ENABLED] = sConfigMgr->GetBoolDefault("Anticheat.AntiMultiJump.Enable", false);

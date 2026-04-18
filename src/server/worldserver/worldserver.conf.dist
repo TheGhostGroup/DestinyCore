@@ -4938,11 +4938,26 @@ LFG.SoloMode = 0
 ###################################################################################################
 
 ###################################################################################################
+# MAP UPDATE SETTINGS
+#####################
+
+#
+#     Map.UpdateCellGroupSize
+#        Description: Defines how many map cells are grouped together for nearby object update processing.
+#                     The server combines visible cells into update batches of this size before processing them.
+#                     Lower values create smaller update groups with less work per batch.
+#                     Higher values create larger update groups and may improve throughput at the cost of bigger update spikes.
+#        Default:     8
+
+Map.UpdateCellGroupSize = 8
+
+#
+###################################################################################################
+
+###################################################################################################
 # UNKNOWN SETTINGS #
 ####################
 #
-
-SizeCellForPull = 8
 
 Max.ItemLevel = 985
 
