@@ -2731,6 +2731,16 @@ Rate.Reputation.LowLevel.Quest = 1
 Rate.Reputation.RecruitAFriendBonus = 0.1
 
 #
+#     ParagonEnable
+#        Description: Enables the Paragon reputation system.
+#                     When enabled, players can continue to earn reputation beyond Exalted
+#                     and receive Paragon rewards at fixed intervals.
+#        Default:     1 (enabled)
+#                     0 (disabled)
+
+ParagonEnable = 1
+
+#
 #    Rate.MoveSpeed
 #        Description: Movement speed rate.
 #        Default:     1
@@ -5055,8 +5065,6 @@ Obliterum.LevelMax = 900
 # UNKNOWN SETTINGS #
 ####################
 #
-
-ParagonEnable = 1
 
 ArtifactTierEnable = 1
 
