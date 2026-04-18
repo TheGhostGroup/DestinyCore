@@ -1033,6 +1033,14 @@ StartDeathKnightPlayerLevel = 55
 StartDemonHunterPlayerLevel = 98
 
 #
+#    MaxPrestigeLevel
+#        Description: Maximum prestige level a player may prestige to.
+#        Range:       1-25
+#        Default:     25
+
+MaxPrestigeLevel = 25
+
+#
 #    StartPlayerMoney
 #        Description: Amount of money (in Copper) that a character has after creation.
 #        Default:     0
@@ -4933,8 +4941,6 @@ LFG.SoloMode = 0
 # UNKNOWN SETTINGS #
 ####################
 #
-
-MaxPrestigeLevel = 50
 
 SizeCellForPull = 8
 
