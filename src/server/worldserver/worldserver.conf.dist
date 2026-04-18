@@ -3575,6 +3575,15 @@ PlayerDump.DisallowOverwrite = 1
 ArtifactResearchTimer = 432000
 
 #
+#     Max.ItemLevel
+#        Description: Sets the maximum item level that can be reached through bonus item level upgrades
+#                     such as Warforged or Titanforged item generation.
+#                     Once this value is reached, no further random item level increases are applied.
+#        Default:     985
+
+Max.ItemLevel = 985
+
+#
 ###################################################################################################
 
 ###################################################################################################
@@ -4958,8 +4967,6 @@ Map.UpdateCellGroupSize = 8
 # UNKNOWN SETTINGS #
 ####################
 #
-
-Max.ItemLevel = 985
 
 Obliterum.LevelEnable = 0
 Obliterum.LevelStart = 0
