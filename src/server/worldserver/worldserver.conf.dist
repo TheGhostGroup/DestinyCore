@@ -3699,10 +3699,6 @@ PvP.TemplateSecondaryStad = 6600
 Pvp.EnableCustomStad = 0
 
 #
-###################################################################################################
-
-###################################################################################################
-#
 #    Garrison.DisableUpgrade
 #        Description: Disable garrison upgrades.
 #        Default:     0
@@ -3776,6 +3772,11 @@ WorldQuest.DailyReset      = 1
 WorldQuest.InvasionPoint   = 2
 WorldQuest.ItemLevel.Min   = 805
 WorldQuest.ItemLevel.Max   = 855
+
+#
+###################################################################################################
+
+###################################################################################################
 # LOGGING SYSTEM SETTINGS
 #
 #  Appender config values: Given a appender "name"
