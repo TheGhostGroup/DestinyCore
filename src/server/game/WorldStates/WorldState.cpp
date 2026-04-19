@@ -100,6 +100,11 @@ void WorldState::Reload()
     Value = StateTemplate->DefaultValue;
 }
 
+void WorldState::Unload()
+{
+    ClientGuids.clear();
+}
+
 void WorldState::AddClient(ObjectGuid const& guid)
 {
     if (guid.IsPlayer())

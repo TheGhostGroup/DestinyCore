@@ -1,3 +1,20 @@
+/*
+ * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "Map.h"
 #include "WorldStateMgr.h"
 #include "Player.h"
@@ -22,10 +39,6 @@ void AddToWorldState(std::vector<WorldState*>** worldStates, WorldState* state, 
 WorldStateMgr::WorldStateMgr()
 {
     m_nextSave = sWorld->getIntConfig(CONFIG_INTERVAL_SAVE);
-}
-
-WorldStateMgr::~WorldStateMgr()
-{
 }
 
 WorldStateMgr& WorldStateMgr::Instance()
@@ -72,6 +85,13 @@ void WorldStateMgr::Initialize()
     AddTemplate(WorldStates::WS_PVP_ARENA_ENABLED, WorldStatesData::Types::World, 0, 1 << WorldStatesData::Flags::InitialState, sWorld->getBoolConfig(CONFIG_ARENA_SEASON_IN_PROGRESS));
     AddTemplate(WorldStates::WS_ARENA_SEASON_ID, WorldStatesData::Types::World, 0, 1 << WorldStatesData::Flags::InitialState, sWorld->getIntConfig(CONFIG_ARENA_SEASON_ID));
     AddTemplate(WorldStates::WS_RATED_BG_ENABLED, WorldStatesData::Types::World, 0, 1 << WorldStatesData::Flags::InitialState, sWorld->getBoolConfig(CONFIG_ARENA_SEASON_IN_PROGRESS));
+}
+
+void WorldStateMgr::Unload()
+{
+    for (auto state : _worldStateV)
+        if (state)
+            state->Unload();
 }
 
 WorldStateTemplate const* WorldStateMgr::FindTemplate(uint32 variableID)

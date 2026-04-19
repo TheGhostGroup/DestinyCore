@@ -4667,19 +4667,8 @@ void Map::UpdateLoop(uint32 _mapID)
 
     uint32 prevSleepTime = 0;
 
-    // TC_LOG_ERROR("server", "Map::UpdateLoop Run _mapID %u thread %u", _mapID, std::this_thread::get_id());
-
     while (!b_isMapStop)
     {
-        if (m_worldCrashChecker) // Crashing detected, need stop map
-        {
-            _transports.clear();
-            UnloadAll();
-            b_isMapStop = true;
-            TC_LOG_ERROR("server", "Map::UpdateLoop Crash _mapID %u thread %zu", _mapID, std::hash<std::thread::id>()(std::this_thread::get_id()));
-            break;
-        }
-
         try
         {
             m_mapLoopCounter++;
@@ -4748,10 +4737,6 @@ void Map::UpdateLoop(uint32 _mapID)
                 m_currentSession->KickPlayer();
         }
     }
-
-    //TC_LOG_ERROR("server", "Map::UpdateLoop Stop _mapID %u thread %u", _mapID, std::this_thread::get_id());
-    TC_LOG_ERROR("server", "Map::UpdateLoop Crash _mapID %u thread %zu", _mapID, std::hash<std::thread::id>()(std::this_thread::get_id()));
-
 }
 
 void Map::SetMapUpdateInterval()
