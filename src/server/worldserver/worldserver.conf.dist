@@ -3649,6 +3649,22 @@ PvP.ActiveStep = 1
 ArtifactTierEnable = 1
 
 #
+#     Dungeon.ActiveStep
+#        Description: Defines the active dungeon progression step.
+#                     Controls which dungeons are considered active or available
+#                     for systems such as challenge modes or dungeon weighting.
+#                     Higher values unlock additional dungeons based on progression.
+#        Default:     0
+#                     0 - initial state (early Legion)
+#                     1 - 7.0.3
+#                     2 - 7.1.0
+#                     3 - 7.1.5
+#                     4 - 7.2.5
+#                     5 - 7.3.2 (all dungeons active)
+
+Dungeon.ActiveStep = 0
+
+#
 ###################################################################################################
 
 ###################################################################################################
@@ -5075,8 +5091,6 @@ Obliterum.LevelMax = 900
 # UNKNOWN SETTINGS #
 ####################
 #
-
-Dungeon.ActiveStep = 0
 
 #  PvP Template Stads 
 
