@@ -3665,6 +3665,40 @@ ArtifactTierEnable = 1
 Dungeon.ActiveStep = 0
 
 #
+#     PvP.TemplateMainStad
+#        Description: Sets the base main stat value used by the custom PvP stat template system.
+#                     This value affects Strength, Agility, and Intellect during PvP stat scaling.
+#        Default:     13445
+
+PvP.TemplateMainStad = 13445
+
+#
+#     PvP.TemplateStaminaStad
+#        Description: Sets the base stamina value used by the custom PvP stat template system.
+#                     This value affects player stamina during PvP stat scaling.
+#        Default:     58000
+
+PvP.TemplateStaminaStad = 58000
+
+#
+#     PvP.TemplateSecondaryStad
+#        Description: Sets the base secondary stat value used by the custom PvP stat template system.
+#                     This value affects ratings such as Haste, Mastery, Versatility, and Critical Strike
+#                     during PvP stat scaling.
+#        Default:     6600
+
+PvP.TemplateSecondaryStad = 6600
+
+#
+#     Pvp.EnableCustomStad
+#        Description: Enables the custom PvP stat template configuration.
+#                     This setting is currently reserved for custom PvP stat handling.
+#        Default:     0 (disabled)
+#                     1 (enabled)
+
+Pvp.EnableCustomStad = 0
+
+#
 ###################################################################################################
 
 ###################################################################################################
@@ -5085,23 +5119,4 @@ Obliterum.LevelMin = 850
 Obliterum.LevelMax = 900
 
 #
-###################################################################################################
-
-###################################################################################################
-# UNKNOWN SETTINGS #
-####################
-#
-
-#  PvP Template Stads 
-
-PvP.TemplateMainStad = 13445
-PvP.TemplateStaminaStad = 58000
-PvP.TemplateSecondaryStad = 6600
-
-# Custom stad for each specialization
-
-Pvp.EnableCustomStad = 0
-
-###################################################################################################
-
 ###################################################################################################
