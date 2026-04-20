@@ -1,23 +1,22 @@
 /*
- * Copyright (C) 2008-2014 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation; either version 2 of the License, or (at your
- * option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
- * more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+  * This file is part of the DestinyCore Project. See AUTHORS file for Copyright information
+  *
+  * This program is free software; you can redistribute it and/or modify it
+  * under the terms of the GNU General Public License as published by the
+  * Free Software Foundation; either version 2 of the License, or (at your
+  * option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful, but WITHOUT
+  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  * more details.
+  *
+  * You should have received a copy of the GNU General Public License along
+  * with this program. If not, see <http://www.gnu.org/licenses/>.
+  */
 
-#ifndef _AUTH_HMAC_H
-#define _AUTH_HMAC_H
+#ifndef HMACHASH_H
+#define HMACHASH_H
 
 #include "Define.h"
 #include <string>
@@ -33,18 +32,19 @@ typedef EVP_MD const* (*HashCreateFn)();
 template<HashCreateFn HashCreator, uint32 DigestLength>
 class HmacHash
 {
-public:
-    HmacHash(uint32 len, uint8 const* seed);
-    ~HmacHash();
-    void UpdateData(std::string const& str);
-    void UpdateData(uint8 const* data, size_t len);
-    void Finalize();
-    uint8* ComputeHash(BigNumber* bn);
-    uint8* GetDigest() { return _digest; }
-    uint32 GetLength() const { return DigestLength; }
-private:
-    HMAC_CTX* _ctx;
-    uint8 _digest[DigestLength];
+    public:
+        HmacHash(uint32 len, uint8 const* seed);
+        ~HmacHash();
+        void UpdateData(std::string const& str);
+        void UpdateData(uint8 const* data, size_t len);
+        void Finalize();
+        uint8* ComputeHash(BigNumber* bn);
+        uint8* GetDigest() { return _digest; }
+        uint32 GetLength() const { return DigestLength; }
+    private:
+        EVP_MD_CTX* _ctx;
+        EVP_PKEY* _key;
+        uint8 _digest[DigestLength];
 };
 
 typedef HmacHash<EVP_sha1, SHA_DIGEST_LENGTH> HmacSha1;
